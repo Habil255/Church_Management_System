@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserLoginController;
+use App\Http\Controllers\AccountantController;
+use App\Http\Controllers\ParishController;
+use App\Http\Controllers\AuthController;
+use GuzzleHttp\Middleware;
+use App\Http\Middleware\Authcheck;
+use App\Http\Middleware\Admincheck;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +27,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/data', [UserController::class, 'chartData']);
+
 Route::get('/test', function () {
     
     return view('test');
@@ -32,22 +39,46 @@ Route::prefix('user')->group(function () {
 
     });
 
-//NORMAL USER CONTROL CODES
+//Roles CONTROL CODES
 Route::get('/role/insert', [RoleController::class, 'create']);
 Route::get('/gett/user', [RoleController::class, 'store']);
 
 
-//NORMAL ADMIN CONTROL Codes
+
+//PARISH WORKER CONTROL CODES
+Route::prefix('parish')->group(function () { 
+    Route::get('/home', [ParishController::class, 'index']);
+});
+
+
+
+//NORMAL Accountant CONTROL Codes
+Route::prefix('accountant')->middleware([AuthCheck::class])->group(function () {
+    
+    Route::get('/home', [AccountantController::class, 'index']);
+    // Route::get('/home', [AuthController::class, 'login']);
+    
+}); 
+
+
 Route::prefix('admin')->group(function () {
     
-    Route::get('/home', [AdminController::class, 'index'])->name('admin-home');
+    Route::get('/home', [AdminController::class, 'index']);
+    Route::get('/create-roles', [AdminController::class, 'roles']);
+    Route::post('/create-roles', [AdminController::class, 'createRoles'])->name('create.roles');
+    // Route::get('/home', [AdminController::class, 'index']);
+    // Route::get('/home', [AuthController::class, 'login']);
+    
 }); 
 
 
 // Authentication control codes
-Route::get('/login', [UserLoginController::class, 'index']);
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/Auth', [AuthController::class, 'index']);
 
-Route::post('/login', [UserLoginController::class, 'loginProcess'])->name('login.custom');
+Route::get('/user-logout', [AuthController::class,'logout'])->name('user-logout');
+
+Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.custom');
 
 
 // Auth::routes();

@@ -4,7 +4,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>{{ Auth::user() }}</b></span>
+        <span class="logo-lg"><b>{{ Auth::user()->roles[0]->title }} Dashboard </b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -265,7 +265,18 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                {{-- //  document.getElementById('logout-form').submit();" --}}
+                                <a class="btn btn-default btn-flat" href="{{ route('user-logout') }}" >
+                                                        
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('user-logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+
+                                {{-- <a href="#" class="btn btn-default btn-flat">Sign out</a> --}}
                             </div>
                         </li>
                     </ul>

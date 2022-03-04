@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Role;
-class AdminController extends Controller
+
+class ParishController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         //
-        // return 'habil';
-        return view('pages.admin-home');
+        return view('pages.parishworker_dashboard');
     }
 
     /**
@@ -23,11 +22,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function roles()
+    public function create()
     {
         //
-        return view('pages.create-roles');
-
     }
 
     /**
@@ -36,15 +33,9 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function createRoles(Request $request)
+    public function store(Request $request)
     {
         //
-        $roles =Role::create([
-            'title' =>$request->title,
-            'Description' =>$request->description,
-        ]);
-        $roles->save();
-        return redirect()->path('pages.createroles');
     }
 
     /**

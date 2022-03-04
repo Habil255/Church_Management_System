@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserLoginController extends Controller
+class AccountantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,7 @@ class UserLoginController extends Controller
     public function index()
     {
         //
-        return view('auth.login');
+        return view('pages.accountant-home');
     }
 
     /**
@@ -26,45 +22,10 @@ class UserLoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function loginProcess(Request $request)
+    public function create()
     {
         //
-            $credentials=$request->validate([
-                'email'=>['required','email'],
-                'password'=>['required','min:6'],
-            ]);
-
-            // SIMPLE LOGIN PROCESS
-
-            // $emailInput=$request->input('email');
-            // $passwordInput=$request->input('password');
-            // $userEmail =User::find(1)
-            //                 ->where(['email','=',$emailInput],['password','=',$passwordInput])
-            //                 ->get();
-            
-            // if (count($userEmail) === 1) {
-            //     return 2;
-            //     # code...
-            // } else {
-            //     # code...
-            //     return response()->json($userEmail);
-            // }
-            
-
-
-
-            // $request->all();
-
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-     
-                return redirect()->intended('admin/home');
-            }
-     
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ]);
-        }
+    }
 
     /**
      * Store a newly created resource in storage.

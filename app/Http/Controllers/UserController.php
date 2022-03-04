@@ -31,6 +31,7 @@ class UserController extends Controller
         //
         $users=User::create([
             'first_name' => 'Habil',
+            'middle_name' =>'',
             'last_name' => 'Mallya',
             'username' => 'Habil255',
             'gender' => 'M',
@@ -45,6 +46,20 @@ class UserController extends Controller
         return "Records Inserted Successfully";
 
 
+    }
+
+    public function chartData()
+    {
+        $data = User::find(1)
+                    // ->where('first_name','Habil')
+                    ->get();
+        // $data = User::find(1)
+        //             ->where('first_name','Habil')
+        //             ->get(['first_name','last_name']);
+
+    
+
+        return response()->json($data);
     }
 
     /**

@@ -45,9 +45,9 @@ class RoleController extends Controller
     public function store()
     {
         //
-        DB::table('role_user')->truncate();
-        $user=User::find(3);
-        $roleId=Role::find([2,3]);
+        // DB::table('role_user')->truncate();
+        $user=User::find(11);
+        $roleId=Role::find([3]);
 
          $user->roles()
                 ->attach($roleId);

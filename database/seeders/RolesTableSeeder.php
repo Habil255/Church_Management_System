@@ -21,7 +21,7 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         //
-        Role::truncate();
+        
         $roles =  [
             [
                 'title' => 'Pastor',
@@ -57,6 +57,12 @@ class RolesTableSeeder extends Seeder
             [
                 'title' => 'Congregation Secretary',
                 'Description' => 'Setting up the schedules',
+                'created_at' => Carbon::now(),
+              'updated_at' => Carbon::now(),
+            ],
+            [
+                'title' => 'Normal',
+                'Description' => 'Normal',
                 'created_at' => Carbon::now(),
               'updated_at' => Carbon::now(),
             ]
