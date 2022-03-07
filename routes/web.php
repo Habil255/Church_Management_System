@@ -46,7 +46,7 @@ Route::get('/gett/user', [RoleController::class, 'store']);
 
 
 //PARISH WORKER CONTROL CODES
-Route::prefix('parish')->group(function () { 
+Route::prefix('parish')->middleware([AuthCheck::class])->group(function () { 
     Route::get('/home', [ParishController::class, 'index']);
 });
 
@@ -61,11 +61,13 @@ Route::prefix('accountant')->middleware([AuthCheck::class])->group(function () {
 }); 
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware([AdminCheck::class])->group(function () {
     
     Route::get('/home', [AdminController::class, 'index']);
     Route::get('/create-roles', [AdminController::class, 'roles']);
     Route::post('/create-roles', [AdminController::class, 'createRoles'])->name('create.roles');
+    Route::get('/lecturer_search',[AdminController::class,'searchUser'])->name('search.lecturer');
+    Route::post('/store-roles',[AdminController::class,'storeRoles'])->name('roles.assign');
     // Route::get('/home', [AdminController::class, 'index']);
     // Route::get('/home', [AuthController::class, 'login']);
     

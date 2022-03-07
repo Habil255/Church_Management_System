@@ -42,6 +42,7 @@ class AuthController extends Controller
      */
     public function loginProcess(Request $request)
     {
+        
         //
         $request->validate([
             'email' => ['required', 'email'],
@@ -133,6 +134,9 @@ class AuthController extends Controller
             //     'role' => $user[0]->title
             // ]);
         } else {
+            return back()->withErrors([
+                    'password' => 'The provided credentials do not match our records.',
+                ]);
             return response()->json([
                 'msg' => 'Incorrect login details',
             ], 401);

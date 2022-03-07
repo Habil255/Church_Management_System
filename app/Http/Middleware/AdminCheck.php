@@ -19,14 +19,19 @@ class AdminCheck
     {
        
         
-        if($request->path() != '/login'){
+        if($request->path() != '/login' && !Auth::check()){
             
+
             return redirect('/login');
-           
+            
+            
              // go to the next middleware
-        }else{
-        return $next($request);
         }
+        return $next($request);
+
+        // return redirect('/login');
+        
+        
         
 
         if(!Auth::check()){

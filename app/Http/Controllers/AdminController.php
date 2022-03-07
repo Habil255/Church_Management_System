@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\User;
+use Laravel\Ui\Presets\React;
+
 class AdminController extends Controller
 {
     /**
@@ -14,8 +17,8 @@ class AdminController extends Controller
     public function index()
     {
         //
-        // return 'habil';
-        return view('pages.admin-home');
+        
+        return view('admin.home');
     }
 
     /**
@@ -26,7 +29,8 @@ class AdminController extends Controller
     public function roles()
     {
         //
-        return view('pages.create-roles');
+        $roles=Role::get();
+        return view('admin.create-roles',compact('roles'));
 
     }
 
@@ -44,7 +48,7 @@ class AdminController extends Controller
             'Description' =>$request->description,
         ]);
         $roles->save();
-        return redirect()->path('pages.createroles');
+        return back()->with('Role_added','Content has added');
     }
 
     /**
@@ -53,9 +57,28 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function storeRoles(Request $request)
     {
+        $user = $request->first_name;
+        $role = $request->role;
         //
+        // $userRoles = Role::create([
+        //     'title' => $request->first_name,
+        //     'description' => $request->role,
+        // ]);
+        // return response()->json($userRoles);
+
+        $userId=User::findOrFail(1)
+                    ->where('first_name',$user)
+                    ->first();
+        $roleId=Role::findOrFail(1)
+                    ->where('title',$role)
+                    ->first();
+         $userId->roles()
+                ->attach($roleId);
+            
+    //             // ->detach();
+        return response()->json([$userId,$roleId, 'The Role Assignment has been done']); 
     }
 
     /**
@@ -91,4 +114,15 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function searchUser(Request $request)
+    {
+        //
+        $user = User::select("first_name")
+                    ->where("first_name","LIKE","%{$request->value}%")
+                    ->limit(8)
+                    ->get();
+        return response()->json($user);
+    }
+
 }

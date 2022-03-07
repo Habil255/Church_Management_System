@@ -2,13 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Support\Facades\Auth;
-
-
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class Authcheck
+class ParishCheck
 {
     /**
      * Handle an incoming request.
@@ -19,8 +17,6 @@ class Authcheck
      */
     public function handle(Request $request, Closure $next)
     {
-        
-        
         if($request->path() != '/login' && !Auth::check()){
             
 
@@ -44,4 +40,5 @@ class Authcheck
             ], 403);
         }
     }
+
 }
