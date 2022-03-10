@@ -89,9 +89,10 @@
 
 <script type="text/javascript">
   url="{{route('search.lecturer')}}";
-  $('input.typeahead').typeahead({
+  $('#assign-roles').typeahead({
       source:function(value,process){
           return $.get(url,{value:value}, function(data){
+            // alert(data);
               return process(data);
               // console.log(data);
           });

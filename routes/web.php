@@ -68,6 +68,7 @@ Route::prefix('admin')->middleware([AdminCheck::class])->group(function () {
     Route::post('/create-roles', [AdminController::class, 'createRoles'])->name('create.roles');
     Route::get('/lecturer_search',[AdminController::class,'searchUser'])->name('search.lecturer');
     Route::post('/store-roles',[AdminController::class,'storeRoles'])->name('roles.assign');
+    Route::get('/view-accounts',[AdminController::class,'viewAccounts']);
     // Route::get('/home', [AdminController::class, 'index']);
     // Route::get('/home', [AuthController::class, 'login']);
     

@@ -127,6 +127,17 @@ class AuthController extends Controller
                 ]);
             }
 
+            if ($user[0]->title === 'Pastor') {
+                return redirect('pastor/home');
+                // Auth::logout();
+                return response()->json([
+                    // 'redirect' => '/', 
+                    'msg' => 'User, You are logged in',
+                    'user' => $user,
+                    'role' => $user[0]->title
+                ]);
+            }
+
             // return response()->json([
             //     'redirect' => '/app', 
             //     'msg' => 'Admin, You are logged in', 
@@ -207,7 +218,7 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('login');
         return response()->json([
-            'msg' => 'Logout succesfull',
+            'msg' => 'Logout succesful',
         ], 200);
         
         // return redirect('/');
