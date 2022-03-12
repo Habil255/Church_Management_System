@@ -67,8 +67,20 @@ Route::prefix('admin')->middleware([AdminCheck::class])->group(function () {
     Route::get('/create-roles', [AdminController::class, 'roles']);
     Route::post('/create-roles', [AdminController::class, 'createRoles'])->name('create.roles');
     Route::get('/lecturer_search',[AdminController::class,'searchUser'])->name('search.lecturer');
+
+    Route::get('/search_user',[AdminController::class,'searchUserDetails'])->name('search.user');
+
+    Route::get('/singleUser',[AdminController::class,'singleUser']);
+
     Route::post('/store-roles',[AdminController::class,'storeRoles'])->name('roles.assign');
+
     Route::get('/view-accounts',[AdminController::class,'viewAccounts']);
+    Route::post('/add-member',[AdminController::class,'addMember'])->name('admin.addMember');
+
+    Route::get('/view-member/{id}',[AdminController::class,'showMember']);
+    // Delete a Member
+    Route::get('/delete-member/{id}',[AdminController::class,'deleteMember']);
+    
     // Route::get('/home', [AdminController::class, 'index']);
     // Route::get('/home', [AuthController::class, 'login']);
     

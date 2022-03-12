@@ -33,17 +33,18 @@ class UserController extends Controller
             'first_name' => 'Habil',
             'middle_name' =>'',
             'last_name' => 'Mallya',
-            'username' => 'Habil255',
+            'username' => 'Habi255',
             'gender' => 'M',
             'date_of_birth' => $faker->date(),
-            'place_of_birth' => 'Mabibo',
+            'place_of_birth' => 'Makuburi',
             'marital_status' => 'Married',
-            'spouse_name' => 'Hadija',
+            'spouse_name' => 'Hpe',
             'email' => 'raphaelhabil09@gmail.com',
             'password' => bcrypt('105510')
         ]);
-        $users->save();
-        return "Records Inserted Successfully";
+        return $users->id;
+        // $users->save();
+        // return "Records Inserted Successfully";
 
 
     }

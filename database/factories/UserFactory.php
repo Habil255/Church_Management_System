@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Spatie\LaravelIgnition\Support\Composer\FakeComposer;
@@ -18,10 +19,10 @@ class UserFactory extends Factory
     public function definition()
     {
        
-        return [
+        $user= [
             
             'first_name' => $this->faker->firstname,
-            'middle_name' => $this->faker->name,
+            'middle_name' => $this->faker->lastname,
             'last_name' => $this->faker->lastname,
             'username' => $this->faker->username,
             'gender' => $this->faker->randomElement(['M','F']),
@@ -32,6 +33,10 @@ class UserFactory extends Factory
             'email' => $this->faker->safeEmail(),
             'password' => bcrypt('secret'),
         ];
+        
+        
+        return $user;
+       
     }
 
     /**

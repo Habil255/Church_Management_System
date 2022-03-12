@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Ui\Presets\React;
 
@@ -22,11 +24,43 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
-    public function viewAccounts()
+    public function viewAccounts(Request $request)
     {
         //
+        // $data = $request->input('search');
+        // $singleUsers = User::select()
+        //             ->where("name","LIKE","%{$data}%")
+        //             ->get();
         
-        return view('admin.user-accounts');
+
+        $userInfos= User::paginate(6);
+        Paginator::useBootstrap(); 
+        return view('admin.user-accounts',compact('userInfos'));
+    }
+
+    public function addMember(Request $request)
+    {
+        //
+        $password=$request->input('password');
+        $newPassword = bcrypt($password);
+        $users=User::create([
+            'first_name' => $request->first_name,
+            'middle_name' =>$request->middle_name,
+            'last_name' => $request->last_name,
+            'username' => $request->username,
+            'gender' =>$request->gender,
+            'date_of_birth' =>$request->date_of_birth,
+            'place_of_birth' => $request->place_of_birth,
+            'marital_status' =>$request->marital_status,
+            'spouse_name' => $request->spouse_name,
+            'email' => $request->email,
+            'password' =>$newPassword
+
+        ]);
+        // $userId = $users->id;
+        $roleId=Role::find(7);
+        $users->roles()->attach($roleId);
+        return back();
     }
 
     /**
@@ -36,13 +70,22 @@ class AdminController extends Controller
      */
     public function roles()
     {
-        //
-        // $userRoleDetails=Role::find(1);
-        // // return response()->json($userRoleDetails);
+        
+        $userDetails= User::limit(8)
+                            ->get();
+        // $userRoles= User::limit(8)->get();
+        // $first_name= $userRoles->first_name;
+        // $last_name= $userRoles->last_name;
+        // $email= $userRoles->email;
+        // $roles=$userRoles->roles;
+        // return $roles;
+        // $results=[$first_name,$last_name,$email,$roles];
+        // return response()->json([$results,'These are the user details']);
+
         // $datas=$userRoleDetails->users[0]->first_name;
         // return response()->json($datas);
         $roles=Role::get();
-        return view('admin.create-roles',compact('roles'));
+        return view('admin.create-roles',compact('roles','userDetails'));
 
     }
 
@@ -75,6 +118,7 @@ class AdminController extends Controller
      */
     public function storeRoles(Request $request)
     {
+        
         $request->validate([
             'username' => ['required'],
             'role' => ['required'],
@@ -83,15 +127,13 @@ class AdminController extends Controller
         $user = $request->username;
         $role = $request->role;
         //
-        // $userRoles = Role::create([
+        // $user\ = Role::create([
         //     'title' => $request->first_name,
         //     'description' => $request->role,
         // ]);
         // return response()->json($userRoles);
         $names = explode(' ',$user);
-        
-        
-
+        // 
         $userId=User::findOrFail(1)
                     ->where('first_name',$names[0])
                     ->where('last_name',$names[1])
@@ -127,9 +169,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function showMember($id)
     {
         //
+        $showMember=User::find($id);
+        return view('admin.test',compact('showMember'));
     }
 
     /**
@@ -150,9 +194,12 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteMember($id)
     {
         //
+        // return "imefika";
+       $userDel=User::find($id)->where('id', $id)->delete();
+        return back()->with('post_deleted', 'Tender has been deleted');
     }
 
     public function searchUser(Request $request)
@@ -169,6 +216,30 @@ class AdminController extends Controller
             $res[] = array("name" => "$first_name $last_name");
         }
         return response()->json($res);
+    }
+
+    public function searchUserDetails(Request $request)
+    {
+        //
+        $user = User::select('*')
+                    ->where("first_name","LIKE","%{$request->value}%")
+                    ->limit(8)
+                    ->get();
+        $res = [];
+        foreach ($user as $user) {
+            $first_name = $user->first_name;
+            $last_name = $user->last_name;
+            $res[] = array("name" => "$first_name $last_name");
+        }
+        return response()->json($res);
+    }
+
+
+    public function singleUser(Request $request)
+    {
+        //
+        
+       
     }
 
 }

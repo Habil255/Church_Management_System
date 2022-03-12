@@ -437,10 +437,20 @@
                                 </div>
                                 <!-- /.row -->
                             </div> --}}
+
+                            {{-- @foreach ($results as $result)
+                                {{$result->first_name}}
+                            @endforeach --}}
                         </div>
 
                         <!-- /.box -->
 
+                        {{-- <h4>{{$userRoles->first_name}}</h4> --}}
+
+                        {{-- @foreach ($roles as $role)
+                            {{$role->title}}
+                            <div>{{$role->users->first_name}}</div>
+                            @endforeach --}}
 
                     </section>
 
@@ -449,28 +459,36 @@
                 <!-- /.row (main row) -->
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Striped Full Width Table</h3>
+                        <h3 class="box-title">User with their Roles</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
                         <table class="table table-striped">
                             <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
+                                <th>ID No</th>
+                                <th style="width: 20%">First Name</th>
+                                <th style="width: 20%">Last Name</th>
+                                <th style="width: 20%">Email</th>
+                                <th style="width: 20%">Role</th>
                             </tr>
+
                             <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
+                                @foreach ($userDetails as $userDetail)
+                                <td>{{$userDetail->id}}</td>
+                                <td>{{$userDetail->first_name}}</td>
                                 <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
+                                    {{$userDetail->last_name}}
                                 </td>
-                                <td><span class="badge bg-red">55%</span></td>
+                                <td>{{$userDetail->email}}</td>
+                                
+                                <td>
+                                    @foreach ($userDetail->roles as $role)
+                                        {{$role->title}}</td>
+                                    @endforeach
                             </tr>
-                            <tr>
+                             @endforeach
+
+                            {{-- <tr>
                                 <td>2.</td>
                                 <td>Clean database</td>
                                 <td>
@@ -499,7 +517,7 @@
                                     </div>
                                 </td>
                                 <td><span class="badge bg-green">90%</span></td>
-                            </tr>
+                            </tr> --}}
                         </table>
                     </div>
                     <!-- /.box-body -->
@@ -702,6 +720,6 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                         immediately after the control sidebar -->
+                                                             immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     @endsection
