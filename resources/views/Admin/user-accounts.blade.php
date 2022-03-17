@@ -4,7 +4,7 @@
 
         @include('parts.navbar')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('parts.left-sidebar')
+        @include('parts.admin-leftSidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -88,12 +88,12 @@
                 <!-- /.row -->
                 <!-- Main row -->
                 <div class="row">
-
+                    
                     <div class="row col-md-12">
                         <div class="col-lg-12 table-striped">
                             <div class="box ">
                                 <div class="box-header">
-                                    <h3 class="box-title">Responsive Hover Table</h3>
+                                    <h3 class="box-title">List of Registered Users</h3>
 
                                     <div class="box-tools">
                                         <div class="input-group input-group-sm" style="width: 150px;">
@@ -128,7 +128,7 @@
                                                 <td><a href="/admin/view-member/{{ $userInfo->id }}"
                                                         data-target="#singleUser-details" class="fa fa-eye"
                                                         data-toggle="modal"></a>
-                                                        
+
                                                     <a href="/admin/delete-member/{{ $userInfo->id }}"
                                                         class="fa fa-trash-o "></a>
                                                 </td>
@@ -455,7 +455,7 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                     immediately after the control sidebar -->
+                                                                         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 
@@ -496,8 +496,8 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Lomell"
-                                                name="last_name" required>
+                                            <input type="text" class="form-control" placeholder="Lomell" name="last_name"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -505,16 +505,18 @@
                                     {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
                                     <div class="col-sm-4 form-group">
                                         <label>Username</label>
-                                        <input type="Address" class="form-control" placeholder="Jam224" name="username" required>
+                                        <input type="Address" class="form-control" placeholder="Jam224" name="username"
+                                            required>
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>email (optional)</label>
                                         <input type="Address" class="form-control" placeholder="Jam224@gmail.com"
-                                            name="email" >
+                                            name="email">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Password</label>
-                                        <input type="password" class="form-control" placeholder="******" name="password" required>
+                                        <input type="password" class="form-control" placeholder="******" name="password"
+                                            required>
                                     </div>
 
                                     <div class="col-sm-2">
@@ -537,7 +539,8 @@
                                         <label>Date of Birth:</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="date" name="date_of_birth"
-                                                class="form-control datetimepicker-input" data-target="#reservationdate" required />
+                                                class="form-control datetimepicker-input" data-target="#reservationdate"
+                                                required />
 
                                         </div>
                                     </div>
@@ -606,7 +609,7 @@
                     </div>
                     <div class="box box-primary" id="create-roles">
                         <!-- /.box-header -->
-        
+
                         <!-- form start -->
                         <form role="form" method="POST" action="{{ route('admin.addMember') }}"
                             enctype="multipart/form-data">
@@ -652,7 +655,7 @@
                                         <label>Password</label>
                                         <input type="password" class="form-control" placeholder="******" name="password">
                                     </div>
-        
+
                                     <div class="col-sm-2">
                                         <!-- radio -->
                                         <div class="form-group">
@@ -665,20 +668,20 @@
                                                 <input class="form-check-input" type="radio" value="F" name="gender">
                                                 <label class="form-check-label">Female</label>
                                             </div>
-        
+
                                         </div>
                                     </div>
-        
+
                                     <div class="col-sm-3 form-group">
                                         <label>Date of Birth:</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="date" name="date_of_birth"
                                                 class="form-control datetimepicker-input" data-target="#reservationdate" />
-        
+
                                         </div>
                                     </div>
-        
-        
+
+
                                 </div>
                                 <div class="row">
                                     {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
@@ -690,15 +693,15 @@
                                     <div class="col-sm-5 form-group">
                                         <label for="category" class=" col-form-label "
                                             style="color: black">{{ __('Marrital Status') }}</label>
-        
+
                                         <select id="category" class="form-control" name="marital_status" required
                                             autocomplete="job_title" autofocous>
-        
+
                                             <option value="Select Status" disabled>Marrital Status</option>
                                             <option>Married</option>
                                             <option>Not Married</option>
                                         </select>
-        
+
                                         <span class="text-danger">{{ $errors->first('role') }}</span>
                                         @if ($errors->any())
                                             <p style="color: red">{{ $errors->first() }}</p>
@@ -712,17 +715,17 @@
                                         </div>
                                     </div>
                                 </div>
-        
+
                             </div>
                             <!-- /.box-body -->
-        
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
                             </div>
                         </form>
                     </div>
-        
+
                 </div>
                 <!-- /.modal-content -->
             </div>

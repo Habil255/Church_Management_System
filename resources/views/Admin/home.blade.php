@@ -4,7 +4,7 @@
 
         @include('parts.navbar')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('parts.left-sidebar')
+        @include('parts.admin-leftSidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

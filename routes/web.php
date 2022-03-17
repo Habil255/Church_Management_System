@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PastorController;
+use App\Http\Controllers\SecretaryController;
 use App\Http\Controllers\AccountantController;
 use App\Http\Controllers\ParishController;
+use App\Http\Controllers\EvangelistController;
 use App\Http\Controllers\AuthController;
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Authcheck;
@@ -33,6 +36,7 @@ Route::get('/test', function () {
     
     return view('test');
 });
+
 //NORMAL USER CONTROL CODES
 Route::prefix('user')->group(function () { 
     Route::get('/insert', [UserController::class, 'create']);
@@ -44,15 +48,33 @@ Route::get('/role/insert', [RoleController::class, 'create']);
 Route::get('/gett/user', [RoleController::class, 'store']);
 
 
+//EVANGELIST CONTROL CODES
+Route::prefix('evangelist')->middleware([AuthCheck::class])->group(function () { 
+    Route::get('/home', [EvangelistController::class, 'index']);
+});
 
 //PARISH WORKER CONTROL CODES
 Route::prefix('parish')->middleware([AuthCheck::class])->group(function () { 
     Route::get('/home', [ParishController::class, 'index']);
 });
 
+//PASTOR CONTROL CODES
+Route::prefix('pastor')->middleware([AuthCheck::class])->group(function () { 
+    Route::get('/home', [PastorController::class, 'index']);
+    Route::get('/view-users', [PastorController::class, 'showUsers']);
+    Route::get('/view-member/{id}',[PastorController::class,'showMember']);
+    Route::get('/delete-member/{id}',[PastorController::class,'deleteMember']);
+    Route::post('/add-member',[PastorController::class,'addMember'])->name('pastor.addMember');
+});
 
 
-//NORMAL Accountant CONTROL Codes
+Route::prefix('secretary')->middleware([AuthCheck::class])->group(function () { 
+    Route::get('/home', [SecretaryController::class, 'index']);
+});
+
+
+
+//Accountant CONTROL Codes
 Route::prefix('accountant')->middleware([AuthCheck::class])->group(function () {
     
     Route::get('/home', [AccountantController::class, 'index']);
@@ -60,6 +82,9 @@ Route::prefix('accountant')->middleware([AuthCheck::class])->group(function () {
     
 }); 
 
+
+
+//ADMINISTRATOR CONTROL CODES
 
 Route::prefix('admin')->middleware([AdminCheck::class])->group(function () {
     

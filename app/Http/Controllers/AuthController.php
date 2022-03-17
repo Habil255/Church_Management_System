@@ -93,7 +93,7 @@ class AuthController extends Controller
                 // Auth::logout();
                 $user = Auth::user()->roles;
                 $role = $user[0]->title;
-                return view('pages/accountant-home', compact([
+                return view('accountant/home', compact([
 
                     'user',
                     'role'
@@ -108,6 +108,17 @@ class AuthController extends Controller
             }
             if ($user[0]->title === 'Parish Worker') {
                 return redirect('parish/home');
+                // Auth::logout();
+                return response()->json([
+                    // 'redirect' => '/', 
+                    'msg' => 'User, You are logged in',
+                    'user' => $user,
+                    'role' => $user[0]->title
+                ]);
+            }
+
+            if ($user[0]->title === 'Evangelist') {
+                return redirect('evangelist/home');
                 // Auth::logout();
                 return response()->json([
                     // 'redirect' => '/', 

@@ -25,7 +25,7 @@
                 <!-- Small boxes (Stat box) -->
 
                 {{-- //The Cards Area --}}
-                @include('parts.left-sidebar')
+                @include('parts.admin-leftSidebar')
 
                 <!-- /.row -->
                 <!-- Main row -->

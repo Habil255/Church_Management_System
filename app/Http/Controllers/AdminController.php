@@ -141,22 +141,24 @@ class AdminController extends Controller
         $roleId=Role::findOrFail(1)
                     ->where('title',$role)
                     ->first();
+        // return $roleId;
         $assignedRoles=$userId->roles()->get();
+        
        
-        if ( count($assignedRoles) === 1) {
-            # code...
-            // return response()->json('The user already has a role.');
-            return Redirect::back()->withErrors(['The user already has a role.','assigned']);
+        // if ( count($assignedRoles) === 1) {
+        //     # code...
+        //     // return response()->json('The user already has a role.');
+        //     return Redirect::back()->withErrors(['The user already has a role.','assigned']);
             
-            // return back()->withErrors([
-            //     'role' => 'The user already has a role.',
-            // ]);
-        } else {
+        //     // return back()->withErrors([
+        //     //     'role' => 'The user already has a role.',
+        //     // ]);
+        // } else {
             # code...
             $userId->roles()
-                ->attach($roleId);
+                ->sync($roleId);
         return back()->with('role_assigned','The Role has already being assigned');
-        }
+        // }
         
          
     //             // ->detach();
