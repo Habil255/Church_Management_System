@@ -15,6 +15,7 @@ class PastorController extends Controller
      */
     public function index()
     {
+       
         $totalUsers=User::where("email","!=","raphaelhabil09@gmail.com")
                                 ->count();
         
@@ -88,9 +89,10 @@ class PastorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function searchView()
     {
         //
+        return view("pastor.search-user");
     }
 
     /**
@@ -100,9 +102,32 @@ class PastorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function searchMemberDetails(Request $request)
     {
-        //
+        $user = User::select('*')
+                    ->where("first_name","LIKE","%{$request->value}%")
+                    ->limit(8)
+                    ->get();
+        $res = [];
+        foreach ($user as $user) {
+            $first_name = $user->first_name;
+            $last_name = $user->last_name;
+            $res[] = array("name" => "$first_name $last_name");
+        }
+        return response()->json($res);
+        
+    }
+
+    public function singleMember(Request $request)
+    {
+        $data = $request->input('member');
+        $names = explode(' ',$data);
+        $memberDetails=User::findOrFail(1)
+                    ->where('first_name',$names[0])
+                    ->where('last_name',$names[1])
+                    ->first();
+        return view('pastor.test',compact('memberDetails'));
+        
     }
 
     /**

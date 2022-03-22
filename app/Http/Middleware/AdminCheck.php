@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AdminCheck
 {
@@ -17,7 +18,8 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next)
     {
-       
+        
+        
         
         if($request->path() != '/login' && !Auth::check()){
             
@@ -27,6 +29,13 @@ class AdminCheck
             
              // go to the next middleware
         }
+        if(Auth::user()->roles[0]->title == 'Administrator'){
+            return $next($request);
+            
+        }
+       else{
+           return redirect()->back()->with('error', __('Permission Denied'));
+       }
         return $next($request);
 
         // return redirect('/login');

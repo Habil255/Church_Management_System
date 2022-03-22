@@ -65,7 +65,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href=""><i class="fa fa-circle-o"></i> Manage User</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+                    <li><a href="/pastor/member-search"><i class="fa fa-circle-o"></i> Search User Information</a></li>
                     
                 </ul>
             </li>

@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Hashing\BcryptHasher;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Ui\Presets\React;
 

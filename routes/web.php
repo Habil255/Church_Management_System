@@ -12,6 +12,7 @@ use App\Http\Controllers\EvangelistController;
 use App\Http\Controllers\AuthController;
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Authcheck;
+use App\Http\Middleware\Pastorcheck;
 use App\Http\Middleware\Admincheck;
 
 /*
@@ -59,8 +60,12 @@ Route::prefix('parish')->middleware([AuthCheck::class])->group(function () {
 });
 
 //PASTOR CONTROL CODES
-Route::prefix('pastor')->middleware([AuthCheck::class])->group(function () { 
+Route::prefix('pastor')->middleware([PastorCheck::class])->group(function () { 
     Route::get('/home', [PastorController::class, 'index']);
+    Route::get('/view-users', [PastorController::class, 'showUsers']);
+    Route::get('/search-member', [PastorController::class, 'searchMemberDetails'])->name('pastor.searchMember');
+    Route::get('/member-search', [PastorController::class, 'searchView']);
+    Route::get('/member-searc', [PastorController::class, 'singleMember'])->name('pastor.singleMember');
     Route::get('/view-users', [PastorController::class, 'showUsers']);
     Route::get('/view-member/{id}',[PastorController::class,'showMember']);
     Route::get('/delete-member/{id}',[PastorController::class,'deleteMember']);
