@@ -98,6 +98,7 @@
 </body>
 
 <script type="text/javascript">
+
     url = "{{ route('search.lecturer') }}";
     $('#assign-roles').typeahead({
         source: function(value, process) {
@@ -105,6 +106,7 @@
                 value: value
             }, function(data) {
                 // alert(data);
+                
                 return process(data);
                 // console.log(data);
             });
