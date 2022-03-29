@@ -14,7 +14,7 @@ class ParishController extends Controller
     public function index()
     {
         //
-        return view('pages.parishworker_dashboard');
+        return view('parishworker.home');
     }
 
     /**

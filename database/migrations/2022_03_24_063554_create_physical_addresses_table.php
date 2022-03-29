@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contact_addresses', function (Blueprint $table) {
+        Schema::create('physical_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('phonenumber')->nullable()->default('null');
-            $table->string('postal_address')->nullable()->default('null');
+            $table->string('district')->nullable()->default('null');
+            $table->string('ward')->default('null');
+            $table->string('street')->default('null');
+            $table->string('house_number')->default('null');
+            $table->string('block_number')->default('null');
 
             $table->foreign('user_id')
             ->references('id')
@@ -33,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_addresses');
+        Schema::dropIfExists('physical_adresses');
     }
 };

@@ -11,12 +11,12 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
+                     Dashboard
                     <small>Control panel</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li class="active">Dashboar</li>
                 </ol>
             </section>
 
@@ -542,7 +542,14 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        @include('parts.footer')
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.4.0
+            </div>
+            <strong>Copyright &copy; 2014-2018 <a target="_blank" href="https://www.templateshub.net">Templates
+                    Hub</a>.</strong> All rights
+            reserved.
+        </footer>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

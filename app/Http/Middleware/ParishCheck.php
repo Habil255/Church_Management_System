@@ -25,6 +25,13 @@ class ParishCheck
             
              // go to the next middleware
         }
+        if(Auth::user()->roles[0]->title == 'Parish Worker'){
+            return $next($request);
+            
+        }
+       else{
+           return redirect()->back()->with('error', __('Permission Denied'));
+       }
         return $next($request);
 
         // return redirect('/login');

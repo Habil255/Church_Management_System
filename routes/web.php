@@ -14,6 +14,7 @@ use GuzzleHttp\Middleware;
 use App\Http\Middleware\Authcheck;
 use App\Http\Middleware\Pastorcheck;
 use App\Http\Middleware\Admincheck;
+use App\Http\Middleware\Parishcheck;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +39,13 @@ Route::get('/test', function () {
     return view('test');
 });
 
+
+
 //NORMAL USER CONTROL CODES
 Route::prefix('user')->group(function () { 
     Route::get('/insert', [UserController::class, 'create']);
+    Route::get('/profile', [UserController::class, 'showProfile']);
+    Route::post('/profile/{id}', [UserController::class, 'editProfile'])->name('profile.settings');
 
     });
 
@@ -55,7 +60,7 @@ Route::prefix('evangelist')->middleware([AuthCheck::class])->group(function () {
 });
 
 //PARISH WORKER CONTROL CODES
-Route::prefix('parish')->middleware([AuthCheck::class])->group(function () { 
+Route::prefix('parish')->middleware([ParishCheck::class])->group(function () { 
     Route::get('/home', [ParishController::class, 'index']);
 });
 
@@ -68,8 +73,9 @@ Route::prefix('pastor')->middleware([PastorCheck::class])->group(function () {
     Route::get('/member-searc', [PastorController::class, 'singleMember'])->name('pastor.singleMember');
     Route::get('/view-users', [PastorController::class, 'showUsers']);
     Route::get('/view-member/{id}',[PastorController::class,'showMember']);
-    Route::get('/delete-member/{id}',[PastorController::class,'deleteMember']);
+    Route::get('/delete-member/{id}',[PastorController::class,'deleteMember'])->name('pastor.deleteMember');
     Route::post('/add-member',[PastorController::class,'addMember'])->name('pastor.addMember');
+    Route::get('/approve-user/{id}',[PastorController::class,'approve'])->name('pastor.approve');
 });
 
 
@@ -105,6 +111,8 @@ Route::prefix('admin')->middleware([AdminCheck::class])->group(function () {
     Route::post('/store-roles',[AdminController::class,'storeRoles'])->name('roles.assign');
 
     Route::get('/view-accounts',[AdminController::class,'viewAccounts']);
+
+    // Route::get('/approve-user/{id}',[AdminController::class,'viewAccounts'])->name('admin.approve');
     Route::post('/add-member',[AdminController::class,'addMember'])->name('admin.addMember');
 
     Route::get('/view-member/{id}',[AdminController::class,'showMember']);

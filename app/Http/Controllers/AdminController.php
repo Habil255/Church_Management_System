@@ -61,7 +61,7 @@ class AdminController extends Controller
         // $userId = $users->id;
         $roleId=Role::find(7);
         $users->roles()->attach($roleId);
-        return back();
+        return back()->with('success', "User Added successfully");
     }
 
     /**
@@ -200,9 +200,13 @@ class AdminController extends Controller
     public function deleteMember($id)
     {
         //
+        $username =User::find($id)
+                            ->where('id',$id);
+                            
+                        
         // return "imefika";
-       $userDel=User::find($id)->where('id', $id)->delete();
-        return back()->with('post_deleted', 'Tender has been deleted');
+       $userDel=$username->delete();
+        return back()->with('deleted', `User {{$userDel}} has been deleted`);
     }
 
     public function searchUser(Request $request)
@@ -238,11 +242,15 @@ class AdminController extends Controller
     }
 
 
-    public function singleUser(Request $request)
+    public function approve($id)
     {
         //
-        
-       
+        $user = User::find($id);
+        return $user->status;
+        $user->status = 1;
+        return 1;
+        $user->save();
+        return back()->with('success-approve', 'User has been approved');
     }
 
 }

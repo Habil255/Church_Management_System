@@ -126,19 +126,6 @@ $(function () {
 
   /* Morris.js Charts */
   // Sales chart
-$.get('http://127.0.0.1:8000/data', function(data){
-
-let first = [];
-
-for(var i in data)
-{
-  first.push(data[i])
-}
-
-  console.log(first);
-  
-});
-
   var area = new Morris.Area({
     element   : 'revenue-chart',
     resize    : true,

@@ -4,7 +4,7 @@
 
         @include('parts.navbar')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('parts.pastor-leftSidebar')
+        @include('parts.left-sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -97,12 +97,24 @@
                                 <div class="box ">
                                     <div class="box-header">
                                         <h3 class="box-title">List of Registered Users</h3>
-    
+                                        @if (Session::has('success-approve'))
+                                            <center>
+                                                <div class="center" style="color: green" role="alert">
+                                                    <p>{{ Session::get('success-approve') }}</p>
+                                                </div>
+                                            </center>
+                                        @elseif (Session::has('deleted'))
+                                            <center>
+                                                <div class="center" style="color: green" role="alert">
+                                                    <p>{{ Session::get('deleted') }}</p>
+                                                </div>
+                                            </center>
+                                        @endif
                                         <div class="box-tools">
                                             <div class="input-group input-group-sm" style="width: 150px;">
-                                                <input type="typeahead text" name="table_search" class="form-control pull-right"
-                                                    placeholder="Search" id="user-search">
-    
+                                                <input type="typeahead text" name="table_search"
+                                                    class="form-control pull-right" placeholder="Search" id="user-search">
+
                                                 <div class="input-group-btn">
                                                     <button type="submit" class="btn btn-default"><i
                                                             class="fa fa-search"></i></button>
@@ -128,40 +140,48 @@
                                                     <td>{{ $account->last_name }}</td>
                                                     <td>{{ $account->email }}</span></td>
                                                     <td>{{ $account->spouse_name }}</td>
+                                                    <td>
+                                                        @if ($account->status == '0')
+                                                            <a href="{{ route('pastor.approve', $account->id) }}"
+                                                                class="btn btn-warning btn-xs">Activate</a>
+                                                        @elseif ($account->status == '1')
+                                                            <a class="btn btn-success btn-xs">Activated</a>
+                                                        @endif
+                                                    </td>
                                                     <td><a href="/admin/view-member/{{ $account->id }}"
                                                             data-target="#singleUser-details" class="fa fa-eye"
                                                             data-toggle="modal"></a>
-    
-                                                        <a href="/admin/delete-member/{{ $account->id }}"
+
+                                                        <a href="{{ route('pastor.deleteMember', $account->id) }}"
                                                             class="fa fa-trash-o "></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
-    
+
                                         </table>
                                         <div class="box-footer clearfix">
                                             <div>
                                                 {{-- <span class="d-flex justify-content-center p-3">
                                                     {{ $account->links() }}
                                                 </span> --}}
-    
+
                                                 <style>
                                                     .w-5 {
                                                         display: none;
                                                     }
-    
+
                                                 </style>
                                                 <span>
-                                                    <button type="button" class="btn btn-default pull-right" data-toggle="modal"
-                                                        data-target="#modal-default">
+                                                    <button type="button" class="btn btn-default pull-right"
+                                                        data-toggle="modal" data-target="#modal-default">
                                                         Add User
                                                     </button>
                                                 </span>
-    
-    
+
+
                                             </div>
                                         </div>
-    
+
                                     </div>
                                     <!-- /.box-body -->
                                 </div>
@@ -185,7 +205,7 @@
                         <!-- /.box -->
 
                         <!-- quick email widget -->
-                        
+
 
                     </section>
                     <!-- /.Left col -->
@@ -197,7 +217,7 @@
                         <!-- /.box -->
 
                         <!-- solid sales graph -->
-                        
+
                         <!-- /.box -->
 
                         <!-- Calendar -->
@@ -219,7 +239,7 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                         immediately after the control sidebar -->
+                                                                                 immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 
@@ -253,8 +273,8 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Middle Name</label>
-                                            <input type="text" class="form-control" placeholder="James"
-                                                name="middle_name" required>
+                                            <input type="text" class="form-control" placeholder="James" name="middle_name"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactAddress;
+use App\Models\PhysicalAddress;
 use Faker\Generator as Faker;
 use Spatie\LaravelIgnition\Support\Composer\FakeComposer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 
 class UserController extends Controller
@@ -18,7 +21,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -29,9 +31,9 @@ class UserController extends Controller
     public function create(Faker $faker)
     {
         //
-        $users=User::create([
+        $users = User::create([
             'first_name' => 'Habil',
-            'middle_name' =>'',
+            'middle_name' => '',
             'last_name' => 'Mallya',
             'username' => 'Habi255',
             'gender' => 'M',
@@ -52,13 +54,13 @@ class UserController extends Controller
     public function chartData()
     {
         $data = User::find(1)
-                    // ->where('first_name','Habil')
-                    ->get();
+            // ->where('first_name','Habil')
+            ->get();
         // $data = User::find(1)
         //             ->where('first_name','Habil')
         //             ->get(['first_name','last_name']);
 
-    
+
 
         return response()->json($data);
     }
@@ -80,9 +82,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showProfile()
     {
         //
+        $user = Auth::user();
+        return view('user.profile', compact('user'));
     }
 
     /**
@@ -91,9 +95,60 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editProfile(Request $request, $id)
     {
-        //
+
+        // return response()->json($request->all());
+        // $msg=Blogpost::findOrFail($id);
+        // $comment= new Comment();
+        // $comment->name = $request->name;
+        // $comment->email = $request->email;
+        // $comment->phonenumber = $request->phonenumber;
+        // $comment->message = $request->message;
+        // $msg->comments()->save($comment);
+        // return back();
+        $user = User::findOrFail($id);
+        $user->update([
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'username' => $request->username,
+        ]);
+        $phyAdd = PhysicalAddress::where('user_id', '=', $id)->first();
+        if ($phyAdd === null) {
+            //if no physical address
+            $address = PhysicalAddress::create([
+                'user_id' => $user->id,
+                'district' => $request->district,
+                'street' => $request->street,
+                'ward' => $request->ward,
+                'house_number' => $request->house_number,
+                'block_number' => $request->block_number,
+            ]);
+        } 
+        elseif (PhysicalAddress::where('user_id', '=', $id)->exists()) {
+            // user has physical address
+            $address = PhysicalAddress::findOrFail($phyAdd ->id);
+           
+               $address->update([
+                'district' => $request->district,
+                'street' => $request->street,
+                'ward' => $request->ward,
+                'house_number' => $request->house_number,
+                'block_number' => $request->block_number,
+            ]);
+        } {
+        }
+
+
+        $contacts = ContactAddress::firstOrNew([
+            'user_id' => $user->id,
+            'phonenumber' => $request->phonenumber,
+            'postal_address' => $request->postal_address,
+        ]);
+
+
+        return redirect()->back();
     }
 
     /**

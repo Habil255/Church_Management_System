@@ -4,7 +4,7 @@
 
         @include('parts.navbar')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('parts.admin-leftSidebar')
+        @include('parts.left-sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -88,13 +88,26 @@
                 <!-- /.row -->
                 <!-- Main row -->
                 <div class="row">
-                    
+
                     <div class="row col-md-12">
                         <div class="col-lg-12 table-striped">
                             <div class="box ">
+
                                 <div class="box-header">
                                     <h3 class="box-title">List of Registered Users</h3>
-
+                                    @if (Session::has('success'))
+                                        <center>
+                                            <div class="center" style="color: green" role="alert">
+                                                <p>{{ Session::get('success') }}</p>
+                                            </div>
+                                        </center>
+                                        @elseif (Session::has('deleted'))
+                                        <center>
+                                            <div class="center" style="color: green" role="alert">
+                                                <p>{{ Session::get('deleted') }}</p>
+                                            </div>
+                                        </center>
+                                    @endif
                                     <div class="box-tools">
                                         <div class="input-group input-group-sm" style="width: 150px;">
                                             <input type="typeahead text" name="table_search" class="form-control pull-right"
@@ -455,7 +468,7 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                         immediately after the control sidebar -->
+                                                                             immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 

@@ -143,4 +143,14 @@ class PastorController extends Controller
        $userDel=User::find($id)->where('id', $id)->delete();
         return back()->with('post_deleted', 'Tender has been deleted');
     }
+
+    public function approve($id)
+    {
+        //
+        // return 'habil';
+        $user = User::find($id);
+        $user->status = 1;
+        $user->save();
+        return back()->with('success-approve', 'User has been approved');
+    }
 }

@@ -3,17 +3,16 @@
 
 <head>
     <meta charset="utf-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Church Management System </title>
+    <title>Church Management System 2022</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('/plugins/bootstrap-slider/bootstrap-4.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('Ionicons/css/ionicons.min.css') }}">
     <!-- Theme style -->
@@ -86,19 +85,19 @@
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
+
     {{-- the script for typehead searching --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"
         integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
-
 <script type="text/javascript">
-
     url = "{{ route('search.lecturer') }}";
     $('#assign-roles').typeahead({
         source: function(value, process) {
@@ -106,13 +105,11 @@
                 value: value
             }, function(data) {
                 // alert(data);
-                
                 return process(data);
                 // console.log(data);
             });
         }
     });
-
 
     url = "{{ route('search.user') }}";
     $('#user-search').typeahead({
@@ -126,26 +123,5 @@
             });
         }
     });
-
-    url = "{{ route('pastor.searchMember') }}";
-    $('#member-search').typeahead({
-        source: function(value, process) {
-            return $.get(url, {
-                value: value
-            }, function(data) {
-                // alert(data);
-                
-                return process(data);
-                // console.log(data);
-            });
-        }
-    });
-    $('.swalDefaultInfo').click(function() {
-        Toast.fire({
-            icon: 'info',
-            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-        })
-    });
 </script>
-
 </html>

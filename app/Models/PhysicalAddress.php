@@ -10,7 +10,7 @@ class PhysicalAddress extends Model
     use HasFactory;
 
     protected $guarded= [];
-
+    protected $fillable = ['user_id','district','ward','street','house_number','block_number'];
     public function users()
     {
         # code...

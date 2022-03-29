@@ -25,7 +25,7 @@
                 <!-- Small boxes (Stat box) -->
 
                 {{-- //The Cards Area --}}
-                @include('parts.admin-leftSidebar')
+                @include('parts.left-sidebar')
 
                 <!-- /.row -->
                 <!-- Main row -->
@@ -722,4 +722,5 @@
         <!-- Add the sidebar's background. This div must be placed
                                                              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
+        
     @endsection

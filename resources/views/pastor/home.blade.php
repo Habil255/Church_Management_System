@@ -4,7 +4,7 @@
 
         @include('parts.navbar')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('parts.pastor-leftSidebar')
+        @include('parts.left-sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
