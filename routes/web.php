@@ -15,6 +15,9 @@ use App\Http\Middleware\Authcheck;
 use App\Http\Middleware\Pastorcheck;
 use App\Http\Middleware\Admincheck;
 use App\Http\Middleware\Parishcheck;
+use App\Http\Middleware\Accountantcheck;
+use App\Http\Middleware\Evangecheck;
+use App\Http\Middleware\Secretarycheck;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +58,7 @@ Route::get('/gett/user', [RoleController::class, 'store']);
 
 
 //EVANGELIST CONTROL CODES
-Route::prefix('evangelist')->middleware([AuthCheck::class])->group(function () { 
+Route::prefix('evangelist')->middleware([EvangeCheck::class])->group(function () { 
     Route::get('/home', [EvangelistController::class, 'index']);
 });
 
@@ -78,15 +81,15 @@ Route::prefix('pastor')->middleware([PastorCheck::class])->group(function () {
     Route::get('/approve-user/{id}',[PastorController::class,'approve'])->name('pastor.approve');
 });
 
-
-Route::prefix('secretary')->middleware([AuthCheck::class])->group(function () { 
+//CONGREGATION SECRETARY CONTROL CODES
+Route::prefix('secretary')->middleware([SecretaryCheck::class])->group(function () { 
     Route::get('/home', [SecretaryController::class, 'index']);
 });
 
 
 
 //Accountant CONTROL Codes
-Route::prefix('accountant')->middleware([AuthCheck::class])->group(function () {
+Route::prefix('accountant')->middleware([AccountantCheck::class])->group(function () {
     
     Route::get('/home', [AccountantController::class, 'index']);
     // Route::get('/home', [AuthController::class, 'login']);

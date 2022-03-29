@@ -149,6 +149,17 @@ class AuthController extends Controller
                 ]);
             }
 
+            if ($user[0]->title === 'Congregation Secretary') {
+                return redirect('secretary/home');
+                // Auth::logout();
+                return response()->json([
+                    // 'redirect' => '/', 
+                    'msg' => 'User, You are logged in',
+                    'user' => $user,
+                    'role' => $user[0]->title
+                ]);
+            }
+
             // return response()->json([
             //     'redirect' => '/app', 
             //     'msg' => 'Admin, You are logged in', 

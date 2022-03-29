@@ -329,7 +329,7 @@
         @elseif(Auth::user()->roles[0]->title == 'Accountant')
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-                    <li class="active"><a href="/pastor/home"><i class="fa fa-circle-o"></i> Dashboard
+                    <li class="active"><a href="/accountant/home"><i class="fa fa-circle-o"></i> Dashboard
                             v1</a></li>
             {{-- <li class="treeview">
                 <a href="#">
@@ -598,7 +598,7 @@
         @elseif(Auth::user()->roles[0]->title == 'Parish Worker')
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-                    <li class="active"><a href="/pastor/home"><i class="fa fa-circle-o"></i> Dashboard
+                    <li class="active"><a href="/parish/home"><i class="fa fa-circle-o"></i> Dashboard
                             v1</a></li>
             {{-- <li class="treeview">
                 <a href="#">
