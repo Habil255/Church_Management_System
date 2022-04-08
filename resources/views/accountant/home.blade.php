@@ -30,7 +30,7 @@
                             <div class="inner">
                                 <h3>150</h3>
 
-                                <p>New Orders</p>
+                                <p>Church Resources <br>Registered</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
@@ -45,7 +45,7 @@
                             <div class="inner">
                                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                                <p>Bounce Rate</p>
+                                <p>Users Contribution <br> Rate</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
@@ -60,7 +60,7 @@
                             <div class="inner">
                                 <h3>44</h3>
 
-                                <p>User Registrations</p>
+                                <p>Total Categories</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
@@ -95,8 +95,8 @@
                             <!-- Tabs within a box -->
                             <ul class="nav nav-tabs pull-right">
                                 <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                                <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                                <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+                                {{-- <li><a href="#sales-chart" data-toggle="tab">Donut</a></li> --}}
+                                <li class="pull-left header"><i class="fa fa-inbox"></i> Members Contributions</li>
                             </ul>
                             <div class="tab-content no-padding">
                                 <!-- Morris chart - Sales -->
@@ -109,7 +109,7 @@
                         <!-- /.nav-tabs-custom -->
 
                         <!-- Chat box -->
-                        <div class="box box-success">
+                        {{-- <div class="box box-success">
                             <div class="box-header">
                                 <i class="fa fa-comments-o"></i>
 
@@ -200,7 +200,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- /.box (chat box) -->
 
                         <!-- TO DO List -->
@@ -357,7 +357,7 @@
                     <section class="col-lg-5 connectedSortable">
 
                         <!-- Map box -->
-                        <div class="box box-solid bg-light-blue-gradient">
+                        {{-- <div class="box box-solid bg-light-blue-gradient">
                             <div class="box-header">
                                 <!-- tools box -->
                                 <div class="pull-right box-tools">
@@ -400,7 +400,7 @@
                                 </div>
                                 <!-- /.row -->
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- /.box -->
 
                         <!-- solid sales graph -->

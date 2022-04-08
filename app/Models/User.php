@@ -125,4 +125,5 @@ class User extends Authenticatable
         # code...
         return $this->hasMany(Neighbour::class);
     }
+
 }
