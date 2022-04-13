@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Imports\MemberImport;
-use App\Imports\TestImport;
+use App\Imports\UserImport;
 use App\Models\Test;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -18,7 +19,8 @@ class ImportController extends Controller
     public function index()
     {
         //
-        $tests = Test::all();
+        
+        $tests = User::all();
         return view('test.import', compact('tests'));
     }
 
@@ -30,7 +32,7 @@ class ImportController extends Controller
     public function create(Request $request)
     {
         //
-        Excel::import(new MemberImport, 
+        Excel::import(new UserImport, 
             $request->file);
         return back();
     }

@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Test;
+use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -16,7 +16,7 @@ class MemberImport implements ToCollection, WithHeadingRow, WithValidation
     public function collection(Collection $collection)
     {
         foreach ($collection as $row) {
-            $test = new Test();
+            $test = new User();
             $test->name = $row['name'];
             $test->email = $row['email'];
             $test->save();

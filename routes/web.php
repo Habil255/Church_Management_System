@@ -94,6 +94,7 @@ Route::prefix('secretary')->middleware([SecretaryCheck::class])->group(function 
 Route::prefix('accountant')->middleware([AccountantCheck::class])->group(function () {
     
     Route::get('/home', [AccountantController::class, 'index']);
+    Route::get('/show-resources', [AccountantController::class, 'showResources']);
     // Route::get('/home', [AuthController::class, 'login']);
     
 }); 

@@ -22,6 +22,11 @@ class AccountantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function showResources()
+    {
+        //
+        return view('accountant.show-resources');
+    }
     public function create()
     {
         //

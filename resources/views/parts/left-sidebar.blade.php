@@ -356,7 +356,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Manage Resources</a></li>
+                        <li><a href="/accountant/show-resources"><i class="fa fa-circle-o"></i> Manage Resources</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
