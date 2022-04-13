@@ -1,6 +1,6 @@
 @extends('pages.main')
 @section('css')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
 @section('contents')
     <div class="wrapper">
@@ -25,171 +25,75 @@
 
             <!-- Main content -->
             <section class="content">
-                <!-- Small boxes (Stat box) -->
-                {{-- <div class="row">
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-aqua">
-                            <div class="inner">
-                                <h3>150</h3>
-
-                                <p>New Orders</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                                <p>Bounce Rate</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <h3></h3>
-
-                                <p>Church Members</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <h3>65</h3>
-
-                                <p>Unique Visitors</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div> --}}
-                <!-- /.row -->
-                <!-- Main row -->
+                
                 <div class="row">
 
 
 
                     <section class="content">
-                        <div class="row ">
-                            <div class="col-xs-12">
-                                <div class="box ">
-                                    <div class="box-header">
-                                        <h3 class="box-title">List of Registered Users</h3>
-                                        @if (Session::has('success-approve'))
-                                            <center>
-                                                <div class="center" style="color: green" role="alert">
-                                                    <p>{{ Session::get('success-approve') }}</p>
-                                                </div>
-                                            </center>
-                                        @elseif (Session::has('deleted'))
-                                            <center>
-                                                <div class="center" style="color: green" role="alert">
-                                                    <p>{{ Session::get('deleted') }}</p>
-                                                </div>
-                                            </center>
-                                        @endif
-                                        <div class="box-tools">
-                                            <div class="input-group input-group-sm" style="width: 150px;">
-                                                <input type="typeahead text" name="table_search"
-                                                    class="form-control pull-right" placeholder="Search" id="user-search">
+                        
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">List of Registered Users</h3>
+                                <span>
+                                    <button type="button" class="btn btn-default pull-right"
+                                        data-toggle="modal" data-target="#modal-default">
+                                        Add User
+                                    </button>
+                                </span>
 
-                                                <div class="input-group-btn">
-                                                    <button type="submit" class="btn btn-default"><i
-                                                            class="fa fa-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body table-responsive no-padding">
-                                        <table class="table table-hover">
-                                            <tr>
-                                                <th>User No</th>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="table_id" class="display">
+                                    <thead>
+                                        <tr>
+                                            <th>User No</th>
                                                 <th>First Name</th>
                                                 <th>Last Name</th>
                                                 <th>Email</th>
                                                 <th>Address</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
-                                            </tr>
-                                            @foreach ($accounts as $account)
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($accounts as $account)
                                                 <tr>
                                                     <td>{{ $account->id }}</td>
                                                     <td>{{ $account->first_name }}</td>
                                                     <td>{{ $account->last_name }}</td>
                                                     <td>{{ $account->email }}</span></td>
                                                     <td>{{ $account->spouse_name }}</td>
-                                                    <td>
-                                                        @if ($account->status == '0')
-                                                            <a href="{{ route('pastor.approve', $account->id) }}"
-                                                                class="btn btn-warning btn-xs">Activate</a>
-                                                        @elseif ($account->status == '1')
-                                                            <a class="btn btn-success btn-xs">Activated</a>
-                                                        @endif
-                                                    </td>
+                                                    <td> @if ($account->status == '0')
+                                                        <a href="{{ route('pastor.approve', $account->id) }}"
+                                                            class="btn btn-warning btn-xs">Activate</a>
+                                                    @elseif ($account->status == '1')
+                                                        <a class="btn btn-success btn-xs">Activated</a>
+                                                    @endif</td>
                                                     <td><a href="/admin/view-member/{{ $account->id }}"
-                                                            data-target="#singleUser-details" class="fa fa-eye"
-                                                            data-toggle="modal"></a>
+                                                        data-target="#singleUser-details" class="fa fa-eye"
+                                                        data-toggle="modal"></a>
 
-                                                        <a href="{{ route('pastor.deleteMember', $account->id) }}"
-                                                            class="fa fa-trash-o "></a>
-                                                    </td>
+                                                    <a href="{{ route('pastor.deleteMember', $account->id) }}"
+                                                        class="fa fa-trash-o "></a>
+                                                </td>
                                                 </tr>
-                                            @endforeach
-
-                                        </table>
-                                        <div class="box-footer clearfix">
-                                            <div>
-                                                {{-- <span class="d-flex justify-content-center p-3">
-                                                    {{ $account->links() }}
-                                                </span> --}}
-
-                                                <style>
-                                                    .w-5 {
-                                                        display: none;
-                                                    }
-
-                                                </style>
-                                                <span>
-                                                    <button type="button" class="btn btn-default pull-right"
-                                                        data-toggle="modal" data-target="#modal-default">
-                                                        Add User
-                                                    </button>
-                                                </span>
-
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                                <!-- /.box -->
+                                        @endforeach
+                                    </tbody>
+                                    {{-- <tfoot>
+                                        <tr>
+                                            <th>Rendering engine</th>
+                                            <th>Browser</th>
+                                            <th>Platform(s)</th>
+                                            <th>Engine version</th>
+                                            <th>CSS grade</th>
+                                            <th>CSS grade</th>
+                                        </tr>
+                                    </tfoot> --}}
+                                </table>
                             </div>
+                            <!-- /.box-body -->
                         </div>
                     </section>
 
@@ -231,110 +135,7 @@
                     <!-- right col -->
                 </div>
                 <!-- /.row (main row) -->
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Data Table With Full Features</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped" id="habil">
-                            <thead>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 6
-                                    </td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 7</td>
-                                    <td>Win XP SP2+</td>
-                                    <td>7</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>AOL browser (AOL desktop)</td>
-                                    <td>Win XP</td>
-                                    <td>6</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Firefox 1.0</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>1.7</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Firefox 1.5</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>1.8</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Gecko</td>
-                                    <td>Firefox 2.0</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>1.8</td>
-                                    <td>A</td>
-                                </tr>
-                               
-                                
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
+                
             </section>
             <!-- /.content -->
         </div>
@@ -491,10 +292,11 @@
         {{-- The Modal to View a single user details --}}
     @endsection
     @push('scripts')
-        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#habil').DataTable();
-            });
-        </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table_id').DataTable();
+        });
+    </script>
     @endpush

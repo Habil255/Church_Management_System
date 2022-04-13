@@ -34,8 +34,9 @@ class AdminController extends Controller
         //             ->get();
         
 
-        $userInfos= User::paginate(6);
-        Paginator::useBootstrap(); 
+        $userInfos= User::all();
+        // $userInfos->physicalAddresses->district;
+        // return $userInfos;
         return view('admin.user-accounts',compact('userInfos'));
     }
 

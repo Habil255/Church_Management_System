@@ -1,4 +1,7 @@
 @extends('pages.main')
+@section('css')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+@endsection
 @section('contents')
     <div class="wrapper">
 
@@ -463,7 +466,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
-                        <table class="table table-striped">
+                        {{-- <table class="table table-striped">
                             <tr>
                                 <th>ID No</th>
                                 <th style="width: 20%">First Name</th>
@@ -488,36 +491,46 @@
                             </tr>
                              @endforeach
 
-                            {{-- <tr>
-                                <td>2.</td>
-                                <td>Clean database</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-yellow">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Cron job running</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-light-blue">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Fix and squish bugs</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-green">90%</span></td>
-                            </tr> --}}
+                            
+                        </table> --}}
+
+                        <table id="table_id" class="display">
+                            <thead>
+                                <tr>
+                                    <th>ID No</th>
+                                    <th style="width: 20%">First Name</th>
+                                    <th style="width: 20%">Last Name</th>
+                                    <th style="width: 20%">Email</th>
+                                    <th style="width: 20%">Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @foreach ($userDetails as $userDetail)
+                                    <td>{{$userDetail->id}}</td>
+                                    <td>{{$userDetail->first_name}}</td>
+                                    <td>
+                                        {{$userDetail->last_name}}
+                                    </td>
+                                    <td>{{$userDetail->email}}</td>
+                                    
+                                    <td>
+                                        @foreach ($userDetail->roles as $role)
+                                            {{$role->title}}</td>
+                                        @endforeach
+                                </tr>
+                                 @endforeach
+                            </tbody>
+                            {{-- <tfoot>
+                                <tr>
+                                    <th>Rendering engine</th>
+                                    <th>Browser</th>
+                                    <th>Platform(s)</th>
+                                    <th>Engine version</th>
+                                    <th>CSS grade</th>
+                                    <th>CSS grade</th>
+                                </tr>
+                            </tfoot> --}}
                         </table>
                     </div>
                     <!-- /.box-body -->
@@ -724,3 +737,12 @@
         <div class="control-sidebar-bg"></div>
         
     @endsection
+    @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table_id').DataTable();
+        });
+    </script>
+    @endpush

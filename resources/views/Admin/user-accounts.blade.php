@@ -1,4 +1,7 @@
 @extends('pages.main')
+@section('css')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+@endsection
 @section('contents')
     <div class="wrapper">
 
@@ -89,7 +92,7 @@
                 <!-- Main row -->
                 <div class="row">
 
-                    <div class="row col-md-12">
+                    {{-- <div class="row col-md-12">
                         <div class="col-lg-12 table-striped">
                             <div class="box ">
 
@@ -108,17 +111,7 @@
                                             </div>
                                         </center>
                                     @endif
-                                    <div class="box-tools">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="typeahead text" name="table_search" class="form-control pull-right"
-                                                placeholder="Search" id="user-search">
-
-                                            <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-default"><i
-                                                        class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body table-responsive no-padding">
@@ -173,12 +166,90 @@
                                     </div>
 
                                 </div>
+                                
                                 <!-- /.box-body -->
                             </div>
                             <!-- /.box -->
                         </div>
-                    </div>
+                    </div> --}}
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">List of Registered Users</h3>
+                            {{-- <span>
+                                @if (Session::has('success'))
+                                        <center>
+                                            <div class="center" style="color: green" role="alert">
+                                                <p>{{ Session::get('success') }}</p>
+                                            </div>
+                                        </center>
+                                        @elseif (Session::has('deleted'))
+                                        <center>
+                                            <div class="center" style="color: green" role="alert">
+                                                <p>{{ Session::get('deleted') }}</p>
+                                            </div>
+                                        </center>
+                                    @endif
+                            </span> --}}
+                            {{-- <span>
+                                <form action="{{ route('test.import') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="file" name="file" accept=".xlsx, .xls,.csv">
+                                    <button type="submit">Import</button>
+                                </form>
+                            </span> --}}
+                            <span>
+                                <button type="button" class="btn btn-default pull-right"
+                                    data-toggle="modal" data-target="#modal-default">
+                                    Add User
+                                </button>
+                            </span>
 
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="table_id" class="display">
+                                <thead>
+                                    <tr>
+                                        <th>User No</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($userInfos as $userInfo)
+                                            <tr>
+                                                <td>{{ $userInfo->id }}</td>
+                                                <td>{{ $userInfo->first_name }}</td>
+                                                <td>{{ $userInfo->last_name }}</td>
+                                                <td>{{ $userInfo->email }}</span></td>
+                                                <td>{{ $userInfo->spouse_name }}</td>
+                                                <td><a href="/admin/view-member/{{ $userInfo->id }}"
+                                                        data-target="#singleUser-details" class="fa fa-eye"
+                                                        data-toggle="modal"></a>
+
+                                                    <a href="/admin/delete-member/{{ $userInfo->id }}"
+                                                        class="fa fa-trash-o "></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                </tbody>
+                                {{-- <tfoot>
+                                    <tr>
+                                        <th>Rendering engine</th>
+                                        <th>Browser</th>
+                                        <th>Platform(s)</th>
+                                        <th>Engine version</th>
+                                        <th>CSS grade</th>
+                                        <th>CSS grade</th>
+                                    </tr>
+                                </tfoot> --}}
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
                     <!-- Left col -->
                     <section class="col-lg-7 connectedSortable">
                         <!-- Custom tabs (Charts with tabs)-->
@@ -745,3 +816,12 @@
             <!-- /.modal-dialog -->
         </div>
     @endsection
+    @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table_id').DataTable();
+        });
+    </script>
+    @endpush

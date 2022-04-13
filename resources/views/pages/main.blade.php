@@ -110,19 +110,6 @@
             });
         }
     });
-
-    url = "{{ route('search.user') }}";
-    $('#user-search').typeahead({
-        source: function(value, process) {
-            return $.get(url, {
-                value: value
-            }, function(data) {
-                // alert(data);
-                return process(data);
-                // console.log(data);
-            });
-        }
-    });
 </script>
 
 </html>

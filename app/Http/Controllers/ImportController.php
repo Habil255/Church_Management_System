@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MemberImport;
+use App\Imports\TestImport;
+use App\Models\Test;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
-class AccountantController extends Controller
+class ImportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,8 @@ class AccountantController extends Controller
     public function index()
     {
         //
-        return view('accountant.home');
+        $tests = Test::all();
+        return view('test.import', compact('tests'));
     }
 
     /**
@@ -22,9 +27,12 @@ class AccountantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        Excel::import(new MemberImport, 
+            $request->file);
+        return back();
     }
 
     /**

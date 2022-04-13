@@ -10,6 +10,7 @@ use App\Http\Controllers\AccountantController;
 use App\Http\Controllers\ParishController;
 use App\Http\Controllers\EvangelistController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImportController;
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Authcheck;
 use App\Http\Middleware\Pastorcheck;
@@ -18,6 +19,7 @@ use App\Http\Middleware\Parishcheck;
 use App\Http\Middleware\Accountantcheck;
 use App\Http\Middleware\Evangecheck;
 use App\Http\Middleware\Secretarycheck;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -140,3 +142,7 @@ Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.cust
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Importing Excel file
+Route::get('/importExcel', [ImportController::class, 'index']);
+Route::post('/import', [ImportController::class, 'create'])->name('test.import');
