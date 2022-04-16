@@ -73,8 +73,9 @@ class AdminController extends Controller
     public function roles()
     {
         
-        $userDetails= User::limit(8)
-                            ->get();
+        $userDetails= User::whereHas('roles', function($query){
+            $query->where('title','!=','Normal');
+        })->get();
         // $userRoles= User::limit(8)->get();
         // $first_name= $userRoles->first_name;
         // $last_name= $userRoles->last_name;

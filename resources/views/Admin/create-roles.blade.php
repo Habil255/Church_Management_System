@@ -516,7 +516,7 @@
                                     
                                     <td>
                                         @foreach ($userDetail->roles as $role)
-                                            {{$role->title}}</td>
+                                        <span class="label label-primary">{{$role->title}}</span>
                                         @endforeach
                                 </tr>
                                  @endforeach
