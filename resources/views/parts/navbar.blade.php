@@ -231,13 +231,25 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @if (isset(Auth::user()->profile_picture))
+                        <img src="{{ asset("images/". Auth::user()->profile_picture) }}" class="user-image" alt="User Image">
+                        @else
                         <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        @endif
+                        
+
                         <span class="hidden-xs">{{ Auth::user()->username }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            @if (isset(Auth::user()->profile_picture))
+                            <img src="{{ asset("images/". Auth::user()->profile_picture) }}" class="img-circle" alt="User Image">
+
+                            @else
+                            <img src="" class="img-circle" alt="User Image">
+
+                            @endif
 
                             <p>
                                 {{ Auth::user()->username }}

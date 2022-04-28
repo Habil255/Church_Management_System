@@ -107,6 +107,36 @@ class UserController extends Controller
         // $comment->message = $request->message;
         // $msg->comments()->save($comment);
         // return back();
+        
+        if ($request->hasFile('image')) {
+            # code...
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,svg|max:2048'
+            ]);
+
+
+            $user = User::findOrFail($id);
+            $imageName = time().'.'.$request->image->extension();  
+        $request->image->move(public_path('images'), $imageName);
+        /* Store $imageName name in DATABASE from HERE */
+        $user->profile_picture = $imageName;
+
+        $user->save();
+
+        return back()
+            ->with('success','You have successfully upload image.')
+            ->with('image',$imageName);
+       
+        } else {
+            # code...
+
+
+
+
+
+            
+        }
+        
         $user = User::findOrFail($id);
         $user->update([
             'first_name' => $request->first_name,
@@ -149,6 +179,14 @@ class UserController extends Controller
 
 
         return redirect()->back();
+
+        // $imageName = time().'.'.$request->image->extension();  
+        // $request->image->move(public_path('images'), $imageName);
+        // /* Store $imageName name in DATABASE from HERE */
+        // return back()
+        //     ->with('success','You have successfully upload image.')
+        //     ->with('image',$imageName);
+        
     }
 
     /**
@@ -158,9 +196,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function imageUpload(Request $request)
     {
         //
+        $request->validate([
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+        $imageName = time().'.'.$request->image->extension();  
+        $request->image->move(public_path('images'), $imageName);
+        /* Store $imageName name in DATABASE from HERE */
+        return back()
+            ->with('success','You have successfully upload image.')
+            ->with('image',$imageName);
     }
 
     /**

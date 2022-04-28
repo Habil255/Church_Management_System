@@ -518,6 +518,7 @@
                                         @foreach ($userDetail->roles as $role)
                                         <span class="label label-primary">{{$role->title}}</span>
                                         @endforeach
+                                    </td>
                                 </tr>
                                  @endforeach
                             </tbody>

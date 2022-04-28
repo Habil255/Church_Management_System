@@ -92,29 +92,7 @@
 
 
                     <section class="content">
-                        <div class="row ">
-                            <div class="col-xs-12">
-                                <form action="{{ route('pastor.singleMember') }}">
-
-                                    <div class="card col-md-6" style="margin-top: 3%; margin-left: 20%;">
-                                        <div class="card-header">
-                                            Search For student
-                                        </div>
-                                        <div class="input-group mb-3"
-                                            style="padding-top: 2%; padding-left: 2%; padding-right: 2%;">
-                                            <input type="text" id="member-search" class="typeahead form-control"
-                                                autocomplete="off" name="member" placeholder="Search..."
-                                                aria-label="Search..." aria-describedby="button-addon2">
-                                            <button class="btn btn-outline-secondary" type="submit"
-                                                id="button-addon2">Search</button>
-                                        </div>
-                                    </div>
-                            </div>
-                            </form>
-                            <!-- /.box -->
                         
-                            
-                        </div>
 
                     </section>
 

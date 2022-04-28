@@ -228,7 +228,10 @@
                                                 <td>{{ $userInfo->first_name }}</td>
                                                 <td>{{ $userInfo->last_name }}</td>
                                                 <td>{{ $userInfo->email }}</span></td>
-                                                <td>{{ $userInfo->spouse_name }}</td>
+                                                <td>
+                                                
+                                                    {{ $userInfo->spouse_name }}
+                                                </td>
                                                 <td><a href="/admin/view-member/{{ $userInfo->id }}"
                                                         data-target="#singleUser-details" class="fa fa-eye"
                                                         data-toggle="modal"></a>

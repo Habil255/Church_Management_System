@@ -28,9 +28,9 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{$normalUsers}}</h3>
   
-                <p>New Orders</p>
+                <p>Normal Users</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -58,9 +58,9 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$totalUsers}}</h3>
   
-                <p>User Registrations</p>
+                <p>Total User Registrations</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -73,9 +73,9 @@
             <!-- small box -->
             <div class="small-box bg-red">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{$withSpecialRoles}}</h3>
   
-                <p>Unique Visitors</p>
+                <p>Users With Special Roles</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>

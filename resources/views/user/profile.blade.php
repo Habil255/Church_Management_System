@@ -45,13 +45,25 @@
                             <form role="form" method="POST" enctype="multipart/form-data"
                                 action="{{ route('profile.settings', $user->id) }}">
                                 @csrf
+
                                 <div class="row">
                                     <div class="col-md-4 pull right">
                                         <div class="box-body box-profile">
                                             <img class="profile-user-img img-responsive img-circle"
-                                                src="{{ asset('images/user.png') }}" alt="User profile picture">
+                                                src="{{ asset("images/". $user->profile_picture) }}" alt="User profile picture">
                                             <h3 class="profile-username text-center">{{ $user->name }}</h3>
                                             <p class="text-muted text-center">{{ $user->email }}</p>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="file" name="image" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            @if ($errors->has('image'))
+                                                <span class="text-danger">{{ $errors->first('image') }}</span>
+                                            @endif
+
                                             <ul class="list-group list-group-unbordered">
                                                 <li class="list-group-item">
                                                     <b>Followers</b> <a class="pull-right">1,322</a>
@@ -77,8 +89,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
                                 <div class="box-header with-border">
-                                    <b><h3 class="box-title">Personal Details</h3></b>
+                                    <b>
+                                        <h3 class="box-title">Personal Details</h3>
+                                    </b>
                                 </div>
                                 <div class="box-body">
                                     <div class="row">
@@ -169,7 +186,9 @@
 
                                 </div>
                                 <div class="box-header with-border">
-                                    <b><h3 class="box-title">Address Details</h3></b>
+                                    <b>
+                                        <h3 class="box-title">Address Details</h3>
+                                    </b>
                                 </div>
                                 <div class="box-body">
                                     <div class="row">
@@ -181,7 +200,8 @@
                                                 {{-- {{dd($user->physicalAddresses->district)}} --}}
                                                 @if (isset($user->physicalAddresses->district))
                                                     <div class="col-sm-10">
-                                                        <input type="text" value="{{ $user->physicalAddresses->district }}"
+                                                        <input type="text"
+                                                            value="{{ $user->physicalAddresses->district }}"
                                                             name="district" class="form-control" id=""
                                                             placeholder="Ubungo">
                                                     </div>
@@ -191,7 +211,7 @@
                                                             placeholder="Ubungo" required>
                                                     </div>
                                                 @endif
-                                                
+
 
                                             </div>
                                         </div>
@@ -199,15 +219,15 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-2 control-label">Ward</label>
                                                 @if (isset($user->physicalAddresses->ward))
-                                                <div class="col-sm-10">
-                                                    <input type="text" value="{{$user->physicalAddresses->ward}}" name="ward" class="form-control" id="" placeholder="Makoka">
-                                                </div> 
-                                                
-                                                    
+                                                    <div class="col-sm-10">
+                                                        <input type="text" value="{{ $user->physicalAddresses->ward }}"
+                                                            name="ward" class="form-control" id="" placeholder="Makoka">
+                                                    </div>
                                                 @else
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="ward" class="form-control" id="" placeholder="Ward">
-                                                </div>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="ward" class="form-control" id=""
+                                                            placeholder="Ward">
+                                                    </div>
                                                 @endif
                                             </div>
                                         </div>
@@ -215,15 +235,16 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-2 control-label">Street</label>
                                                 @if (isset($user->physicalAddresses->street))
-                                                <div class="col-sm-10">
-                                                    <input type="text" value="{{$user->physicalAddresses->street}}" name="street" class="form-control" id="inputEmail3" placeholder="Mikongeni">
-                                                </div> 
-                                                    
-                                                    
+                                                    <div class="col-sm-10">
+                                                        <input type="text" value="{{ $user->physicalAddresses->street }}"
+                                                            name="street" class="form-control" id="inputEmail3"
+                                                            placeholder="Mikongeni">
+                                                    </div>
                                                 @else
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="street" class="form-control" id="" placeholder="Mikongeni">
-                                                </div>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="street" class="form-control" id=""
+                                                            placeholder="Mikongeni">
+                                                    </div>
                                                 @endif
                                                 {{-- {{isset($user) ? $user : 'Habil'}} --}}
                                             </div>
@@ -235,15 +256,17 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-6 control-label">House No:</label>
                                                 @if (isset($user->physicalAddresses->house_number))
-                                                <div class="col-sm-10">
-                                                    <input type="number" name="house_number" value="{{$user->physicalAddresses->house_number}}"  class="form-control" id="inputEmail3" placeholder="Mikongeni">
-                                                </div> 
-                                                    
-                                                    
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="house_number"
+                                                            value="{{ $user->physicalAddresses->house_number }}"
+                                                            class="form-control" id="inputEmail3"
+                                                            placeholder="Mikongeni">
+                                                    </div>
                                                 @else
-                                                <div class="col-sm-10">
-                                                    <input type="number" name="house_number" class="form-control" id="" placeholder="Mikongeni">
-                                                </div>
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="house_number" class="form-control"
+                                                            id="" placeholder="Mikongeni">
+                                                    </div>
                                                 @endif
                                                 {{-- {{isset($user->physicalAddress) ? dd($user) : 'Habil'}} --}}
                                             </div>
@@ -252,13 +275,14 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-4 control-label">Block No:</label>
                                                 @if (isset($user->physicalAddresses->block_number))
-                                                    <input type="number" name="block_number" value="{{$user->physicalAddresses->block_number}}" class="form-control" id="" placeholder="Makoka">
-                                                    
+                                                    <input type="number" name="block_number"
+                                                        value="{{ $user->physicalAddresses->block_number }}"
+                                                        class="form-control" id="" placeholder="Makoka">
                                                 @else
-                                                <div class="col-sm-10">
-                                                    <input type="number" name="block_number" class="form-control" id="inputEmail3" placeholder="123"
-                                                        max="4000" min="0">
-                                                </div>
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="block_number" class="form-control"
+                                                            id="inputEmail3" placeholder="123" max="4000" min="0">
+                                                    </div>
                                                 @endif
                                                 {{-- {{isset($user->physicalAddress) ? $user : 'Habil'}} --}}
                                             </div>
@@ -277,19 +301,20 @@
                                                 <label for="inputEmail3" class="col-sm-6 control-label">Phone
                                                     number:</label>
 
-                                                    @if (isset($user->contactAddresses->phonenumber))
+                                                @if (isset($user->contactAddresses->phonenumber))
                                                     <div class="col-sm-10">
-                                                        <input type="text" name="phonenumber" value="{{$user->contactAddresses->phonenumber}}"  class="form-control" id="inputEmail3" placeholder="897"
+                                                        <input type="text" name="phonenumber"
+                                                            value="{{ $user->contactAddresses->phonenumber }}"
+                                                            class="form-control" id="inputEmail3" placeholder="897"
                                                             max="4000" min="0">
-                                                    </div> 
-                                                       
-                                                        
-                                                    @else
+                                                    </div>
+                                                @else
                                                     <div class="col-sm-10">
-                                                        <input type="text" name="phonenumber"  class="form-control" id="inputEmail3"  placeholder="+255 756 577 234"
-                                                            max="4000" min="0">
-                                                    </div> 
-                                                    @endif
+                                                        <input type="text" name="phonenumber" class="form-control"
+                                                            id="inputEmail3" placeholder="+255 756 577 234" max="4000"
+                                                            min="0">
+                                                    </div>
+                                                @endif
                                                 {{-- value="{{$user->contactAddresses->phonenumber}}" --}}
                                             </div>
                                         </div>
@@ -298,19 +323,18 @@
                                                 <label for="inputEmail3" class="col-sm-4 control-label">Postal
                                                     address:</label>
 
-                                                    @if (isset($user->contactAddresses->postal_address))
+                                                @if (isset($user->contactAddresses->postal_address))
                                                     <div class="col-sm-10">
-                                                        <input type="text"  value="{{$user->contactAddresses->postal_address}}"  class="form-control" id="inputEmail3"
-                                                            max="4000" min="0">
-                                                    </div> 
-                                                       
-                                                        
-                                                    @else
+                                                        <input type="text"
+                                                            value="{{ $user->contactAddresses->postal_address }}"
+                                                            class="form-control" id="inputEmail3" max="4000" min="0">
+                                                    </div>
+                                                @else
                                                     <div class="col-sm-10">
-                                                        <input type="text" name="postal_address"  class="form-control" id="inputEmail3"  placeholder="P.o Box 2443"
-                                                            max="4000" min="0">
-                                                    </div> 
-                                                    @endif
+                                                        <input type="text" name="postal_address" class="form-control"
+                                                            id="inputEmail3" placeholder="P.o Box 2443" max="4000" min="0">
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -415,6 +439,6 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                             immediately after the control sidebar -->
+                                                                                     immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     @endsection

@@ -4,7 +4,12 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                @if (isset(Auth::user()->profile_picture))
+                <img src="{{ asset("images/". Auth::user()->profile_picture) }}" class="img-circle" alt="User Image">
+                @else
+                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                @endif
+                
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</p>
@@ -332,7 +337,7 @@
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="active"><a href="/accountant/home"><i class="fa fa-circle-o"></i> Dashboard</a></li>
 
-                <li class="treeview">
+                {{-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>
                         <span>Users</span>
@@ -346,7 +351,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> --}}
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-laptop"></i>
@@ -437,8 +442,7 @@
         @elseif(Auth::user()->roles[0]->title == 'Evangelist')
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active"><a href="/pastor/home"><i class="fa fa-circle-o"></i> Dashboard
-                        v1</a></li>
+                <li class="active"><a href="/pastor/home"><i class="fa fa-circle-o"></i> Dashboard</a></li>
                 {{-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
@@ -466,19 +470,19 @@
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>
-                        <span>Users</span>
+                        <span>Events</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Manage User</a></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i> Manage Events</a></li>
                         <li><a href="/pastor/member-search"><i class="fa fa-circle-o"></i> Search User Information</a>
                         </li>
 
                     </ul>
                 </li>
-                <li class="treeview">
+                {{-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-laptop"></i>
                         <span>UI Elements</span>
@@ -494,16 +498,16 @@
                         <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
                         <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i> <span> Roles</span>
+                        <i class="fa fa-edit"></i> <span>Sacraments</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Manage Roles</a></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i> Manage Sacraments</a></li>
                         <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a>
                         </li>
                         <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
@@ -511,7 +515,7 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-table"></i> <span>Schedules</span>
+                        <i class="fa fa-table"></i> <span>Projects</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -540,7 +544,7 @@
                         </span>
                     </a>
                 </li>
-                <li class="treeview">
+                {{-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-folder"></i> <span>Examples</span>
                         <span class="pull-right-container">
@@ -558,7 +562,7 @@
                         <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
                         <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a>
                 </li>

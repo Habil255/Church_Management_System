@@ -95,6 +95,8 @@ Route::prefix('accountant')->middleware([AccountantCheck::class])->group(functio
     
     Route::get('/home', [AccountantController::class, 'index']);
     Route::get('/show-resources', [AccountantController::class, 'showResources']);
+    Route::post('/resource/submit', [AccountantController::class, 'submitResources'])->name('resources.submit');
+    Route::get('/resource/delete/{id}', [AccountantController::class, 'deleteResources']);
     // Route::get('/home', [AuthController::class, 'login']);
     
 }); 

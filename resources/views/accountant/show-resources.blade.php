@@ -1,6 +1,6 @@
 @extends('pages.main')
 @section('css')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
 @section('contents')
     <div class="wrapper">
@@ -57,18 +57,7 @@
                     <!-- fix for small devices only -->
                     <div class="clearfix visible-sm-block"></div>
 
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Sales</span>
-                                <span class="info-box-number">760</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
+                    
                     <!-- /.col -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
@@ -77,6 +66,18 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">New Members</span>
                                 <span class="info-box-number">2,000</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Price</span>
+                                <span class="info-box-number">{{$prices}}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -224,69 +225,67 @@
                 </div> --}}
                 <div class="box box-info">
                     <div class="box-header with-border">
-                      <h3 class="box-title">Resources Registered</h3>
-        
-                      <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                      </div>
+                        <h3 class="box-title">Resources Registered</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                    class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                    class="fa fa-times"></i></button>
+                        </div>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                      <div class="table-responsive">
-                        <table class="table no-margin" id="table_id">
-                          <thead>
-                          <tr>
-                            <th>Item ID</th>
-                            <th>Item</th>
-                            <th>Status</th>
-                            <th>Popularity</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                            <td>Call of Duty IV</td>
-                            <td><span class="label label-success">Shipped</span></td>
-                            <td>
-                              <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                            <td>Samsung Smart TV</td>
-                            <td><span class="label label-warning">Pending</span></td>
-                            <td>
-                              <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                            <td>iPhone 6 Plus</td>
-                            <td><span class="label label-danger">Delivered</span></td>
-                            <td>
-                              <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                            </td>
-                          </tr>
-                          
-                          </tbody>
-                        </table>
-                      </div>
-                      <!-- /.table-responsive -->
+                        <div class="table-responsive">
+                            <table class="table no-margin" id="table_id">
+                                <thead>
+                                    <tr>
+                                        <th>Item ID</th>
+                                        <th>Item Name</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                         @foreach ($resources as $resource)
+                                        <td>{{$resource->id}}</a></td>
+                                        <td>{{$resource->name}}</td>
+                                        <td>
+                                            <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                {{$resource->category}}</div>
+                                            </td>
+                                            <td>{{$resource->price}}</td>   
+                                            <td><span class="label label-success">In Use</span></td>
+                                            <td><a href="/resource/view/{{ $resource->id }}"
+                                                data-target="#singleUser-details" class="fa fa-eye"
+                                                data-toggle="modal"></a>
+
+                                            <a href="resource/delete/{{ $resource->id }}"
+                                                class="fa fa-trash-o "></a>
+                                        </td>                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-                       <input type="file" class="btn btn-sm btn-info btn-flat pull-left">
-                      {{-- <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left"><i class="bi bi-cloud-arrow-up"></i>
+                        <input type="file" class="btn btn-sm btn-info btn-flat pull-left">
+                        {{-- <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left"><i class="bi bi-cloud-arrow-up"></i>
                         Order</a> --}}
-                      <button type="button" class="btn btn-sm btn-default btn-flat pull-right"
-                                    data-toggle="modal" data-target="#modal-default">
-                                    Add Resource
-                                </button>
+                        <button type="button" class="btn btn-sm btn-default btn-flat pull-right" data-toggle="modal"
+                            data-target="#modal-default">
+                            Add Resource
+                        </button>
                     </div>
                     <!-- /.box-footer -->
-                  </div>
+                </div>
                 <!-- /.row -->
                 <!-- Main row -->
                 <div class="row">
@@ -634,7 +633,7 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                     immediately after the control sidebar -->
+                         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 
@@ -651,82 +650,87 @@
                         <!-- /.box-header -->
 
                         <!-- form start -->
-                        <form role="form" method="POST" action="{{ route('admin.addMember') }}"
+                        <form role="form" method="POST" action="{{ route('resources.submit') }}"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5">
                                         <!-- text input -->
                                         <div class="form-group">
-                                            <label>First Name</label>
-                                            <input type="text" class="form-control" placeholder="Jacob" name="first_name"
+                                            <label>Resource Name</label>
+                                            <input type="text" class="form-control" placeholder="Piano" name="name"
                                                 autocomplete="off" required>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Middle Name</label>
-                                            <input type="text" class="form-control" placeholder="James"
-                                                name="middle_name" required>
-                                        </div>
+                                    <div class="col-sm-7">
+                                        
+                                            <label for="category" class=" col-form-label "
+                                                style="color: black">{{ __('Category') }}</label>
+
+                                            <select id="category" class="form-control" name="category" required
+                                                autocomplete="job_title" autofocous>
+                                                <option value="" disabled selected hidden>Choose a Category</option>
+                                                <option>Music </option>
+                                                <option>Furnitures</option>
+                                                <option></option>
+                                            </select>
+                                        
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Lomell" name="last_name"
-                                                required>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        
+                                            <label for="category" class=" col-form-label " 
+                                                style="color: black">{{ __('Description') }}</label>
+
+                                            <textarea class="col-md-12" name="description" id="" cols="100" rows="5"></textarea>
+                                        
                                     </div>
                                 </div>
                                 <div class="row">
                                     {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
                                     <div class="col-sm-4 form-group">
-                                        <label>Username</label>
-                                        <input type="Address" class="form-control" placeholder="Jam224" name="username"
+                                        <label>Bought By</label>
+                                        <input type="name" class="form-control" placeholder="Jam224" name="bought_by"
                                             required>
                                     </div>
                                     <div class="col-sm-4 form-group">
-                                        <label>email (optional)</label>
-                                        <input type="Address" class="form-control" placeholder="Jam224@gmail.com"
-                                            name="email">
+                                        <label>Buyers Phonenumber</label>
+                                        <input type="number" class="form-control" placeholder="0713543613"
+                                            name="buyer_number">
                                     </div>
                                     <div class="col-sm-4 form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" placeholder="******" name="password"
+                                        <label>Price</label>
+                                        <input type="text" class="form-control" placeholder="1560.55" name="price"
                                             required>
                                     </div>
 
-                                    <div class="col-sm-2">
-                                        <!-- radio -->
-                                        <div class="form-group">
-                                            <label for="">Gender</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" value="M" name="gender">
-                                                <label class="form-check-label">Male</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" value="F" name="gender">
-                                                <label class="form-check-label">Female</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="col-sm-3 form-group">
-                                        <label>Date of Birth:</label>
+                                        <label>Date Bought:</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="date" name="date_of_birth"
+                                            <input type="date" name="date"
                                                 class="form-control datetimepicker-input" data-target="#reservationdate"
                                                 required />
 
                                         </div>
                                     </div>
-
-
+                                    <div class="col-sm-4 form-group">
+                                        <label>Receipt Number</label>
+                                        <input type="receipt_number" class="form-control" placeholder="1560.55" name="receipt_number"
+                                            required>
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Picture</label>
+                                        <input type="file" class="form-control" placeholder="1560.55" name="image"
+                                            required>
+                                            {{-- <img id="blah" src="#" alt="your image" />    --}}
+                                    </div>
+                                    
                                 </div>
-                                <div class="row">
-                                    {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
+                               {{-- <div class="row">
                                     <div class="col-sm-3 form-group">
                                         <label>Place of Birth</label>
                                         <input type="Address" name="place_of_birth" class="form-control"
@@ -758,7 +762,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> --}}
                             <!-- /.box-body -->
 
                             <div class="modal-footer">
@@ -775,11 +779,12 @@
         </div>
     @endsection
     @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#table_id').DataTable();
-        });
-    </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#table_id').DataTable();
+            });
+        </script>
     @endpush
