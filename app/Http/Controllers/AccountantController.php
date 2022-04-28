@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Resources;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class AccountantController extends Controller
 {
@@ -28,10 +29,13 @@ class AccountantController extends Controller
     {
         //
         $prices = Resources::get()->sum('price');
+        $musicResource = Resources::where('category','Music')->get()->sum('price');
+        $furnitureResource = Resources::where('category','Furnitures')->get()->sum('price');
+        // return $musicResource;
         $resources = Resources::get();
         // return $prices;
 
-        return view('accountant.show-resources', compact('resources', 'prices'));
+        return view('accountant.show-resources', compact('resources', 'prices','musicResource','furnitureResource'));
     }
     public function create()
     {
@@ -47,8 +51,7 @@ class AccountantController extends Controller
     public function submitResources(Request $request)
     {
         //
-
-
+        // return request()->all();
         if ($request->hasFile('image')) {
 
             $request->validate([
@@ -124,7 +127,15 @@ class AccountantController extends Controller
      */
     public function deleteResources ($id)
     {
-        $username = Resources::find($id);
+        // $image = \DB::table('files')->where('id', $id)->first();
+        // $file= $image->your_file_path;
+        // $filename = public_path().'/uploads_folder/'.$file;
+        // \File::delete($filename);
+
+        $username = Resources::find($id)->where('id',$id)->first();
+        $file= $username->picture;
+        $filename = public_path().'/resources/'.$file;
+        File::delete($filename);
         $username->delete();
         return back()->with('deleted', `User  has been deleted`);
     }

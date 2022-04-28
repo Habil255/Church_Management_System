@@ -33,7 +33,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Music</span>
-                                <span class="info-box-number">90<small>%</small></span>
+                                <span class="info-box-number">{{number_format($musicResource)}}<small>Tsh</small></span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -46,7 +46,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Furnitures</span>
-                                <span class="info-box-number">41,410</span>
+                                <span class="info-box-number">{{number_format($furnitureResource)}}<small>Tsh</small></span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -57,7 +57,7 @@
                     <!-- fix for small devices only -->
                     <div class="clearfix visible-sm-block"></div>
 
-                    
+
                     <!-- /.col -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
@@ -77,7 +77,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Total Price</span>
-                                <span class="info-box-number">{{$prices}}</span>
+                                <span class="info-box-number">{{number_format($prices)}}<small>Tsh</small></span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -251,22 +251,22 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                         @foreach ($resources as $resource)
-                                        <td>{{$resource->id}}</a></td>
-                                        <td>{{$resource->name}}</td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                {{$resource->category}}</div>
+                                        @foreach ($resources as $resource)
+                                            <td>{{ $resource->id }}</a></td>
+                                            <td>{{ $resource->name }}</td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                    {{ $resource->category }}</div>
                                             </td>
-                                            <td>{{$resource->price}}</td>   
+                                            <td>{{number_format($resource->price)}}<small> Tsh</small></td>
                                             <td><span class="label label-success">In Use</span></td>
                                             <td><a href="/resource/view/{{ $resource->id }}"
-                                                data-target="#singleUser-details" class="fa fa-eye"
-                                                data-toggle="modal"></a>
+                                                    data-target="#singleUser-details" class="fa fa-eye"
+                                                    data-toggle="modal"></a>
 
-                                            <a href="resource/delete/{{ $resource->id }}"
-                                                class="fa fa-trash-o "></a>
-                                        </td>                                    </tr>
+                                                <a href="resource/delete/{{ $resource->id }}" class="fa fa-trash-o "></a>
+                                            </td>
+                                    </tr>
                                     @endforeach
 
                                 </tbody>
@@ -633,7 +633,7 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                         immediately after the control sidebar -->
+                             immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 
@@ -664,28 +664,28 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-7">
-                                        
-                                            <label for="category" class=" col-form-label "
-                                                style="color: black">{{ __('Category') }}</label>
 
-                                            <select id="category" class="form-control" name="category" required
-                                                autocomplete="job_title" autofocous>
-                                                <option value="" disabled selected hidden>Choose a Category</option>
-                                                <option>Music </option>
-                                                <option>Furnitures</option>
-                                                <option></option>
-                                            </select>
-                                        
+                                        <label for="category" class=" col-form-label "
+                                            style="color: black">{{ __('Category') }}</label>
+
+                                        <select id="category" class="form-control" name="category" required
+                                            autocomplete="job_title" autofocous>
+                                            <option value="" disabled selected hidden>Choose a Category</option>
+                                            <option>Music </option>
+                                            <option>Furnitures</option>
+                                            <option></option>
+                                        </select>
+
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-7">
-                                        
-                                            <label for="category" class=" col-form-label " 
-                                                style="color: black">{{ __('Description') }}</label>
 
-                                            <textarea class="col-md-12" name="description" id="" cols="100" rows="5"></textarea>
-                                        
+                                        <label for="category" class=" col-form-label "
+                                            style="color: black">{{ __('Description') }}</label>
+
+                                        <textarea class="col-md-12" name="description" id="" cols="100" rows="5"></textarea>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -706,31 +706,31 @@
                                             required>
                                     </div>
 
-                                    
-
                                     <div class="col-sm-3 form-group">
                                         <label>Date Bought:</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="date" name="date"
-                                                class="form-control datetimepicker-input" data-target="#reservationdate"
-                                                required />
+                                            <input type="date" name="date" class="form-control datetimepicker-input"
+                                                data-target="#reservationdate" required />
 
                                         </div>
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Receipt Number</label>
-                                        <input type="receipt_number" class="form-control" placeholder="1560.55" name="receipt_number"
-                                            required>
+                                        <input type="receipt_number" class="form-control" placeholder="1560.55"
+                                            name="receipt_number" required>
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Picture</label>
                                         <input type="file" class="form-control" placeholder="1560.55" name="image"
                                             required>
-                                            {{-- <img id="blah" src="#" alt="your image" />    --}}
+                                        @if ($errors->has('image'))
+                                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                                        @endif
+                                        {{-- <img id="blah" src="#" alt="your image" /> --}}
                                     </div>
-                                    
+
                                 </div>
-                               {{-- <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-sm-3 form-group">
                                         <label>Place of Birth</label>
                                         <input type="Address" name="place_of_birth" class="form-control"
@@ -763,12 +763,13 @@
                                 </div>
 
                             </div> --}}
-                            <!-- /.box-body -->
+                                <!-- /.box-body -->
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left"
+                                        data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
+                                </div>
                         </form>
                     </div>
 
