@@ -91,19 +91,21 @@
           <!-- Left col -->
           <section class="col-lg-7 connectedSortable">
             <!-- Custom tabs (Charts with tabs)-->
-            <div class="nav-tabs-custom">
-              <!-- Tabs within a box -->
-              <ul class="nav nav-tabs pull-right">
-                <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-              </ul>
-              <div class="tab-content no-padding">
-                <!-- Morris chart - Sales -->
-                <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+            <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Line Chart</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
+            <div class="box-body chart-responsive">
+              <div class="chart" id="myfirstchart" style="height: 300px;"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
             <!-- /.nav-tabs-custom -->
   
             <!-- Chat box -->
@@ -392,52 +394,7 @@
             </div>
             <!-- /.box -->
   
-            <!-- solid sales graph -->
-            <div class="box box-solid bg-teal-gradient">
-              <div class="box-header">
-                <i class="fa fa-th"></i>
-  
-                <h3 class="box-title">Sales Graph</h3>
-  
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="box-body border-radius-none">
-                <div class="chart" id="line-chart" style="height: 250px;"></div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer no-border">
-                <div class="row">
-                  <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                    <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-  
-                    <div class="knob-label">Mail-Orders</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                    <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-  
-                    <div class="knob-label">Online</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-xs-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-  
-                    <div class="knob-label">In-Store</div>
-                  </div>
-                  <!-- ./col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- /.box-footer -->
-            </div>
+           
             <!-- /.box -->
   
             <!-- Calendar -->
@@ -725,5 +682,40 @@
   <!-- ./wrapper -->
   
   <!-- jQuery 3 -->
-  
-@endsection
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+  <script>
+    
+    new Morris.Line({
+  // ID of the element in which to draw the chart.
+  element: 'myfirstchart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+    { year: '2008', value: {{$data[0]}} },
+    { year: '2009', value: {{$data[1]}} },
+    { year: '2010', value: 9 },
+    { year: '2011', value: 14 },
+    { year: '2012', value: 10 },
+    { year: '2013', value: 30 },
+    { year: '2014', value: 9 },
+    { year: '2015', value: 12 },
+    { year: '2016', value: 26 },
+    { year: '2017', value: 16 },
+    { year: '2018', value: 35 },
+    { year: '2019', value: 11 },
+    { year: '2020', value: 30 }
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'year',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+  </script>
+@endsection 

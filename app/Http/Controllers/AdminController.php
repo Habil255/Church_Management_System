@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
+Use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +14,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules\Exists;
 use Laravel\Ui\Presets\React;
+use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Month;
+use PhpOffice\PhpSpreadsheet\Calculation\TextData\Format;
 
 class AdminController extends Controller
 {
@@ -23,12 +27,20 @@ class AdminController extends Controller
     public function index()
     {
         //
+     
         $totalUsers = User::get()->count();
+        // $data = User::selectRaw('count(*) as user_count')
+        //         // ->whereYear('created_at','>',2019)
+        //         ->groupby('created_at')
+        //         ->get();
+        // return $data;
         $withSpecialRoles = User::whereHas('roles', function ($query) {
             $query->where('title', '!=', 'Normal');
         })->count();
+        $data = [10,30];
+
         $normalUsers = $totalUsers - $withSpecialRoles;
-        return view('admin.home', compact('totalUsers', 'withSpecialRoles', 'normalUsers'));
+        return view('admin.home', compact('totalUsers', 'withSpecialRoles', 'normalUsers','data'));
     }
 
     public function viewAccounts(Request $request)

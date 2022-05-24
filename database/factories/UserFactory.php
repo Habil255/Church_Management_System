@@ -31,7 +31,8 @@ class UserFactory extends Factory
             'marital_status' => $this->faker->randomElement(['Married','Not Married']),
             'spouse_name' => $this->faker->name,
             'email' => $this->faker->safeEmail(),
-            'password' => bcrypt('secret'),
+            'password' => bcrypt('secret')
+            // 'created_at' => $this->faker->date(),
         ];
         
         

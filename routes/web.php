@@ -34,7 +34,7 @@ use App\Http\Middleware\Secretarycheck;
 
 Route::get('/', function () {
     
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/data', [UserController::class, 'chartData']);
@@ -75,9 +75,9 @@ Route::prefix('pastor')->middleware([PastorCheck::class])->group(function () {
     Route::get('/view-users', [PastorController::class, 'showUsers']);
     Route::get('/search-member', [PastorController::class, 'searchMemberDetails'])->name('pastor.searchMember');
     Route::get('/member-search', [PastorController::class, 'searchView']);
-    Route::get('/member-searc', [PastorController::class, 'singleMember'])->name('pastor.singleMember');
-    Route::get('/view-users', [PastorController::class, 'showUsers']);
-    Route::get('/view-member/{id}',[PastorController::class,'showMember']);
+    // Route::get('/member-searc', [PastorController::class, 'singleMember'])->name('pastor.singleMember');
+    // Route::get('/view-users', [PastorController::class, 'showUsers']);
+    Route::get('/viewMember/{id}',[PastorController::class,'showSingleMember'])->name('pastor.singleMember');;
     Route::get('/delete-member/{id}',[PastorController::class,'deleteMember'])->name('pastor.deleteMember');
     Route::post('/add-member',[PastorController::class,'addMember'])->name('pastor.addMember');
     Route::get('/approve-user/{id}',[PastorController::class,'approve'])->name('pastor.approve');

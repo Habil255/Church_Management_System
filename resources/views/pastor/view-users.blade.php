@@ -1,6 +1,6 @@
 @extends('pages.main')
 @section('css')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
 @section('contents')
     <div class="wrapper">
@@ -25,19 +25,19 @@
 
             <!-- Main content -->
             <section class="content">
-                
+
                 <div class="row">
 
 
 
                     <section class="content">
-                        
+
                         <div class="box">
                             <div class="box-header">
                                 <h3 class="box-title">List of Registered Users</h3>
                                 <span>
-                                    <button type="button" class="btn btn-default pull-right"
-                                        data-toggle="modal" data-target="#modal-default">
+                                    <button type="button" class="btn btn-default pull-right" data-toggle="modal"
+                                        data-target="#modal-default">
                                         Add User
                                     </button>
                                 </span>
@@ -49,36 +49,30 @@
                                     <thead>
                                         <tr>
                                             <th>User No</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Email</th>
-                                                <th>Address</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Address</th>
+                                            {{-- <th>Status</th> --}}
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($accounts as $account)
-                                                <tr>
-                                                    <td>{{ $account->id }}</td>
-                                                    <td>{{ $account->first_name }}</td>
-                                                    <td>{{ $account->last_name }}</td>
-                                                    <td>{{ $account->email }}</span></td>
-                                                    <td>{{ $account->spouse_name }}</td>
-                                                    <td> @if ($account->status == '0')
-                                                        <a href="{{ route('pastor.approve', $account->id) }}"
-                                                            class="btn btn-warning btn-xs">Activate</a>
-                                                    @elseif ($account->status == '1')
-                                                        <a class="btn btn-success btn-xs">Activated</a>
-                                                    @endif</td>
-                                                    <td><a href="/admin/view-member/{{ $account->id }}"
-                                                        data-target="#singleUser-details" class="fa fa-eye"
-                                                        data-toggle="modal"></a>
+                                            <tr>
+                                                <td>{{ $account->id }}</td>
+                                                <td>{{ $account->first_name }}</td>
+                                                <td>{{ $account->last_name }}</td>
+                                                <td>{{ $account->email }}</span></td>
+                                                <td>{{ $account->spouse_name }}</td>
+                                                <td><a href="{{ route('pastor.singleMember', $account->id) }}"
+                                                         class="fa fa-eye"
+                                                        ></a>
 
                                                     <a href="{{ route('pastor.deleteMember', $account->id) }}"
                                                         class="fa fa-trash-o "></a>
                                                 </td>
-                                                </tr>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                     {{-- <tfoot>
@@ -135,7 +129,7 @@
                     <!-- right col -->
                 </div>
                 <!-- /.row (main row) -->
-                
+
             </section>
             <!-- /.content -->
         </div>
@@ -146,7 +140,7 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                     immediately after the control sidebar -->
+                                                                                         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 
@@ -292,11 +286,12 @@
         {{-- The Modal to View a single user details --}}
     @endsection
     @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#table_id').DataTable();
-        });
-    </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#table_id').DataTable();
+            });
+        </script>
     @endpush

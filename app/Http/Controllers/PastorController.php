@@ -78,10 +78,7 @@ class PastorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -153,4 +150,12 @@ class PastorController extends Controller
         $user->save();
         return back()->with('success-approve', 'User has been approved');
     }
+
+    public function showSingleMember($id){
+        $user= User::findOrFail($id);
+        // $phyAdd = $user->physicalAddresses();
+        // return response()->json($phyAdd);
+        return view('pastor.single-user',compact('user'));
+    }
 }
+

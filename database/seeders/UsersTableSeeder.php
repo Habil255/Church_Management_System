@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
         // DB::table('users')->truncate();
 
         User::factory()
-        ->times(10)
+        ->times(20)
         ->create();
     }
 }
