@@ -244,7 +244,7 @@
                                         <th>Item ID</th>
                                         <th>Item Name</th>
                                         <th>Category</th>
-                                        <th>Price</th>
+                                        <th>Value</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
