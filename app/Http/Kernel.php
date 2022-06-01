@@ -21,14 +21,15 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\AdminCheck::class,
-        \App\Http\Middleware\Authcheck::class,
-        \App\Http\Middleware\AccountantCheck::class,
-        \App\Http\Middleware\Authcheck::class,
-        \App\Http\Middleware\EvangeCheck::class,
-        \App\Http\Middleware\SecretaryCheck::class,
-        \App\Http\Middleware\PastorCheck::class,
-        \App\Http\Middleware\ParishCheck::class,
+
+        // \App\Http\Middleware\AdminCheck::class,
+        // \App\Http\Middleware\Authcheck::class,
+        // \App\Http\Middleware\AccountantCheck::class,
+        // \App\Http\Middleware\EvangeCheck::class,
+        // \App\Http\Middleware\SecretaryCheck::class,
+        // \App\Http\Middleware\PastorCheck::class,
+        // \App\Http\Middleware\ParishCheck::class,
+        
     ];
 
     /**
@@ -45,6 +46,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+            
         ],
 
         'api' => [
@@ -71,5 +74,13 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        'adminCheck' => \App\Http\Middleware\AdminCheck::class,
+        'authcheck' =>\App\Http\Middleware\Authcheck::class,
+        'AccountantCheck' =>\App\Http\Middleware\AccountantCheck::class,
+        'EvangeCheck' =>\App\Http\Middleware\EvangeCheck::class,
+        'SecretaryCheck' =>\App\Http\Middleware\SecretaryCheck::class,
+        'PastorCheck' =>\App\Http\Middleware\PastorCheck::class,
+        'ParishCheck' =>\App\Http\Middleware\ParishCheck::class,
     ];
 }

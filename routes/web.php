@@ -60,17 +60,17 @@ Route::get('/gett/user', [RoleController::class, 'store']);
 
 
 //EVANGELIST CONTROL CODES
-Route::prefix('evangelist')->middleware([EvangeCheck::class])->group(function () { 
+Route::prefix('evangelist')->middleware('EvangeCheck')->group(function () { 
     Route::get('/home', [EvangelistController::class, 'index']);
 });
 
 //PARISH WORKER CONTROL CODES
-Route::prefix('parish')->middleware([ParishCheck::class])->group(function () { 
+Route::prefix('parish')->middleware('ParishCheck')->group(function () { 
     Route::get('/home', [ParishController::class, 'index']);
 });
 
 //PASTOR CONTROL CODES
-Route::prefix('pastor')->middleware([PastorCheck::class])->group(function () { 
+Route::prefix('pastor')->middleware('PastorCheck')->group(function () { 
     Route::get('/home', [PastorController::class, 'index']);
     Route::get('/view-users', [PastorController::class, 'showUsers']);
     Route::get('/search-member', [PastorController::class, 'searchMemberDetails'])->name('pastor.searchMember');
@@ -84,14 +84,14 @@ Route::prefix('pastor')->middleware([PastorCheck::class])->group(function () {
 });
 
 //CONGREGATION SECRETARY CONTROL CODES
-Route::prefix('secretary')->middleware([SecretaryCheck::class])->group(function () { 
+Route::prefix('secretary')->middleware('SecretaryCheck')->group(function () { 
     Route::get('/home', [SecretaryController::class, 'index']);
 });
 
 
 
 //Accountant CONTROL Codes
-Route::prefix('accountant')->middleware([AccountantCheck::class])->group(function () {
+Route::prefix('accountant')->middleware('AccountantCheck')->group(function () {
     
     Route::get('/home', [AccountantController::class, 'index']);
     Route::get('/show-resources', [AccountantController::class, 'showResources']);
@@ -105,7 +105,7 @@ Route::prefix('accountant')->middleware([AccountantCheck::class])->group(functio
 
 //ADMINISTRATOR CONTROL CODES
 
-Route::prefix('admin')->middleware([AdminCheck::class])->group(function () {
+Route::prefix('admin')->middleware('adminCheck')->group(function () {
     
     Route::get('/home', [AdminController::class, 'index']);
     Route::get('/create-roles', [AdminController::class, 'roles']);
