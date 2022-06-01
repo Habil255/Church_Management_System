@@ -105,7 +105,7 @@ Route::prefix('accountant')->middleware('AccountantCheck')->group(function () {
 
 //ADMINISTRATOR CONTROL CODES
 
-Route::prefix('admin')->middleware('adminCheck')->group(function () {
+Route::prefix('admin')->middleware('AdminCheck')->group(function () {
     
     Route::get('/home', [AdminController::class, 'index']);
     Route::get('/create-roles', [AdminController::class, 'roles']);
