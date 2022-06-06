@@ -16,16 +16,16 @@ class PDFController extends Controller
     {
         // return "Habil";
         //
-        // $data = [
-        //     'title' => 'Welcome to ItSolutionStuff.com',
-        //     'date' => date('m/d/Y')
-        // ];
-        $userInfos = User::get();
-        return view('admin.user-accounts', compact('userInfos'));
+        $data = [
+            'title' => 'Welcome to ItSolutionStuff.com',
+            'date' => date('m/d/Y')
+        ];
+        // $userInfos = User::get();
+        // return view('admin.user-accounts', compact('userInfos'));
           
-        // $pdf = PDF::loadView('myPDF', $data);
+        $pdf = PDF::loadView('myPDF', $data);
     
-        // return $pdf->download('RegisteredUsers.pdf');
+        return $pdf->download('RegisteredUsers.pdf');
     }
 
     /**

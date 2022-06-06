@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($userInfos ?? '' as $data)
+                        {{-- @foreach ($userInfos ?? '' as $data)
                                 <tr>
                                     <td>{{ $data->id }}</td>
                                     <td>{{ $data->first_name }}</td>
@@ -45,7 +45,7 @@
                                     </td>
                                    
                                 </tr>
-                            @endforeach
+                            @endforeach --}}
                     </tbody>
                     {{-- <tfoot>
                         <tr>
