@@ -174,7 +174,19 @@
                     </div> --}}
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">List of Registered Users</h3>
+                            <h3 class="box-title">List of Registered Users</h3> &nbsp;
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info">Export</button>
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                  <span class="caret"></span>
+                                  <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li><a href="{{ URL::to('/pdf') }}">PDF</a></li>
+                                  <li><a href="#">Excel</a></li>
+                                  <li><a href="#">CSV</a></li>
+                                </ul>
+                              </div>
                             {{-- <span>
                                 @if (Session::has('success'))
                                         <center>

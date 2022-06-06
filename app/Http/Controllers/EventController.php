@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EvangelistController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class EvangelistController extends Controller
     public function index()
     {
         //
-        return view('evangelist.home');
+        return view('evangelist.events');
     }
 
     /**
@@ -22,10 +22,10 @@ class EvangelistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showProject()
+    public function showSacraments()
     {
         //
-        return view('evangelist.projects');
+        return view('evangelist.sacraments');
     }
 
     /**
@@ -34,10 +34,9 @@ class EvangelistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function showPlans(Request $request)
+    public function store(Request $request)
     {
         //
-        return view('evangelist.plans');
     }
 
     /**

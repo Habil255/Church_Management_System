@@ -16,6 +16,7 @@ use Illuminate\Validation\Rules\Exists;
 use Laravel\Ui\Presets\React;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Month;
 use PhpOffice\PhpSpreadsheet\Calculation\TextData\Format;
+use PhpParser\Node\Stmt\Switch_;
 
 class AdminController extends Controller
 {
@@ -29,18 +30,62 @@ class AdminController extends Controller
         //
      
         $totalUsers = User::get()->count();
-        // $data = User::selectRaw('count(*) as user_count')
-        //         // ->whereYear('created_at','>',2019)
-        //         ->groupby('created_at')
-        //         ->get();
-        // return $data;
+        $usersMonthlyReg = User::selectRaw('Month(created_at) as Month, count(*) as users')
+                        ->whereYear('created_at','=',2020)
+                        ->groupByRaw('month(created_at)')->get();
+        // return ($usersMonthlyReg);
+           //    $monthname =$usersMonthlyReg->created_at>Carbon::carbon;
+    //    dd($monthname);
+                        // Carbon::Year()
+        // ->switch(Month('created_at')){
+        //     case 1:
+        //         $month = 'January';
+        //         break;
+        //     case 2:
+        //         $month = 'February';
+        //         break;
+        //     case 3:
+        //         $month = 'March';
+        //         break;
+        //     case 4:
+        //         $month = 'April';
+        //         break;
+        //     case 5:
+        //         $month = 'May';
+        //         break;
+        //     case 6:
+        //         $month = 'June';
+        //         break;
+        //     case 7:
+        //         $month = 'July';
+        //         break;
+        //     case 8:
+        //         $month = 'August';
+        //         break;
+        //     case 9:
+        //         $month = 'September';
+        //         break;
+        //     case 10:
+        //         $month = 'October';
+        //         break;
+        //     case 11:
+        //         $month = 'November';
+        //         break;
+        //     case 12:
+        //         $month = 'December';
+        //         break;
+        // }->get();
         $withSpecialRoles = User::whereHas('roles', function ($query) {
             $query->where('title', '!=', 'Normal');
         })->count();
         $data = [10,30];
 
         $normalUsers = $totalUsers - $withSpecialRoles;
-        return view('admin.home', compact('totalUsers', 'withSpecialRoles', 'normalUsers','data'));
+            return view('admin.home', compact('totalUsers', 
+                                            'withSpecialRoles', 
+                                            'normalUsers',
+                                            'data', 
+                                            'usersMonthlyReg'));
     }
 
     public function viewAccounts(Request $request)

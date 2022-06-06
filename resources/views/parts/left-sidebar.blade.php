@@ -180,6 +180,17 @@
                     </span>
                 </a>
             </li> --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span> Reports</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="fa fa-circle-o"></i>Received</a></li>
+                </ul>
+            </li>
                 <li>
                     <a href="pages/mailbox/mailbox.html">
                         <i class="fa fa-envelope"></i> <span>Mailbox</span>
@@ -304,7 +315,7 @@
         @elseif(Auth::user()->roles[0]->title == 'Evangelist')
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active"><a href="/pastor/home"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+                <li class="active"><a href="/evangelist/home"><i class="fa fa-circle-o"></i> Dashboard</a></li>
                 {{-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
@@ -338,8 +349,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Manage Events</a></li>
-                        <li><a href="/pastor/member-search"><i class="fa fa-circle-o"></i> Search User Information</a>
+                        <li><a href="/evangelist/events"><i class="fa fa-circle-o"></i> Manage Events</a></li>
+                        <li><a href="/pastor/"><i class="fa fa-circle-o"></i> Search User Information</a>
                         </li>
 
                     </ul>
@@ -369,10 +380,10 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Manage Sacraments</a></li>
-                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a>
+                        <li><a href="/evangelist/sacraments"><i class="fa fa-circle-o"></i> Manage Sacraments</a></li>
+                        {{-- <li><a href="/evangelist/sacraments"><i class="fa fa-circle-o"></i> Advanced Elements</a>
                         </li>
-                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> --}}
                     </ul>
                 </li>
                 <li class="treeview">
@@ -383,8 +394,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Plannings</a></li>
-                        <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Projects</a></li>
+                        <li><a href="/evangelist/projects"><i class="fa fa-circle-o"></i> Projects</a></li>
+                        <li><a href="/evangelist/plans"><i class="fa fa-circle-o"></i> Plannings</a></li>
                     </ul>
                 </li>
                 {{-- <li>
@@ -398,12 +409,12 @@
             </li> --}}
                 <li>
                     <a href="pages/mailbox/mailbox.html">
-                        <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                        <span class="pull-right-container">
+                        <i class="fa fa-envelope"></i> <span>Messages</span>
+                        {{-- <span class="pull-right-container">
                             <small class="label pull-right bg-yellow">12</small>
                             <small class="label pull-right bg-green">16</small>
                             <small class="label pull-right bg-red">5</small>
-                        </span>
+                        </span> --}}
                     </a>
                 </li>
                 {{-- <li class="treeview">
@@ -425,13 +436,6 @@
                         <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
                     </ul>
                 </li> --}}
-
-                <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a>
-                </li>
-                <li class="header">LABELS</li>
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
             </ul>
 
             {{-- PARISH WORKER SIDEBAR --}}

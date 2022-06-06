@@ -94,7 +94,7 @@
             <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Line Chart</h3>
-
+              {{-- {{$usersMonthlyReg}} --}}
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -695,8 +695,9 @@
   // Chart data records -- each entry in this array corresponds to a point on
   // the chart.
   data: [
-    { year: '2008', value: {{$data[0]}} },
-    { year: '2009', value: {{$data[1]}} },
+    
+    { year: '2008', value: {{$usersMonthlyReg[0]->users}} },
+    { year: '2009', value: {{$usersMonthlyReg[1]->users}} },
     { year: '2010', value: 9 },
     { year: '2011', value: 14 },
     { year: '2012', value: 10 },

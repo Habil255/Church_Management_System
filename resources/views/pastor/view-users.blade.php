@@ -35,6 +35,30 @@
                         <div class="box">
                             <div class="box-header">
                                 <h3 class="box-title">List of Registered Users</h3>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info">Export</button>
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ URL::to('/pdf') }}">PDF</a></li>
+                                        <li><a href="#">Excel</a></li>
+                                        <li><a href="#">CSV</a></li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn btn-success">Import</button>
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                      <span class="caret"></span>
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ URL::to('/pdf') }}">PDF</a></li>
+                                        <li><a href="#">Excel</a></li>
+                                        <li><a href="#">CSV</a></li>
+                                    </ul>
+                                  </div>
                                 <span>
                                     <button type="button" class="btn btn-default pull-right" data-toggle="modal"
                                         data-target="#modal-default">
@@ -66,8 +90,7 @@
                                                 <td>{{ $account->email }}</span></td>
                                                 <td>{{ $account->spouse_name }}</td>
                                                 <td><a href="{{ route('pastor.singleMember', $account->id) }}"
-                                                         class="fa fa-eye"
-                                                        ></a>
+                                                        class="fa fa-eye"></a>
 
                                                     <a href="{{ route('pastor.deleteMember', $account->id) }}"
                                                         class="fa fa-trash-o "></a>
@@ -140,7 +163,7 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                         immediately after the control sidebar -->
+                                                                                             immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 

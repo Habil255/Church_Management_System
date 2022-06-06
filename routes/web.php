@@ -10,7 +10,9 @@ use App\Http\Controllers\AccountantController;
 use App\Http\Controllers\ParishController;
 use App\Http\Controllers\EvangelistController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\PDFController;
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Authcheck;
 use App\Http\Middleware\Pastorcheck;
@@ -62,6 +64,12 @@ Route::get('/gett/user', [RoleController::class, 'store']);
 //EVANGELIST CONTROL CODES
 Route::prefix('evangelist')->middleware('EvangeCheck')->group(function () { 
     Route::get('/home', [EvangelistController::class, 'index']);
+    Route::get('/projects', [EvangelistController::class, 'showProject']);
+    Route::get('/plans', [EvangelistController::class, 'showPlans']);
+    //EVENTS MANAGEMENT
+    Route::get('/events', [EventController::class, 'index']);
+    Route::get('/sacraments', [EventController::class, 'showSacraments']);
+    
 });
 
 //PARISH WORKER CONTROL CODES
@@ -149,3 +157,5 @@ Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.cust
 // Importing Excel file
 Route::get('/importExcel', [ImportController::class, 'index']);
 Route::post('/import', [ImportController::class, 'create'])->name('test.import');
+
+Route::get('/pdf', [PDFController::class, 'index']);

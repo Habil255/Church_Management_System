@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class EvangelistController extends Controller
+use App\Models\User;
+use PDF;
+class PDFController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,18 @@ class EvangelistController extends Controller
      */
     public function index()
     {
+        // return "Habil";
         //
-        return view('evangelist.home');
+        // $data = [
+        //     'title' => 'Welcome to ItSolutionStuff.com',
+        //     'date' => date('m/d/Y')
+        // ];
+        $userInfos = User::get();
+        return view('admin.user-accounts', compact('userInfos'));
+          
+        // $pdf = PDF::loadView('myPDF', $data);
+    
+        // return $pdf->download('RegisteredUsers.pdf');
     }
 
     /**
@@ -22,11 +33,15 @@ class EvangelistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showProject()
-    {
-        //
-        return view('evangelist.projects');
-    }
+    public function createPDF() {
+        // retreive all records from db
+        $data = User::all();
+        // share data to view
+        view()->share('userInfos',$data);
+        $pdf = PDF::loadView('myPDF', $data);
+        // download PDF file with download method
+        return $pdf->download('RegisteredUsers.pdf');
+      }
 
     /**
      * Store a newly created resource in storage.
@@ -34,10 +49,9 @@ class EvangelistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function showPlans(Request $request)
+    public function store(Request $request)
     {
         //
-        return view('evangelist.plans');
     }
 
     /**
