@@ -248,8 +248,10 @@
                                                         data-target="#singleUser-details" class="fa fa-eye"
                                                         data-toggle="modal"></a>
 
-                                                    <a href="/admin/delete-member/{{ $userInfo->id }}"
-                                                        class="fa fa-trash-o "></a>
+                                                    {{-- <a href="/admin/delete-member/{{ $userInfo->id }}"
+                                                        class="fa fa-trash-o " ></a> --}}
+                                                    <a onclick="delete()"
+                                                        class="fa fa-trash-o " ></a>
                                                 </td>
                                             </tr>
                                         @endforeach

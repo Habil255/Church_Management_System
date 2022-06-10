@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
+use DateTime;
 Use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Hashing\BcryptHasher;
@@ -21,8 +22,8 @@ use PhpParser\Node\Stmt\Switch_;
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
+     * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -30,10 +31,20 @@ class AdminController extends Controller
         //
      
         $totalUsers = User::get()->count();
-        $usersMonthlyReg = User::selectRaw('Month(created_at) as Month, count(*) as users')
-                        ->whereYear('created_at','=',2020)
+        $usersMonthlyReg = User::selectRaw('Month(created_at) as month, count(*) as users')
+                        ->whereYear('created_at','=',2022)
                         ->groupByRaw('month(created_at)')->get();
-        // return ($usersMonthlyReg);
+        $monthname = $usersMonthlyReg->pluck('month');
+       foreach ($monthname as $key => $name) {
+           # code...
+              $monthname[$key] = date('F', mktime(0, 0, 0, $name, 10));
+                $output[$key] = ['month' => $monthname[$key], 'users' => $usersMonthlyReg[$key]->users];
+       } 
+    //    return $output;
+        
+
+    //    return array_column($output,'month');         
+        
            //    $monthname =$usersMonthlyReg->created_at>Carbon::carbon;
     //    dd($monthname);
                         // Carbon::Year()
@@ -85,7 +96,7 @@ class AdminController extends Controller
                                             'withSpecialRoles', 
                                             'normalUsers',
                                             'data', 
-                                            'usersMonthlyReg'));
+                                            'output'));
     }
 
     public function viewAccounts(Request $request)
