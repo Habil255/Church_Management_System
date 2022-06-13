@@ -13,6 +13,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\TestController;
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Authcheck;
 use App\Http\Middleware\Pastorcheck;
@@ -89,6 +90,8 @@ Route::prefix('pastor')->middleware('PastorCheck')->group(function () {
     Route::get('/delete-member/{id}',[PastorController::class,'deleteMember'])->name('pastor.deleteMember');
     Route::post('/add-member',[PastorController::class,'addMember'])->name('pastor.addMember');
     Route::get('/approve-user/{id}',[PastorController::class,'approve'])->name('pastor.approve');
+
+    Route::get('/pdf',[PastorController::class,'generatePDF']);
 });
 
 //CONGREGATION SECRETARY CONTROL CODES
@@ -135,6 +138,7 @@ Route::prefix('admin')->middleware('AdminCheck')->group(function () {
     // Delete a Member
     Route::get('/delete-member/{id}',[AdminController::class,'deleteMember']);
     
+    Route::get('/pdf', [AdminController::class, 'createPDF']);
     // Route::get('/home', [AdminController::class, 'index']);
     // Route::get('/home', [AuthController::class, 'login']);
     
@@ -158,4 +162,10 @@ Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.cust
 Route::get('/importExcel', [ImportController::class, 'index']);
 Route::post('/import', [ImportController::class, 'create'])->name('test.import');
 
-Route::get('/pdf', [PDFController::class, 'index']);
+// Route::get('/pdf', [PDFController::class, 'index']);
+
+
+
+
+Route::get('/test', [TestController::class, 'index']);
+Route::get('/test/pdf', [TestController::class, 'createPDF']);

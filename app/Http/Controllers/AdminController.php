@@ -5,19 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\User;
-use Carbon\Carbon;
-use DateTime;
-Use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Hashing\BcryptHasher;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\Rules\Exists;
-use Laravel\Ui\Presets\React;
-use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Month;
-use PhpOffice\PhpSpreadsheet\Calculation\TextData\Format;
-use PhpParser\Node\Stmt\Switch_;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -40,7 +30,7 @@ class AdminController extends Controller
               $monthname[$key] = date('F', mktime(0, 0, 0, $name, 10));
                 $output[$key] = ['month' => $monthname[$key], 'users' => $usersMonthlyReg[$key]->users];
        } 
-    //    return $output;
+    //    return $output;p
         
 
     //    return array_column($output,'month');         
@@ -114,6 +104,16 @@ class AdminController extends Controller
         // return $userInfos;
         return view('admin.user-accounts', compact('userInfos'));
     }
+    public function createPDF() {
+        // retreive all records from db
+        $data = User::select()->orderBy('first_name', 'asc')->get();
+        // share data to view
+        view()->share('userInfo',$data);
+        $pdf = PDF::loadView('myPDF2');
+        $pdf->setPaper('legal', 'landscape');
+        // download PDF file with download method
+        return $pdf->download('RegisteredUsers.pdf');
+      }
 
     public function addMember(Request $request)
     {

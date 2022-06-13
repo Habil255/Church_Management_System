@@ -25,27 +25,27 @@
                     <thead>
                         <tr>
                             <th>User No</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th>Name</th>
                             <th>Email</th>
+                            <th>PhoneNumber</th>
                             <th>Address</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($userInfos ?? '' as $data)
+                        @foreach ($test ?? '' as $data)
                                 <tr>
                                     <td>{{ $data->id }}</td>
-                                    <td>{{ $data->first_name }}</td>
-                                    <td>{{ $data->last_name }}</td>
+                                    <td>{{ $data->name }}</td>
                                     <td>{{ $data->email }}</span></td>
+                                    <td>{{ $data->phone_number }}</td>
                                     <td>
                                     
-                                        {{ $data->spouse_name }}
+                                        {{ $data->dob }}
                                     </td>
                                    
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                     </tbody>
                     {{-- <tfoot>
                         <tr>

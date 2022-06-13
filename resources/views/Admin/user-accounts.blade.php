@@ -182,7 +182,7 @@
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                  <li><a href="{{ URL::to('/pdf') }}">PDF</a></li>
+                                  <li><a  href="{{ URL::to('/admin/pdf') }}">PDF</a></li>
                                   <li><a href="#">Excel</a></li>
                                   <li><a href="#">CSV</a></li>
                                 </ul>
@@ -234,7 +234,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($userInfos as $userInfo)
+                                    @foreach ($userInfos ?? '' as $userInfo)
                                             <tr>
                                                 <td>{{ $userInfo->id }}</td>
                                                 <td>{{ $userInfo->first_name }}</td>
@@ -248,10 +248,10 @@
                                                         data-target="#singleUser-details" class="fa fa-eye"
                                                         data-toggle="modal"></a>
 
-                                                    {{-- <a href="/admin/delete-member/{{ $userInfo->id }}"
-                                                        class="fa fa-trash-o " ></a> --}}
-                                                    <a onclick="delete()"
+                                                    <a href="/admin/delete-member/{{ $userInfo->id }}"
                                                         class="fa fa-trash-o " ></a>
+                                                    {{-- <a onclick="delete()"
+                                                        class="fa fa-trash-o " ></a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

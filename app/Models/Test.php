@@ -9,5 +9,5 @@ class Test extends Model
 {
     use HasFactory;
     protected $guarded =[];
-    protected $fillable =['name','email'];
+    protected $fillable =['name', 'email', 'phone_number', 'dob'];
 }   

@@ -42,7 +42,7 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ URL::to('/pdf') }}">PDF</a></li>
+                                        <li><a href="{{ URL::to('pastor/pdf') }}">PDF</a></li>
                                         <li><a href="#">Excel</a></li>
                                         <li><a href="#">CSV</a></li>
                                     </ul>
@@ -54,7 +54,7 @@
                                       <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ URL::to('/pdf') }}">PDF</a></li>
+                                        <li><a href="{{ URL::to('pdf') }}">PDF</a></li>
                                         <li><a href="#">Excel</a></li>
                                         <li><a href="#">CSV</a></li>
                                     </ul>

@@ -5,7 +5,7 @@ use App\Models\User;
 use App\Models\Role;
 
 use Illuminate\Http\Request;
-
+use PDF;
 class PastorController extends Controller
 {
     /**
@@ -21,6 +21,17 @@ class PastorController extends Controller
         
         return view("pastor.home",compact('totalUsers'));
     }
+
+     public function generatePDF() {
+        // retreive all records from db
+        $data = User::where("email","!=","raphaelhabil09@gmail.com")->orderBy('first_name', 'asc')->get();
+        // share data to view
+        view()->share('account',$data);
+        $pdf = PDF::loadView('pastor.usersPDF');
+        $pdf->setPaper('legal', 'landscape');
+        // download PDF file with download method
+        return $pdf->download('registered.pdf');
+      }
 
     public function showUsers()
     {

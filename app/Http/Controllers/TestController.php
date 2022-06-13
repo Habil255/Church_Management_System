@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Test;
 use Illuminate\Http\Request;
-use App\Models\User;
 use PDF;
-class PDFController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +13,10 @@ class PDFController extends Controller
      */
     public function index()
     {
-        // return "Habil";
         //
-        
-        $test = User::get();
-        return view('admin.user-accounts', compact('test'));
-          
-       
+        $test = Test::all();
+        // return $test;
+      return view('admin.test', compact('test'));
     }
 
     /**
@@ -30,14 +26,13 @@ class PDFController extends Controller
      */
     public function createPDF() {
         // retreive all records from db
-        $data = User::all();
+        $data = Test::all();
         // share data to view
         view()->share('test',$data);
-        $pdf = PDF::loadView('myPDF2', $data);
+        $pdf = PDF::loadView('myPDF');
         // download PDF file with download method
-        return $pdf->download('RegisteredUsers.pdf');
+        return $pdf->download('registered.pdf');
       }
-
     /**
      * Store a newly created resource in storage.
      *

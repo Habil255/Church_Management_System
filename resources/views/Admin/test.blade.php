@@ -1,133 +1,42 @@
-{{$showMember->id}}
-<div class="modal fade" id="singleUser-details">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Single Member Infomations</h4>
-            </div>
-            <div class="box box-primary" id="create-roles">
-                <!-- /.box-header -->
-
-                <!-- form start -->
-                <form role="form" method="POST" action="{{ route('admin.addMember') }}"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>First Name</label>
-                                    <p></p>
-                                    {{-- <input type="text" class="form-control" value="" placeholder="Jacob" name="first_name"
-                                        autocomplete="off"> --}}
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>Middle Name</label>
-                                    <input type="text" class="form-control" placeholder="James"
-                                        name="middle_name">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input type="text" class="form-control" placeholder="Lomell"
-                                        name="last_name">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
-                            <div class="col-sm-4 form-group">
-                                <label>Username</label>
-                                <input type="Address" class="form-control" placeholder="Jam224" name="username">
-                            </div>
-                            <div class="col-sm-4 form-group">
-                                <label>email (optional)</label>
-                                <input type="Address" class="form-control" placeholder="Jam224@gmail.com"
-                                    name="email">
-                            </div>
-                            <div class="col-sm-4 form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="******" name="password">
-                            </div>
-
-                            <div class="col-sm-2">
-                                <!-- radio -->
-                                <div class="form-group">
-                                    <label for="">Gender</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="M" name="gender">
-                                        <label class="form-check-label">Male</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="F" name="gender">
-                                        <label class="form-check-label">Female</label>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3 form-group">
-                                <label>Date of Birth:</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="date" name="date_of_birth"
-                                        class="form-control datetimepicker-input" data-target="#reservationdate" />
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="row">
-                            {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
-                            <div class="col-sm-3 form-group">
-                                <label>Place of Birth</label>
-                                <input type="Address" name="place_of_birth" class="form-control"
-                                    placeholder="Mabibo">
-                            </div>
-                            <div class="col-sm-5 form-group">
-                                <label for="category" class=" col-form-label "
-                                    style="color: black">{{ __('Marrital Status') }}</label>
-
-                                <select id="category" class="form-control" name="marital_status" required
-                                    autocomplete="job_title" autofocous>
-
-                                    <option value="Select Status" disabled>Marrital Status</option>
-                                    <option>Married</option>
-                                    <option>Not Married</option>
-                                </select>
-
-                                <span class="text-danger">{{ $errors->first('role') }}</span>
-                                @if ($errors->any())
-                                    <p style="color: red">{{ $errors->first() }}</p>
-                                @endif
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>Spouse Name(Optional)</label>
-                                    <input type="text" class="form-control" placeholder="Lomell"
-                                        name="spouse_name">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /.box-body -->
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Laravel 7 PDF Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-3">Laravel HTML to PDF Example</h2>
+        <div class="d-flex justify-content-end mb-4">
+            <a class="btn btn-primary" href="{{ URL::to('/test/pdf') }}">Export to PDF</a>
+                </div>
+        <table class="table table-bordered mb-5">
+            <thead>
+                <tr class="table-danger">
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($test ?? '' as $data)
+                <tr>
+                    <th scope="row">{{ $data->id }}</th>
+                    <td>{{ $data->name }}</td>
+                    <td>{{ $data->email }}</td>
+                    <td>{{ $data->phone_number }}</td>
+                    <td>{{ $data->dob }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-    <!-- /.modal-dialog -->
-</div>
+    <script src="{{ asset('js/app.js') }}" type="text/js"></script>
+</body>
+</html>
