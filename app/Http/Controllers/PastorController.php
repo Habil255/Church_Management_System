@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\Role;
 
 use Illuminate\Http\Request;
 use PDF;
+
 class PastorController extends Controller
 {
     /**
@@ -15,31 +17,40 @@ class PastorController extends Controller
      */
     public function index()
     {
-       
-        $totalUsers=User::where("email","!=","raphaelhabil09@gmail.com")
-                                ->count();
-        
-        return view("pastor.home",compact('totalUsers'));
+
+        $totalUsers = User::where("email", "!=", "raphaelhabil09@gmail.com")
+            ->count();
+        $usersMonthlyReg = User::selectRaw('Month(created_at) as month, count(*) as users')
+            ->whereYear('created_at', '=', 2022)
+            ->groupByRaw('month(created_at)')->get();
+        $monthname = $usersMonthlyReg->pluck('month');
+        foreach ($monthname as $key => $name) {
+            # code...
+            $monthname[$key] = date('F', mktime(0, 0, 0, $name, 10));
+            $output[$key] = ['month' => $monthname[$key], 'users' => $usersMonthlyReg[$key]->users];
+        }
+        return view("pastor.home", compact('totalUsers', 'output'));
     }
 
-     public function generatePDF() {
+    public function generatePDF()
+    {
         // retreive all records from db
-        $data = User::where("email","!=","raphaelhabil09@gmail.com")->orderBy('first_name', 'asc')->get();
+        $data = User::where("email", "!=", "raphaelhabil09@gmail.com")->orderBy('first_name', 'asc')->get();
         // share data to view
-        view()->share('account',$data);
+        view()->share('account', $data);
         $pdf = PDF::loadView('pastor.usersPDF');
         $pdf->setPaper('legal', 'landscape');
         // download PDF file with download method
-        return $pdf->download('registered.pdf');
-      }
+        return $pdf->download('Registered Users.pdf');
+    }
 
     public function showUsers()
     {
-        $totalUsers=User::where("email","!=","raphaelhabil09@gmail.com")
-                                ->count();
-        $accounts=User::where("email","!=","raphaelhabil09@gmail.com")->get();
-        
-        return view("pastor.view-users",compact('accounts'));
+        $totalUsers = User::where("email", "!=", "raphaelhabil09@gmail.com")
+            ->count();
+        $accounts = User::where("email", "!=", "raphaelhabil09@gmail.com")->get();
+
+        return view("pastor.view-users", compact('accounts'));
     }
 
     /**
@@ -50,24 +61,24 @@ class PastorController extends Controller
     public function addMember(Request $request)
     {
         //
-        $password=$request->input('password');
+        $password = $request->input('password');
         $newPassword = bcrypt($password);
-        $users=User::create([
+        $users = User::create([
             'first_name' => $request->first_name,
-            'middle_name' =>$request->middle_name,
+            'middle_name' => $request->middle_name,
             'last_name' => $request->last_name,
             'username' => $request->username,
-            'gender' =>$request->gender,
-            'date_of_birth' =>$request->date_of_birth,
+            'gender' => $request->gender,
+            'date_of_birth' => $request->date_of_birth,
             'place_of_birth' => $request->place_of_birth,
-            'marital_status' =>$request->marital_status,
+            'marital_status' => $request->marital_status,
             'spouse_name' => $request->spouse_name,
             'email' => $request->email,
-            'password' =>$newPassword
+            'password' => $newPassword
 
         ]);
         // $userId = $users->id;
-        $roleId=Role::find(7);
+        $roleId = Role::find(7);
         $users->roles()->attach($roleId);
         return back();
     }
@@ -89,7 +100,7 @@ class PastorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -113,9 +124,9 @@ class PastorController extends Controller
     public function searchMemberDetails(Request $request)
     {
         $user = User::select('*')
-                    ->where("first_name","LIKE","%{$request->value}%")
-                    ->limit(8)
-                    ->get();
+            ->where("first_name", "LIKE", "%{$request->value}%")
+            ->limit(8)
+            ->get();
         $res = [];
         foreach ($user as $user) {
             $first_name = $user->first_name;
@@ -123,19 +134,17 @@ class PastorController extends Controller
             $res[] = array("name" => "$first_name $last_name");
         }
         return response()->json($res);
-        
     }
 
     public function singleMember(Request $request)
     {
         $data = $request->input('member');
-        $names = explode(' ',$data);
-        $memberDetails=User::findOrFail(1)
-                    ->where('first_name',$names[0])
-                    ->where('last_name',$names[1])
-                    ->first();
-        return view('pastor.test',compact('memberDetails'));
-        
+        $names = explode(' ', $data);
+        $memberDetails = User::findOrFail(1)
+            ->where('first_name', $names[0])
+            ->where('last_name', $names[1])
+            ->first();
+        return view('pastor.test', compact('memberDetails'));
     }
 
     /**
@@ -148,7 +157,7 @@ class PastorController extends Controller
     {
         //
         // return "imefika";
-       $userDel=User::find($id)->where('id', $id)->delete();
+        $userDel = User::find($id)->where('id', $id)->delete();
         return back()->with('post_deleted', 'Tender has been deleted');
     }
 
@@ -162,11 +171,11 @@ class PastorController extends Controller
         return back()->with('success-approve', 'User has been approved');
     }
 
-    public function showSingleMember($id){
-        $user= User::findOrFail($id);
+    public function showSingleMember($id)
+    {
+        $user = User::findOrFail($id);
         // $phyAdd = $user->physicalAddresses();
         // return response()->json($phyAdd);
-        return view('pastor.single-user',compact('user'));
+        return view('pastor.single-user', compact('user'));
     }
 }
-
