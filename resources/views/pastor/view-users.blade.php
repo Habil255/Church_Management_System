@@ -50,15 +50,15 @@
                                 <div class="btn-group">
                                     <button class="btn btn-success">Import</button>
                                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                      <span class="caret"></span>
-                                      <span class="sr-only">Toggle Dropdown</span>
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="{{ URL::to('pdf') }}">PDF</a></li>
                                         <li><a href="#">Excel</a></li>
                                         <li><a href="#">CSV</a></li>
                                     </ul>
-                                  </div>
+                                </div>
                                 <span>
                                     <button type="button" class="btn btn-default pull-right" data-toggle="modal"
                                         data-target="#modal-default">
@@ -91,9 +91,9 @@
                                                 <td>{{ $account->spouse_name }}</td>
                                                 <td><a href="{{ route('pastor.singleMember', $account->id) }}"
                                                         class="fa fa-eye"></a>
-
-                                                    <a href="{{ route('pastor.deleteMember', $account->id) }}"
-                                                        class="fa fa-trash-o "></a>
+                                                    {{-- <a onclick= "return confirm('Are you sure you want to delete this user?')" href="{{ route('pastor.deleteMember', $account->id) }}"
+                                                        class="fa fa-trash-o "></a> --}}
+                                                    <a onclick=sweetalert() class="fa fa-trash-o "></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -163,7 +163,7 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                             immediately after the control sidebar -->
+                                                                                                         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 
@@ -309,6 +309,29 @@
         {{-- The Modal to View a single user details --}}
     @endsection
     @push('scripts')
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            function sweetalert() {
+                // event.preventDefault();
+                swal({
+                        title: "Are you sure to Delete this?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                            if (willDelete) {
+                                    window.location.href ="{{ route('pastor.deleteMember', $account->id) }}";
+                                    swal("Poof! Your imaginary file has been deleted!", {
+                                        icon: "success",
+                                    });
+                                } else {
+                                    swal("Ok, The record is safe");
+                                }
+                            });
+                    }
+        </script>
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>

@@ -1,6 +1,6 @@
 @extends('pages.main')
 @section('css')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
 @section('contents')
     <div class="wrapper">
@@ -34,56 +34,61 @@
                 <!-- Main row -->
                 <div class="row">
                     <!-- Left col -->
-                    <section class="col-lg-7 connectedSortable">
-                        <div class="info-box bg-yellow">
+                    <div class="col-md-4">
+                        <div class="info-box bg-green">
                             <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
-              
+
                             <div class="info-box-content">
-                              <span class="info-box-text">Events</span>
-                              <span class="info-box-number">41,410</span>
-              
-                              <div class="progress">
-                                <div class="progress-bar" style="width: 70%"></div>
-                              </div>
-                              <span class="progress-description">
-                                70% Increase in 30 Days
-                              </span>
+                                <span class="info-box-text">Total </span>
+                                <span class="info-box-number">41,410</span>
+
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 70%"></div>
+                                </div>
+                                <span class="progress-description">
+                                    70% Increase in 30 Days
+                                </span>
                             </div>
                             <!-- /.info-box-content -->
-                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-box bg-yellow">
+                            <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
 
+                            <div class="info-box-content">
+                                <span class="info-box-text">Events</span>
+                                <span class="info-box-number">41,410</span>
 
-
-                        <!-- Custom tabs (Charts with tabs)-->
-                        {{-- <div class="nav-tabs-custom">
-                            <!-- Tabs within a box -->
-                            <ul class="nav nav-tabs pull-right">
-                                <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                                <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                                <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-                            </ul>
-                            <div class="tab-content no-padding">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart"
-                                    style="position: relative; height: 300px;"></div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 70%"></div>
                                 </div>
+                                <span class="progress-description">
+                                    70% Increase in 30 Days
+                                </span>
                             </div>
-                        </div> --}}
-                        <!-- /.nav-tabs-custom -->
+                            <!-- /.info-box-content -->
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-box bg-blue">
+                            <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
 
-                        <!-- Chat box -->
+                            <div class="info-box-content">
+                                <span class="info-box-text">Events</span>
+                                <span class="info-box-number">41,410</span>
 
-                        <!-- /.box (chat box) -->
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 70%"></div>
+                                </div>
+                                <span class="progress-description">
+                                    70% Increase in 30 Days
+                                </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                    </div>
 
-                        <!-- TO DO List -->
-                       
-                        <!-- /.box -->
-
-                        <!-- quick email widget -->
-
-
-                    </section>
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
                     <section class="col-lg-5 connectedSortable">
@@ -97,57 +102,6 @@
 
 
 
-                        {{-- <div class="box box-solid bg-teal-gradient">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-
-                                <h3 class="box-title">Sales Graph</h3>
-
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i
-                                            class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div class="chart" id="line-chart" style="height: 250px;"></div>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer no-border">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                        <input type="text" class="knob" data-readonly="true" value="20"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">Mail-Orders</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                        <input type="text" class="knob" data-readonly="true" value="50"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">Online</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-xs-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true" value="30"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">In-Store</div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.box-footer -->
-                        </div> --}}
-
-
-
-
 
                         <!-- /.box -->
 
@@ -156,7 +110,7 @@
 
 
 
-                       
+
 
                         <!-- /.box -->
 
@@ -172,7 +126,7 @@
                     <!-- right col -->
                 </div>
                 <!-- /.row (main row) -->
-                
+
             </section>
             <!-- /.content -->
         </div>
@@ -370,8 +324,7 @@
                         <div class="form-group">
                             <label class="control-sidebar-subheading">
                                 Delete chat history
-                                <a href="javascript:void(0)" class="text-red pull-right"><i
-                                        class="fa fa-trash-o"></i></a>
+                                <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
                             </label>
                         </div>
                         <!-- /.form-group -->
@@ -382,16 +335,16 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                             immediately after the control sidebar -->
+                                                                     immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
-        
     @endsection
     @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#table_id').DataTable();
-        });
-    </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#table_id').DataTable();
+            });
+        </script>
     @endpush

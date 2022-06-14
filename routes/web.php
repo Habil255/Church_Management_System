@@ -88,6 +88,8 @@ Route::prefix('pastor')->middleware('PastorCheck')->group(function () {
     // Route::get('/view-users', [PastorController::class, 'showUsers']);
     Route::get('/viewMember/{id}',[PastorController::class,'showSingleMember'])->name('pastor.singleMember');;
     Route::get('/delete-member/{id}',[PastorController::class,'deleteMember'])->name('pastor.deleteMember');
+    
+    Route::get('/delete-member/{id}',[PastorController::class,'deleteMember'])->name('pastor.deleteMember');
     Route::post('/add-member',[PastorController::class,'addMember'])->name('pastor.addMember');
     Route::get('/approve-user/{id}',[PastorController::class,'approve'])->name('pastor.approve');
 
