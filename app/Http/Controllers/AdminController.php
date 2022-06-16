@@ -346,4 +346,24 @@ class AdminController extends Controller
         $user->save();
         return back()->with('success-approve', 'User has been approved');
     }
+
+    public function deleteRoles($id)
+    {
+        //
+        // return $id;
+        $role = Role::findorFail($id);
+        // return $role->title;
+        $role->delete();
+        return back()->with('role_deleted', 'Role has been deleted');
+    }
+
+    public function editRoles($id)
+    {
+        //
+        // return $id;
+        // $role = Role::find($id);
+        // return $role;
+        return back();
+        // return back()->with('role_deleted', 'Role has been deleted');
+    }
 }

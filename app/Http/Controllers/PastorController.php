@@ -20,7 +20,7 @@ class PastorController extends Controller
 
         $totalUsers = User::where("email", "!=", "raphaelhabil09@gmail.com")
             ->count();
-        $usersMonthlyReg = User::selectRaw('Month(created_at) as month, count(*) as users')
+        $usersMonthlyReg = User::selectRaw('distinct Month(created_at) as month, count(*) as users')
             ->whereYear('created_at', '=', 2022)
             ->groupByRaw('month(created_at)')->get();
         $monthname = $usersMonthlyReg->pluck('month');

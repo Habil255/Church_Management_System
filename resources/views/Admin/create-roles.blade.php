@@ -1,6 +1,6 @@
 @extends('pages.main')
 @section('css')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
 @section('contents')
     <div class="wrapper">
@@ -53,7 +53,7 @@
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Role Title</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                        <input type="text" class="form-control" id="create-role"
                                             placeholder="Role Title" name="title">
                                         <span class="text-danger">{{ $errors->first('title') }}</span>
                                     </div>
@@ -109,125 +109,95 @@
                         <!-- /.box (chat box) -->
 
                         <!-- TO DO List -->
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <i class="ion ion-clipboard"></i>
 
-                                <h3 class="box-title">To Do List</h3>
-
-                                <div class="box-tools pull-right">
-                                    <ul class="pagination pagination-sm inline">
-                                        <li><a href="#">&laquo;</a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">&raquo;</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                                <ul class="todo-list">
-                                    <li>
-                                        <!-- drag handle -->
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <!-- checkbox -->
-                                        <input type="checkbox" value="">
-                                        <!-- todo text -->
-                                        <span class="text">Design a nice theme</span>
-                                        <!-- Emphasis label -->
-                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                                        <!-- General tools such as edit or delete-->
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Make the theme responsive</span>
-                                        <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Let theme shine like a star</span>
-                                        <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Let theme shine like a star</span>
-                                        <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Check your messages and notifications</span>
-                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Let theme shine like a star</span>
-                                        <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix no-border">
-                                {{-- <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>
-                                    Add item</button> --}}
-                                <a href="#assign-roles" class="btn btn-default pull-right"><i class="fa fa-plus"></i>
-                                    Add item</a>
-                                {{-- <a href="" class="btn btn-success">View</a> --}}
-                            </div>
-                        </div>
                         <!-- /.box -->
 
                         <!-- quick email widget -->
 
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Available Roles</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th style="width: 10%">Title</th>
+                                        <th style="width: 50%">description</th>
+                                        <th style="width: 20%">created at</th>
+                                        <th style="width: 20%">Label</th>
+                                    </tr>
+                                    <tr>
+                                        @foreach ($roles as $role)
+                                            <td>{{ $role->title }}</td>
+                                            <td>{{ $role->description }}</td>
+                                            <td>
+                                                {{ $role->created_at->diffForHumans() }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('edit.roles', $role->id) }}"
+                                                    class="btn btn-primary btn-sm">Edit</a>
+                                                
+                                                <a onclick="sweet()" href = "{{ route('delete.roles', $role->id) }}"
+                                                    class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
+                                    </tr>
+                                    @endforeach
 
+                                </table>
+                                <div class="box-footer clearfix no-border">
+                                
+                                    <a href="#create-role" class="btn btn-default pull-right"><i class="fa fa-plus"></i>
+                                        Add Role</a>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+
+
+                        {{-- <div class="box box-solid green-gradient">
+
+                            <div class="box box-info col-md-5">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Assign Permissions</h3>
+                                </div>
+                                <div class="box-body no-padding">
+        
+                                    <table id="" class="display">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 15%">Role</th>
+                                                <th style="width: 55%">Description</th>
+                                                <th style="width: 10%">created at</th>
+                                                <th style="width: 20%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                @foreach ($roles as $role)
+                                                    <td>{{ $role->title }}</td>
+                                                    <td>{{ $role->description }}</td>
+                                                    <td>
+                                                        {{ $role->created_at->diffForHumans() }}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('edit.roles', $role->id) }}"
+                                                            class="btn btn-primary btn-sm">Edit</a>
+                                                        <a href="{{ route('delete.roles', $role->id) }}"
+                                                            class="btn btn-danger btn-sm">Delete</a>
+                                                    </td>
+                                            </tr>
+                                            @endforeach
+                                             
+                                        </tbody>
+                                       
+                                    </table>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                               
+                        </div> --}}
                     </section>
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -355,105 +325,112 @@
                                 </form>
 
                             </div>
+                        </div>
 
+                        {{-- <div class="box box-primary">
+                            <div class="box-header">
+                                <i class="ion ion-clipboard"></i>
 
-                            {{-- CALENDER SECTION --}}
+                                <h3 class="box-title">To Do List</h3>
 
-
-                            {{-- <div class="box-header">
-                                <i class="fa fa-calendar"></i>
-
-                                <h3 class="box-title">Calendar</h3>
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <!-- button with a dropdown -->
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle"
-                                            data-toggle="dropdown">
-                                            <i class="fa fa-bars"></i></button>
-                                        <ul class="dropdown-menu pull-right" role="menu">
-                                            <li><a href="#">Add new event</a></li>
-                                            <li><a href="#">Clear events</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">View calendar</a></li>
-                                        </ul>
-                                    </div>
-                                    <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i
-                                            class="fa fa-times"></i>
-                                    </button>
+                                <div class="box-tools pull-right">
+                                    <ul class="pagination pagination-sm inline">
+                                        <li><a href="#">&laquo;</a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">&raquo;</a></li>
+                                    </ul>
                                 </div>
-                                <!-- /. tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+                                <ul class="todo-list">
+                                    <li>
+                                        <!-- drag handle -->
+                                        <span class="handle">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <i class="fa fa-ellipsis-v"></i>
+                                        </span>
+                                        <!-- checkbox -->
+                                        <input type="checkbox" value="">
+                                        <!-- todo text -->
+                                        <span class="text">Design a nice theme</span>
+                                        <!-- Emphasis label -->
+                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                                        <!-- General tools such as edit or delete-->
+                                        <div class="tools">
+                                            <i class="fa fa-edit"></i>
+                                            <i class="fa fa-trash-o"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="handle">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <i class="fa fa-ellipsis-v"></i>
+                                        </span>
+                                        <input type="checkbox" value="">
+                                        <span class="text">Make the theme responsive</span>
+                                        <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+                                        <div class="tools">
+                                            <i class="fa fa-edit"></i>
+                                            <i class="fa fa-trash-o"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="handle">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <i class="fa fa-ellipsis-v"></i>
+                                        </span>
+                                        <input type="checkbox" value="">
+                                        <span class="text">Check your messages and notifications</span>
+                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+                                        <div class="tools">
+                                            <i class="fa fa-edit"></i>
+                                            <i class="fa fa-trash-o"></i>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                            <div class="box-footer clearfix no-border">
+                                
+                                <a href="#assign-roles" class="btn btn-default pull-right"><i class="fa fa-plus"></i>
+                                    Add item</a>
+                                
+                            </div>
+                        </div> --}}
+
+                        {{-- <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Roles Created</h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body no-padding">
-                                <!--The calendar -->
-                                <div id="calendar" style="width: 100%"></div>
-                            </div> --}}
+        
+                                <table id="table_id" class="display">
+                                    <thead>
+                                        <tr>
+                                            <th>ID No</th>
+                                            <th style="width: 20%">Role</th>
+                                            <th style="width: 20%">Description</th>
+                                            <th style="width: 20%">created at</th>
+                                            <th style="width: 20%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                           
+                                        </tr>
+                                         
+                                    </tbody>
+                                   
+                                </table>
+                            </div>
                             <!-- /.box-body -->
+                        </div> --}}
 
-
-                            {{-- TASK EVENTS SECTION --}}
-
-
-                            {{-- <div class="box-footer text-black">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <!-- Progress bars -->
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #1</span>
-                                            <small class="pull-right">90%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                                        </div>
-
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #2</span>
-                                            <small class="pull-right">70%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-6">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #3</span>
-                                            <small class="pull-right">60%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                                        </div>
-
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #4</span>
-                                            <small class="pull-right">40%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                </div>
-                                <!-- /.row -->
-                            </div> --}}
-
-                            {{-- @foreach ($results as $result)
-                                {{$result->first_name}}
-                            @endforeach --}}
-                        </div>
-
-                        <!-- /.box -->
-
-                        {{-- <h4>{{$userRoles->first_name}}</h4> --}}
-
-                        {{-- @foreach ($roles as $role)
-                            {{$role->title}}
-                            <div>{{$role->users->first_name}}</div>
-                            @endforeach --}}
 
                     </section>
 
@@ -466,33 +443,6 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
-                        {{-- <table class="table table-striped">
-                            <tr>
-                                <th>ID No</th>
-                                <th style="width: 20%">First Name</th>
-                                <th style="width: 20%">Last Name</th>
-                                <th style="width: 20%">Email</th>
-                                <th style="width: 20%">Role</th>
-                            </tr>
-
-                            <tr>
-                                @foreach ($userDetails as $userDetail)
-                                <td>{{$userDetail->id}}</td>
-                                <td>{{$userDetail->first_name}}</td>
-                                <td>
-                                    {{$userDetail->last_name}}
-                                </td>
-                                <td>{{$userDetail->email}}</td>
-                                
-                                <td>
-                                    @foreach ($userDetail->roles as $role)
-                                        {{$role->title}}</td>
-                                    @endforeach
-                            </tr>
-                             @endforeach
-
-                            
-                        </table> --}}
 
                         <table id="table_id" class="display">
                             <thead>
@@ -507,20 +457,20 @@
                             <tbody>
                                 <tr>
                                     @foreach ($userDetails as $userDetail)
-                                    <td>{{$userDetail->id}}</td>
-                                    <td>{{$userDetail->first_name}}</td>
-                                    <td>
-                                        {{$userDetail->last_name}}
-                                    </td>
-                                    <td>{{$userDetail->email}}</td>
-                                    
-                                    <td>
-                                        @foreach ($userDetail->roles as $role)
-                                        <span class="label label-primary">{{$role->title}}</span>
-                                        @endforeach
-                                    </td>
+                                        <td>{{ $userDetail->id }}</td>
+                                        <td>{{ $userDetail->first_name }}</td>
+                                        <td>
+                                            {{ $userDetail->last_name }}
+                                        </td>
+                                        <td>{{ $userDetail->email }}</td>
+
+                                        <td>
+                                            @foreach ($userDetail->roles as $role)
+                                                <span class="label label-primary">{{ $role->title }}</span>
+                                            @endforeach
+                                        </td>
                                 </tr>
-                                 @endforeach
+                                @endforeach
                             </tbody>
                             {{-- <tfoot>
                                 <tr>
@@ -734,16 +684,17 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                             immediately after the control sidebar -->
+                                                                     immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
-        
     @endsection
+    {{-- @include('javascripts') --}}
     @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#table_id').DataTable();
-        });
-    </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#table_id').DataTable();
+            });
+        </script>
     @endpush

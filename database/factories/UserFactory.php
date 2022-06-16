@@ -6,6 +6,7 @@ use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Spatie\LaravelIgnition\Support\Composer\FakeComposer;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
@@ -31,7 +32,7 @@ class UserFactory extends Factory
             'marital_status' => $this->faker->randomElement(['Married','Not Married']),
             'spouse_name' => $this->faker->name,
             'email' => $this->faker->safeEmail(),
-            'created_at' => $this->faker->date(),
+            'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
             'password' => bcrypt('secret')
             // 'created_at' => $this->faker->date(),
         ];

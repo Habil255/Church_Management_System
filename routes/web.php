@@ -143,6 +143,9 @@ Route::prefix('admin')->middleware('AdminCheck')->group(function () {
     Route::get('/pdf', [AdminController::class, 'createPDF']);
     // Route::get('/home', [AdminController::class, 'index']);
     // Route::get('/home', [AuthController::class, 'login']);
+
+    Route::get('/edit-roles/{id}', [AdminController::class, 'editRoles'])->name('edit.roles');   
+    Route::get('/delete-roles/{id}', [AdminController::class, 'deleteRoles'])->name('delete.roles');   
     
 }); 
 

@@ -46,7 +46,7 @@ class RoleController extends Controller
     {
         //
         // DB::table('role_user')->truncate();
-        $user=User::find(26);
+        $user=User::find(1);
         $roleId=Role::find([3]);
 
          $user->roles()

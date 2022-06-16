@@ -96,6 +96,14 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title">Users Registration Trend</h3>
                                 {{-- {{$usersMonthlyReg}} --}}
+                                <div class="form-group col-md-4">
+                                    <select class="form-control select2"  style="width: 100%;">
+                                      <option selected="selected">2022</option>
+                                      <option>2021</option>
+                                      <option>2020</option>
+                                      <option>2019</option>
+                                    </select>
+                                  </div>
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                             class="fa fa-minus"></i>

@@ -163,7 +163,7 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                                         immediately after the control sidebar -->
+                                                                                                                 immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 
@@ -246,7 +246,7 @@
                                     <div class="col-sm-3 form-group">
                                         <label>Date of Birth:</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="date" name="date_of_birth"
+                                            <input type="date" name="date_of_birth" id="dob"
                                                 class="form-control datetimepicker-input" data-target="#reservationdate"
                                                 required />
 
@@ -314,22 +314,23 @@
             function sweetalert() {
                 // event.preventDefault();
                 swal({
-                        title: "Are you sure to Delete this?",
+                        title: "Are you sure to Delete this User?",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
-                            if (willDelete) {
-                                    window.location.href ="{{ route('pastor.deleteMember', $account->id) }}";
-                                    swal("Poof! Your imaginary file has been deleted!", {
-                                        icon: "success",
-                                    });
-                                } else {
-                                    swal("Ok, The record is safe");
-                                }
+                        if (willDelete) {
+                            window.location.href = "{{ route('pastor.deleteMember', $account->id) }}";
+                            swal("Thank you!", {
+                                title: "User has Deleted",
+                                icon: "success",
                             });
-                    }
+                        } else {
+                            swal("Ok, The record is safe");
+                        }
+                    });
+            }
         </script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -338,6 +339,11 @@
         <script>
             $(document).ready(function() {
                 $('#table_id').DataTable();
+            });
+        </script>
+        <script>
+            $(function() {
+                $('#dob').text(new Date().getFullYear());
             });
         </script>
     @endpush
