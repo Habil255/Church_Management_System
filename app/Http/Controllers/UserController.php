@@ -143,6 +143,7 @@ class UserController extends Controller
             'middle_name' => $request->middle_name,
             'last_name' => $request->last_name,
             'username' => $request->username,
+            'email' => $request->email,
         ]);
         $phyAdd = PhysicalAddress::where('user_id', '=', $id)->first();
         if ($phyAdd === null) {

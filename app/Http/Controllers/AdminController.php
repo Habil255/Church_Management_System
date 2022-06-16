@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function index()
     {
         //
-     
+        
         $totalUsers = User::get()->count();
         $usersMonthlyReg = User::selectRaw('Month(created_at) as month, count(*) as users')
                         ->whereYear('created_at','=',2022)
@@ -184,7 +184,7 @@ class AdminController extends Controller
             'Description' => $request->description,
         ]);
         $roles->save();
-        return back()->with('Role_added', 'Content has added');
+        return back()->with('Role_added', 'Role has added');
     }
 
     /**

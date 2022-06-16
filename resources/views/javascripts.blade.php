@@ -11,8 +11,9 @@
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            window.location.href = "{{ route('delete.roles', $role->id) }}";
-                            swal("Poof! Your imaginary file has been deleted!", {
+                            window.location.href = "{{ route('resource.delete', $resource->id) }}";
+                            swal("Thank You!!!", {
+                                title: "The Record has been Deleted",
                                 icon: "success",
                             });
                         } else {

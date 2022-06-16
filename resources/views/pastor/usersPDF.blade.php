@@ -23,19 +23,21 @@
             <div class="row">
                 
                     <div class="card card-primary">
+                        
                         <div class="card-header">
-                            <center><h3 class="card-title center">LIST OF REGISTERED USERS</h3><center>
+                            <center><h3 class="card-title center">LIST OF REGISTERED CHURCH MEMBERS</h3><center>
                         </div>
                         {{-- <!-- /.card-header -->
                         <div class="card-body"> --}}
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>User No</th>
+                                        <th>Member No</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
-                                        <th>Spouse Name</th>
+                                        <th>District</th>
+                                        <th>Ward</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,7 +47,20 @@
                                         <td>{{ $data->first_name }}</td>
                                         <td>{{ $data->last_name }}</td>
                                         <td>{{ $data->email }}</td>
-                                        <td>{{ $data->spouse_name }}</td>
+                                        <td>
+                                            @if (isset($data->physicalAddresses->district))
+                                                {{ $data->physicalAddresses->district }}
+                                            @else
+                                                <p>Not Available</p>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if (isset($data->physicalAddresses->ward))
+                                                {{ $data->physicalAddresses->ward }}
+                                            @else
+                                                <p>Not Available</p>
+                                            @endif
+                                        </td>
                                        
                                     </tr>
                                     @endforeach

@@ -109,7 +109,7 @@ Route::prefix('accountant')->middleware('AccountantCheck')->group(function () {
     Route::get('/home', [AccountantController::class, 'index']);
     Route::get('/show-resources', [AccountantController::class, 'showResources']);
     Route::post('/resource/submit', [AccountantController::class, 'submitResources'])->name('resources.submit');
-    Route::get('/resource/delete/{id}', [AccountantController::class, 'deleteResources']);
+    Route::get('/resource/delete/{id}', [AccountantController::class, 'deleteResources'])->name('resource.delete');
     // Route::get('/home', [AuthController::class, 'login']);
     
 }); 

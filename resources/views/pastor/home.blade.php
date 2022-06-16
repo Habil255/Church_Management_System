@@ -33,7 +33,7 @@
                                 <p>Church Resources <br>Registered</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="fa fa-suitcase"></i>
                             </div>
                             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
@@ -45,7 +45,7 @@
                             <div class="inner">
                                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                                <p>Users Contribution <br> Rate</p>
+                                <p>Members Contribution <br> Rate</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
@@ -73,9 +73,9 @@
                         <!-- small box -->
                         <div class="small-box bg-red">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>15</h3>
 
-                                <p>Unique Visitors</p>
+                                <p>Church On-going Projects</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
@@ -97,11 +97,11 @@
                                 <h3 class="box-title">Users Registration Trend</h3>
                                 {{-- {{$usersMonthlyReg}} --}}
                                 <div class="form-group col-md-4">
-                                    <select class="form-control select2"  style="width: 100%;">
-                                      <option selected="selected">2022</option>
-                                      <option>2021</option>
-                                      <option>2020</option>
-                                      <option>2019</option>
+                                    <select class="form-control select2" name="year"  style="width: 100%;">
+                                      <option selected="selected" >2022</option>
+                                    <option name='year1'>2021</option>
+                                      <option name = 'year2'>2020</option>
+                                      <option name = 'year3'>2019</option>
                                     </select>
                                   </div>
                                 <div class="box-tools pull-right">
@@ -280,48 +280,7 @@
                                 <div id="calendar" style="width: 100%"></div>
                             </div>
                             <!-- /.box-body -->
-                            <div class="box-footer text-black">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <!-- Progress bars -->
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #1</span>
-                                            <small class="pull-right">90%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                                        </div>
-
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #2</span>
-                                            <small class="pull-right">70%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-6">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #3</span>
-                                            <small class="pull-right">60%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                                        </div>
-
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #4</span>
-                                            <small class="pull-right">40%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
+                            
                         </div>
                         <!-- /.box -->
 

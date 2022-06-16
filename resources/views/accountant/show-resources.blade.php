@@ -73,10 +73,10 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
-                            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+                            <span class="info-box-icon bg-green"><i class="fa fa-suitcase"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Total Price</span>
+                                <span class="info-box-text">Total Value</span>
                                 <span class="info-box-number">{{number_format($prices)}}<small>Tsh</small></span>
                             </div>
                             <!-- /.info-box-content -->
@@ -263,8 +263,8 @@
                                             <td><a href="/resource/view/{{ $resource->id }}"
                                                     data-target="#singleUser-details" class="fa fa-eye"
                                                     data-toggle="modal"></a>
-
-                                                <a href="resource/delete/{{ $resource->id }}" class="fa fa-trash-o "></a>
+                                                    {{-- href="resource/delete/{{ $resource->id }}" --}}
+                                                <a onclick="sweet()" class="fa fa-trash-o "></a>
                                             </td>
                                     </tr>
                                     @endforeach
@@ -673,7 +673,9 @@
                                             <option value="" disabled selected hidden>Choose a Category</option>
                                             <option>Music </option>
                                             <option>Furnitures</option>
-                                            <option></option>
+                                            <option>Electronics</option>
+                                            <option>Cleaning</option>
+                                            <option>Instruments</option>
                                         </select>
 
                                     </div>
@@ -780,6 +782,7 @@
         </div>
     @endsection
     @push('scripts')
+        @include('javascripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>

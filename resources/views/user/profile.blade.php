@@ -50,7 +50,8 @@
                                     <div class="col-md-4 pull right">
                                         <div class="box-body box-profile">
                                             <img class="profile-user-img img-responsive img-circle"
-                                                src="{{ asset("images/". $user->profile_picture) }}" alt="User profile picture">
+                                                src="{{ asset('images/' . $user->profile_picture) }}"
+                                                alt="User profile picture">
                                             <h3 class="profile-username text-center">{{ $user->name }}</h3>
                                             <p class="text-muted text-center">{{ $user->email }}</p>
 
@@ -64,18 +65,7 @@
                                                 <span class="text-danger">{{ $errors->first('image') }}</span>
                                             @endif
 
-                                            <ul class="list-group list-group-unbordered">
-                                                <li class="list-group-item">
-                                                    <b>Followers</b> <a class="pull-right">1,322</a>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Following</b> <a class="pull-right">543</a>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Friends</b> <a class="pull-right">13,287</a>
-                                                </li>
-                                            </ul>
-                                            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                                            
                                         </div>
                                         <!-- /.box-body -->
                                     </div>
@@ -139,11 +129,11 @@
                                         <div class="form-group col-sm-2">
                                             <label for="">Gender</label>
                                             @if ($user->gender == 'M')
-                                                <input class="form-check-input" type="text" value="Male" name="gender"
-                                                    enabled>
+                                                <input class="form-control" type="text" value="Male" name="gender"
+                                                    disabled enabled>
                                             @elseif ($user->gender == 'F')
-                                                <input class="form-check-input" type="text" value="Female" name="gender"
-                                                    enabled>
+                                                <input class="form-control" type="text" value="Female" name="gender"
+                                                    disabled enabled>
                                             @endif
 
 
@@ -153,7 +143,7 @@
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                                 <input type="date" name="date_of_birth"
                                                     class="form-control datetimepicker-input" data-target="#reservationdate"
-                                                    value="{{ $user->date_of_birth }}" />
+                                                    value="{{ $user->date_of_birth }}" disabled/>
 
                                             </div>
                                         </div>
@@ -171,7 +161,7 @@
                                             <label for="category" class=" col-form-label "
                                                 style="color: black">{{ __('Marrital Status') }}</label>
                                             <input type="text" name="marital_status" class="form-control"
-                                                value="{{ $user->marital_status }}">
+                                                value="{{ $user->marital_status }}" disabled>
                                             <span class="text-danger">{{ $errors->first('role') }}</span>
 
                                         </div>
@@ -439,6 +429,6 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                     immediately after the control sidebar -->
+                                                                                         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     @endsection

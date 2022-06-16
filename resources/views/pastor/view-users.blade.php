@@ -76,8 +76,8 @@
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Email</th>
-                                            <th>Address</th>
-                                            {{-- <th>Status</th> --}}
+                                            <th>District</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -88,7 +88,25 @@
                                                 <td>{{ $account->first_name }}</td>
                                                 <td>{{ $account->last_name }}</td>
                                                 <td>{{ $account->email }}</span></td>
-                                                <td>{{ $account->spouse_name }}</td>
+                                                {{-- <td>{{ $account-> }}</td> --}}
+
+                                                <td>
+                                                    @if (isset($account->physicalAddresses->district))
+                                                        {{ $account->physicalAddresses->district }}
+                                                    @else
+                                                        <p>Not Available</p>
+                                                    @endif
+                                                </td>
+
+                                                <td>
+                                                    @if ($account->status == '0')
+                                                        <a {{-- href="{{ route('pastor.approve', $account->id) }}" --}}
+                                                            class="btn btn-warning btn-xs">Deactivated</a>
+                                                    @elseif ($account->status == '1')
+                                                        <a class="btn btn-success btn-xs">Activated</a>
+                                                    @endif
+                                                </td>
+
                                                 <td><a href="{{ route('pastor.singleMember', $account->id) }}"
                                                         class="fa fa-eye"></a>
                                                     {{-- <a onclick= "return confirm('Are you sure you want to delete this user?')" href="{{ route('pastor.deleteMember', $account->id) }}"
@@ -163,7 +181,7 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                                                 immediately after the control sidebar -->
+                                                                                                                     immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 

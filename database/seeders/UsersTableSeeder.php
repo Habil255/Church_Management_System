@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         //
 
         User::factory()
-        ->times(20)
+        ->times(100)
         ->create();
     }
 }
