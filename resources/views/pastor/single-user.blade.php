@@ -25,7 +25,8 @@
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <h3 class="box-title"><b>{{ $user->first_name . ' ' . $user->last_name }}</b>
-                            <small>Profile</small></h3>
+                            <small>Profile</small>
+                        </h3>
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -91,9 +92,9 @@
                                 <div class="col-sm-3 form-group">
                                     <label>Date of Birth:</label>
                                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                        <input type="date" name="date_of_birth" value="{{ $user->date_of_birth }}" disabled
-                                            class="form-control datetimepicker-input" data-target="#reservationdate"
-                                            required />
+                                        <input type="date" name="date_of_birth" value="{{ $user->date_of_birth }}"
+                                            disabled class="form-control datetimepicker-input"
+                                            data-target="#reservationdate" required />
 
                                     </div>
                                 </div>
@@ -111,7 +112,6 @@
                                     <label for="category" class=" col-form-label "
                                         style="color: black">{{ __('Marrital Status') }}</label><br>
                                     @if ($user->marital_status == 'Married')
-                                        <p>Habil</p>
                                         <input class="form-control" type="text" value="Married" name="marrital_status"
                                             disabled>
                                     @elseif ($user->marital_status == 'Not Married')
@@ -145,13 +145,14 @@
                                 <div class="col-sm-3 form-group">
                                     <label for="category" class=" col-form-label "
                                         style="color: black">{{ __('District') }}</label>
-                                        {{-- {{$district = $user->physicalAddresses}} --}}
-                                    @if ($district = $user->physicalAddresses->district)
-                                    <input class="form-control" type="text" value={{$user->physicalAddresses->district}} name="marrital_status"
-                                    disabled>
+                                    {{-- {{$district = $user->physicalAddresses}} --}}
+                                    @if (isset($user->physicalAddresses->district))
+                                        <input class="form-control" type="text"
+                                            value={{ $user->physicalAddresses->district }} name="marrital_status" disabled>
                                     @else
-                                    {{-- {{dd('Is Null');}} --}}
-                                        <input class="form-control" type="text" name="marrital_status" value="N/A" disabled>
+                                        {{-- {{dd('Is Null');}} --}}
+                                        <input class="form-control" type="text" name="marrital_status" value="N/A"
+                                            disabled>
                                     @endif
 
                                 </div>
@@ -160,26 +161,28 @@
                                     <label for="category" class=" col-form-label "
                                         style="color: black">{{ __('Ward') }}</label>
 
-                                    @if ($user->physicalAddresses->ward == '')
-                                        <input class="form-control" type="text" name="marrital_status" value="N/A" disabled
-                                            >
+                                    @if (isset($user->physicalAddresses->ward))
+                                        <input class="form-control" type="text"
+                                            value={{ $user->physicalAddresses->ward }} name="marrital_status" disabled>
                                     @else
-                                        <input class="form-control" type="text" value={{$user->physicalAddresses->ward}} name="marrital_status"
-                                          disabled>
+                                        <input class="form-control" type="text" name="marrital_status" value="N/A"
+                                            disabled>
                                     @endif
 
-                                    
+
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Street</label>
-                                        @if ($user->physicalAddresses->street == null)
-                                        <input class="form-control" type="text" name="marrital_status" value="N/A" disabled>
-                                    @else
-                                        <input class="form-control" type="text" value={{$user->physicalAddresses->street}} name="marrital_status"
-                                          disabled>
-                                    @endif
+                                        @if (isset($user->physicalAddresses->street))
+                                            <input class="form-control" type="text"
+                                                value={{ $user->physicalAddresses->street }} name="marrital_status"
+                                                disabled>
+                                        @else
+                                            <input class="form-control" type="text" name="marrital_status" value="N/A"
+                                                disabled>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +260,7 @@
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                 immediately after the control sidebar -->
+                                                                                     immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 

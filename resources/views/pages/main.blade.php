@@ -44,6 +44,7 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+   
     @yield('contents')
     </div>
     <!-- ./wrapper -->

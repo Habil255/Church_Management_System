@@ -23,7 +23,11 @@
             <div class="row">
                 
                     <div class="card card-primary">
-                        
+                        <center><h3> EVANGELICAL LUTHERAN CHURCH IN TANZANIA</h3><center>
+                            <center><h4> EASTERN AND COAST DIOCESE</h4><center>
+                            <center><h4> NORTHERN PROVINCE</h4><center>
+                            <center><h4> MWENGE CHURCH</h4><center>
+                                <u><center><h5> DATE:   {{date('Y-m-d');}}</h5><center></u>
                         <div class="card-header">
                             <center><h3 class="card-title center">LIST OF REGISTERED CHURCH MEMBERS</h3><center>
                         </div>

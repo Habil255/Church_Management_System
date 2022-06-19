@@ -23,6 +23,9 @@
             <div class="row">
                 
                     <div class="card card-primary">
+                        <center><h3> BRANCH: KKKT PWANI DAYOSISE</h3><center>
+                            <center><h4> CHURCH: Mwenge Lutheran Church</h4><center>
+                                <center><h5> DATE:   {{date('Y-m-d');}}</h5><center>
                         <div class="card-header">
                             <center><h3 class="card-title center">LIST OF REGISTERED USERS</h3><center>
                         </div>

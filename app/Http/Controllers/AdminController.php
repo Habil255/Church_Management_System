@@ -30,52 +30,7 @@ class AdminController extends Controller
               $monthname[$key] = date('F', mktime(0, 0, 0, $name, 10));
                 $output[$key] = ['month' => $monthname[$key], 'users' => $usersMonthlyReg[$key]->users];
        } 
-    //    return $output;p
-        
-
-    //    return array_column($output,'month');         
-        
-           //    $monthname =$usersMonthlyReg->created_at>Carbon::carbon;
-    //    dd($monthname);
-                        // Carbon::Year()
-        // ->switch(Month('created_at')){
-        //     case 1:
-        //         $month = 'January';
-        //         break;
-        //     case 2:
-        //         $month = 'February';
-        //         break;
-        //     case 3:
-        //         $month = 'March';
-        //         break;
-        //     case 4:
-        //         $month = 'April';
-        //         break;
-        //     case 5:
-        //         $month = 'May';
-        //         break;
-        //     case 6:
-        //         $month = 'June';
-        //         break;
-        //     case 7:
-        //         $month = 'July';
-        //         break;
-        //     case 8:
-        //         $month = 'August';
-        //         break;
-        //     case 9:
-        //         $month = 'September';
-        //         break;
-        //     case 10:
-        //         $month = 'October';
-        //         break;
-        //     case 11:
-        //         $month = 'November';
-        //         break;
-        //     case 12:
-        //         $month = 'December';
-        //         break;
-        // }->get();
+   
         $withSpecialRoles = User::whereHas('roles', function ($query) {
             $query->where('title', '!=', 'Normal');
         })->count();
@@ -97,12 +52,12 @@ class AdminController extends Controller
         //             ->where("name","LIKE","%{$data}%")
         //             ->get();
 
-
+        
         $userInfos = User::get();
         // return $userInfos;
         // $userInfos->physicalAddresses->district;
         // return $userInfos;
-        return view('admin.user-accounts', compact('userInfos'));
+        return view('admin.user-accounts', compact('userInfos'))->with('loader',true);
     }
     public function createPDF() {
         // retreive all records from db

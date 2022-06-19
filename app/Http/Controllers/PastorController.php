@@ -46,6 +46,7 @@ class PastorController extends Controller
 
     public function showUsers()
     {
+        
         $totalUsers = User::where("email", "!=", "raphaelhabil09@gmail.com")
             ->count();
         $accounts = User::where("email", "!=", "raphaelhabil09@gmail.com")->get();

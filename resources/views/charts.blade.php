@@ -6,7 +6,7 @@
       labels: labels,
       datasets: [{
         label: 'Users',
-        backgroundColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgb(255, 100, 132)',
         borderColor: 'rgb(255, 99, 132)',
         data: <?php echo json_encode(array_column($output,'users')); ?>,
       }]
