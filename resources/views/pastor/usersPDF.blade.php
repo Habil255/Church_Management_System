@@ -23,7 +23,7 @@
             <div class="row">
                 
                     <div class="card card-primary">
-                        <center><h3> EVANGELICAL LUTHERAN CHURCH IN TANZANIA</h3><center>
+                            <center><h3> EVANGELICAL LUTHERAN CHURCH IN TANZANIA</h3><center>
                             <center><h4> EASTERN AND COAST DIOCESE</h4><center>
                             <center><h4> NORTHERN PROVINCE</h4><center>
                             <center><h4> MWENGE CHURCH</h4><center>

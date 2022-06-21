@@ -161,6 +161,18 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-table"></i> <span>Commitees</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/pastor/create-commitee"><i class="fa fa-circle-o"></i>Create Commitee</a></li>
+                        <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i>Manage Commitees</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
                         <i class="fa fa-table"></i> <span>Schedules</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>

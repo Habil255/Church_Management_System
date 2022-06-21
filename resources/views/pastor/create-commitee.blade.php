@@ -1,86 +1,20 @@
 @extends('pages.main')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
 @section('contents')
     <div class="wrapper">
 
         @include('parts.navbar')
         <!-- Left side column. contains the logo and sidebar -->
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">List of Registered Users</h3>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info">Export</button>
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ URL::to('pastor/pdf') }}">PDF</a></li>
-                        <li><a href="#">Excel</a></li>
-                        <li><a href="#">CSV</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-success">Import</button>
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ URL::to('pdf') }}">PDF</a></li>
-                        <li><a href="#">Excel</a></li>
-                        <li><a href="#">CSV</a></li>
-                    </ul>
-                </div>
-                <span>
-                    <button type="button" class="btn btn-default pull-right" data-toggle="modal"
-                        data-target="#modal-default">
-                        Add User
-                    </button>
-                </span>
 
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <table id="table_id" class="display">
-                    <thead>
-                        <tr>
-                            <th>User No</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>District</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                    {{-- <tfoot>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                            <th>CSS grade</th>
-                        </tr>
-                    </tfoot> --}}
-                </table>
-            </div>
-            <!-- /.box-body -->
-        </div>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Event Managing
+                    Commitee Management
                     <small>Control panel</small>
                 </h1>
                 <ol class="breadcrumb">
@@ -100,13 +34,12 @@
                 <!-- Main row -->
                 <div class="row">
                     <!-- Left col -->
-
                     <div class="col-md-4">
                         <div class="info-box bg-green">
                             <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Total Events</span>
+                                <span class="info-box-text">Total </span>
                                 <span class="info-box-number">41,410</span>
 
                                 <div class="progress">
@@ -124,7 +57,7 @@
                             <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Completed</span>
+                                <span class="info-box-text">Events</span>
                                 <span class="info-box-number">41,410</span>
 
                                 <div class="progress">
@@ -142,7 +75,7 @@
                             <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">In Progress</span>
+                                <span class="info-box-text">Events</span>
                                 <span class="info-box-number">41,410</span>
 
                                 <div class="progress">
@@ -158,95 +91,43 @@
 
 
 
-                    <!-- Custom tabs (Charts with tabs)-->
-                    {{-- <div class="nav-tabs-custom">
-                            <!-- Tabs within a box -->
-                            <ul class="nav nav-tabs pull-right">
-                                <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                                <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                                <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-                            </ul>
-                            <div class="tab-content no-padding">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart"
-                                    style="position: relative; height: 300px;"></div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                </div>
-                            </div>
-                        </div> --}}
-                    <!-- /.nav-tabs-custom -->
-
-                    <!-- Chat box -->
-
-                    <!-- /.box (chat box) -->
-
-                    <!-- TO DO List -->
-
-                    <!-- /.box -->
-
-                    <!-- quick email widget -->
-                    <section class="content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li class="active">
-                                        <a href="#tab-table1" data-toggle="tab">Table 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#tab-table2" data-toggle="tab">Table 2</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab-table1">
-                                        <table id="myTable1" class="table table-striped table-bordered" cellspacing="0"
-                                            width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Extn.</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane" id="tab-table2">
-                                        <table id="myTable2" class="table table-striped table-bordered" cellspacing="0"
-                                            width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Extn.</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-
-                    <section class="col-lg-7 connectedSortable">
-                    </section>
-                    <!-- /.Left col -->
-                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                    <section class="col-lg-5 connectedSortable">
-
-
-
-                    </section>
 
                     <!-- right col -->
                 </div>
                 <!-- /.row (main row) -->
+                {{-- <div class="card" style="width: 18em; background-color: white;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div> --}}
+                <h3 class="page-header">Commitees Created</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Alerts</h3>
+                            </div>
 
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <img src="{{ asset('resources/images.jpg') }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the
+                                        bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                    <!-- /.col -->
+                </div>
             </section>
             <!-- /.content -->
         </div>
@@ -456,6 +337,16 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                     immediately after the control sidebar -->
+                                                                                 immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     @endsection
+    @push('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#table_id').DataTable();
+            });
+        </script>
+    @endpush

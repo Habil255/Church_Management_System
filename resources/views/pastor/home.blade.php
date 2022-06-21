@@ -35,7 +35,8 @@
                             <div class="icon">
                                 <i class="fa fa-suitcase"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -50,7 +51,8 @@
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -58,14 +60,15 @@
                         <!-- small box -->
                         <div class="small-box bg-yellow">
                             <div class="inner">
-                                <h3>{{$totalUsers}}</h3>
+                                <h3>{{ $totalUsers }}</h3>
 
                                 <p>Church Members</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="/pastor/view-users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="/pastor/view-users" class="small-box-footer">More info <i
+                                    class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -80,7 +83,8 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -97,13 +101,13 @@
                                 <h3 class="box-title">Users Registration Trend</h3>
                                 {{-- {{$usersMonthlyReg}} --}}
                                 <div class="form-group col-md-4">
-                                    <select class="form-control select2" name="year"  style="width: 100%;">
-                                      <option selected="selected" >2022</option>
-                                    <option name='year1'>2021</option>
-                                      <option name = 'year2'>2020</option>
-                                      <option name = 'year3'>2019</option>
+                                    <select class="form-control select2" name="year" style="width: 100%;">
+                                        <option selected="selected">2022</option>
+                                        <option name='year1'>2021</option>
+                                        <option name='year2'>2020</option>
+                                        <option name='year3'>2019</option>
                                     </select>
-                                  </div>
+                                </div>
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                             class="fa fa-minus"></i>
@@ -117,7 +121,7 @@
                             </div>
                             <!-- /.box-body -->
                         </div>
-                                {{-- <div class="box-header">
+                        {{-- <div class="box-header">
                                     <i class="fa fa-th"></i>
 
                                     <h3 class="box-title">Sales Graph</h3>
@@ -134,10 +138,10 @@
                                 <div class="box-body border-radius-none">
                                     <div class="chart" id="line-chart" style="height: 250px;"></div>
                                 </div> --}}
-                            <!-- /.box-body -->
-                            
-                            <!-- /.box-footer -->
-                        
+                        <!-- /.box-body -->
+
+                        <!-- /.box-footer -->
+
                         <div class="nav-tabs-custom">
                             <!-- Tabs within a box -->
                             <ul class="nav nav-tabs pull-right">
@@ -155,7 +159,7 @@
                         </div>
                         <!-- /.nav-tabs-custom -->
 
-                        
+
 
                         <!-- quick email widget -->
                         <div class="box box-info">
@@ -194,6 +198,28 @@
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
                     <section class="col-lg-5 connectedSortable">
+
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Users Activation Rate</h3>
+                                {{-- {{$usersMonthlyReg}} --}}
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="chart-pie pt-4">
+                                <canvas id="myPieChart"></canvas>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+
+
 
                         <!-- Map box -->
                         {{-- <div class="box box-solid bg-light-blue-gradient">
@@ -242,7 +268,7 @@
                         </div> --}}
                         <!-- /.box -->
 
-                        
+
                         <!-- /.box -->
 
                         <!-- Calendar -->
@@ -280,7 +306,7 @@
                                 <div id="calendar" style="width: 100%"></div>
                             </div>
                             <!-- /.box-body -->
-                            
+
                         </div>
                         <!-- /.box -->
 
@@ -487,7 +513,41 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-             immediately after the control sidebar -->
+                     immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
         @include('charts')
+
+        <script>
+            var ctx = document.getElementById("myPieChart");
+            var myPieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: <?php echo json_encode(array_column($rate, 'status')); ?>,
+                    datasets: [{
+                        data: <?php echo json_encode(array_column($rate, 'percentage')); ?>,
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                        hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        caretPadding: 10,
+                    },
+                    legend: {
+                        display: false
+                    },
+                    cutoutPercentage: 80,
+                },
+            });
+        </script>
+        {{-- @include('pie') --}}
     @endsection

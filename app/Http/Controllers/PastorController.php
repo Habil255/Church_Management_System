@@ -23,13 +23,31 @@ class PastorController extends Controller
         $usersMonthlyReg = User::selectRaw('distinct Month(created_at) as month, count(*) as users')
             ->whereYear('created_at', '=', 2022)
             ->groupByRaw('month(created_at)')->get();
+        $activation = User::selectRaw('status, ROUND(COUNT(*)*100/(SELECT COUNT(*) 
+                                        from users),2) as percentage')
+            ->groupByRaw('status')->get();
+        $rate=[];
+            $a=1;
+            while ($a <= count($activation)) {
+                foreach($activation as $items){
+                # code...
+                if($items->status == 1){
+                    $rate[] = ['status' => 'active', 'percentage' => $items->percentage];
+                }elseif($items->status == 0){
+                    $rate[] = ['status' => 'deactivated', 'percentage' =>$items->percentage];
+                }
+                $a++;
+            }
+        }
+
         $monthname = $usersMonthlyReg->pluck('month');
         foreach ($monthname as $key => $name) {
             # code...
             $monthname[$key] = date('F', mktime(0, 0, 0, $name, 10));
             $output[$key] = ['month' => $monthname[$key], 'users' => $usersMonthlyReg[$key]->users];
         }
-        return view("pastor.home", compact('totalUsers', 'output'));
+        // return $output;
+        return view("pastor.home", compact('totalUsers', 'output', 'rate'));
     }
 
     public function generatePDF()
@@ -46,7 +64,7 @@ class PastorController extends Controller
 
     public function showUsers()
     {
-        
+
         $totalUsers = User::where("email", "!=", "raphaelhabil09@gmail.com")
             ->count();
         $accounts = User::where("email", "!=", "raphaelhabil09@gmail.com")->get();

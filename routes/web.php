@@ -14,6 +14,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\CommiteeController;
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Authcheck;
 use App\Http\Middleware\Pastorcheck;
@@ -92,6 +93,10 @@ Route::prefix('pastor')->middleware('PastorCheck')->group(function () {
     Route::get('/delete-member/{id}',[PastorController::class,'deleteMember'])->name('pastor.deleteMember');
     Route::post('/add-member',[PastorController::class,'addMember'])->name('pastor.addMember');
     Route::get('/approve-user/{id}',[PastorController::class,'approve'])->name('pastor.approve');
+
+
+    // CREATING COMMITEES
+    Route::get('/create-commitee', [CommiteeController::class, 'index']);
 
     Route::get('/pdf',[PastorController::class,'generatePDF']);
 });

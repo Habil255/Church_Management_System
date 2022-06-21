@@ -88,44 +88,36 @@
                             <!-- /.info-box-content -->
                         </div>
                     </div>
-
+                </div>
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                    <section class="col-lg-5 connectedSortable">
-
-                        <!-- Map box -->
-
-                        <!-- /.box -->
-
-                        <!-- solid sales graph -->
-
-
-
-
-
-                        <!-- /.box -->
-
-                        <!-- Calendar -->
-
-
-
-
-
-
-                        <!-- /.box -->
-
-                        {{-- <h4>{{$userRoles->first_name}}</h4> --}}
-
-                        {{-- @foreach ($roles as $role)
-                            {{$role->title}}
-                            <div>{{$role->users->first_name}}</div>
-                            @endforeach --}}
-
-                    </section>
-
-                    <!-- right col -->
-                </div>
-                <!-- /.row (main row) -->
+                   
+                    <h3 class="page-header">Projects Created</h3>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><b>Kutembelea Yatima</b></h3>
+                                </div>
+                                <div class="box-body">
+                                    {{-- <img height="50" width="50" style="background-image: url('resources/image1.jpg')"> --}}
+                                    <img src="{{ asset('resources/image1.jpg') }}" class="img-thumbnail card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Card title</h4>
+                                        <p class="card-text">Some quick example text to build on the card title and make up
+                                            the
+                                            bulk of the card's content.</p>
+                                        <a href="#" class="btn btn-primary">See Details</a>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row (main row) -->
 
             </section>
             <!-- /.content -->
@@ -324,7 +316,8 @@
                         <div class="form-group">
                             <label class="control-sidebar-subheading">
                                 Delete chat history
-                                <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                                <a href="javascript:void(0)" class="text-red pull-right"><i
+                                        class="fa fa-trash-o"></i></a>
                             </label>
                         </div>
                         <!-- /.form-group -->
@@ -335,7 +328,7 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                     immediately after the control sidebar -->
+                                                                             immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     @endsection
     @push('scripts')
