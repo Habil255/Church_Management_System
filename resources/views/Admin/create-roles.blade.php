@@ -281,7 +281,7 @@
                                     </div>
                                 @endif
 
-                                <form method="POST" action="{{ route('roles.assign') }} " class="form-horizontal">
+                                <form method="POST" action="{{ route('commitee.assign') }} " class="form-horizontal">
                                     @csrf
                                     <div class="box-body">
 

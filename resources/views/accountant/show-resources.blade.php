@@ -226,7 +226,18 @@
                 <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Resources Registered</h3>
-
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info">Export</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ URL::to('accountant/pdf') }}">PDF</a></li>
+                                <li><a href="#">Excel</a></li>
+                                <li><a href="#">CSV</a></li>
+                            </ul>
+                        </div>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                     class="fa fa-minus"></i>

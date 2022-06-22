@@ -101,11 +101,11 @@
                                 <h3 class="box-title">Users Registration Trend</h3>
                                 {{-- {{$usersMonthlyReg}} --}}
                                 <div class="form-group col-md-4">
-                                    <select class="form-control select2" name="year" style="width: 100%;">
+                                    <select class="form-control select2" name="year" style="width: 100%;" onchange="run()">
                                         <option selected="selected">2022</option>
-                                        <option name='year1'>2021</option>
-                                        <option name='year2'>2020</option>
-                                        <option name='year3'>2019</option>
+                                        <option value='2021'>2021</option>
+                                        <option value='2020'>2020</option>
+                                        <option value='2019'>2019</option>
                                     </select>
                                 </div>
                                 <div class="box-tools pull-right">
@@ -550,4 +550,8 @@
             });
         </script>
         {{-- @include('pie') --}}
+
+        function run() {
+        document.getElementById("resultColorValue").innerHTML = document.getElementById("Color").value;
+}
     @endsection

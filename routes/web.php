@@ -97,6 +97,10 @@ Route::prefix('pastor')->middleware('PastorCheck')->group(function () {
 
     // CREATING COMMITEES
     Route::get('/create-commitee', [CommiteeController::class, 'index']);
+    Route::post('/commitee-create', [CommiteeController::class, 'createCommitee'])->name('create.category');
+    Route::get('/assign-commitee', [CommiteeController::class, 'searchMember'])->name('commitee.member');
+
+    Route::post('/assign-member-commitee', [CommiteeController::class, 'storeCommiteeMember'])->name('commitee.assign');
 
     Route::get('/pdf',[PastorController::class,'generatePDF']);
 });
@@ -115,6 +119,10 @@ Route::prefix('accountant')->middleware('AccountantCheck')->group(function () {
     Route::get('/show-resources', [AccountantController::class, 'showResources']);
     Route::post('/resource/submit', [AccountantController::class, 'submitResources'])->name('resources.submit');
     Route::get('/resource/delete/{id}', [AccountantController::class, 'deleteResources'])->name('resource.delete');
+
+    Route::get('/pdf',[AccountantController::class,'generatePDF']);
+
+    
     // Route::get('/home', [AuthController::class, 'login']);
     
 }); 

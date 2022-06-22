@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commitee;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CommiteeController extends Controller
@@ -14,7 +16,8 @@ class CommiteeController extends Controller
     public function index()
     {
         //
-        return view('pastor.create-commitee');
+        $commitees = Commitee::all();
+        return view('pastor.create-commitee', compact('commitees'));
     }
 
     /**
@@ -22,9 +25,19 @@ class CommiteeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createCommitee(Request $request)
     {
         //
+        $request->validate([
+            'category' => ['required'],
+            'description' => ['required'],
+        ]);
+        $commitee_category = Commitee::create([
+            'category' => $request->category,
+            'description' => $request->description,
+        ]);
+        $commitee_category->save();
+        return back()->with('category-added', 'category has been added');
     }
 
     /**
@@ -33,9 +46,21 @@ class CommiteeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function searchMember(Request $request)
     {
         //
+        $user = User::select('*')
+        ->where("first_name", "LIKE", "%{$request->value}%")
+        ->limit(8)
+        ->get();
+    $res = [];
+    foreach ($user as $user) {
+        $first_name = $user->first_name;
+        $last_name = $user->last_name;
+        $res[] = array("name" => "$first_name $last_name");
+    }
+    return response()->json($res);
+        // $result = (new AdminController)->searchMember($request);
     }
 
     /**
@@ -44,9 +69,15 @@ class CommiteeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function storeCommiteeMember(Request $request)
     {
         //
+        $request->validate([
+            'name' => ['required'],
+            'commitee' => ['required'],
+        ]);
+        $user = $request->username;
+        return $user;
     }
 
     /**

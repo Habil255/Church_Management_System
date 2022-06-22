@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Resources;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use PDF;
 
 class AccountantController extends Controller
 {
@@ -91,10 +92,16 @@ class AccountantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function generatePDF()
     {
         //
+        $resources = Resources::orderBy('name', 'asc')->get();
+        $pdf = PDF::loadView('accountant.resourcesPDF', compact('resources'));
+        $pdf->setPaper('legal', 'landscape');
+        return $pdf->download('resources.pdf'); // download as pdf
     }
+        //
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -102,7 +109,7 @@ class AccountantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         //
     }

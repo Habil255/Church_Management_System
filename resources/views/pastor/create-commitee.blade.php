@@ -1,6 +1,7 @@
 @extends('pages.main')
 @section('css')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 @endsection
 @section('contents')
     <div class="wrapper">
@@ -88,47 +89,139 @@
                             <!-- /.info-box-content -->
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-7 connectedSortable">
+
+                        <div class="box box-primary" id="create-roles">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Create Commitee</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            @if (Session::has('category-added'))
+                                <div class="alert alert-success" role="alert">
+                                    <p>{{ Session::get('category-added') }}</p>
+                                </div>
+                            @endif
+                            <!-- form start -->
+                            <form role="form" method="POST" action="{{ route('create.category') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Commitee Category</label>
+                                        <input type="text" class="form-control" id="create-role"
+                                            placeholder="Commitee Category" name="category">
+                                        <span class="text-danger">{{ $errors->first('title') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Description</label>
+                                        <textarea type="text" class="form-control" id="exampleInputPassword1" placeholder="Description" name='description'
+                                            cols="30" rows="5"></textarea>
+                                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
 
 
 
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-5 connectedSortable">
+
+                        <div class="box box-primary" id="create-roles">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Locate the Commitee Members</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            @if (Session::has('Role_added'))
+                                <div class="alert alert-success" role="alert">
+                                    <p>{{ Session::get('Role_added') }}</p>
+                                </div>
+                            @endif
+                            <!-- form start -->
+                            <form role="form" method="POST" action="{{ route('commitee.assign') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="box-body">
+                                    <div class="form-group mb-3">
+                                        <label for="select2Multiple">Church Member</label>
+                                        {{-- <select class="select2-multiple form-control" name="tags[]" multiple="multiple"
+                                            id="select2Multiple">
+                                            <option value="tag1">tag1</option>
+                                            <option value="tag2">tag2</option>
+                                            <option value="tag3">tag3</option>
+                                        </select> --}}
+                                        <input type="text" class="typeahead form-control" placeholder="Search a user..."
+                                                name="name" id="assignToCommitee" autocomplete="off">
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    </div>
+                                    <span class="text-danger">{{ $errors->first('title') }}</span>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Commitee</label>
+                                        <select id="category" class="form-control" name="category" required
+                                            autocomplete="job_title" autofocous>
+                                            @foreach ($commitees as $commitee)
+                                                <option value="" disabled selected hidden>Choose a Commitee</option>
+                                                <option>{{ $commitee->category }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
 
                     <!-- right col -->
                 </div>
                 <!-- /.row (main row) -->
-                {{-- <div class="card" style="width: 18em; background-color: white;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">User with their Roles</h3>
                     </div>
-                  </div> --}}
-                <h3 class="page-header">Commitees Created</h3>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Alerts</h3>
-                            </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
 
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <img src="{{ asset('resources/images.jpg') }}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
+                        <table id="table_id" class="display">
+                            <thead>
+                                <tr>
+                                    <th>ID No</th>
+                                    <th style="width: 20%">First Name</th>
+                                    <th style="width: 20%">Last Name</th>
+                                    <th style="width: 20%">Email</th>
+                                    <th style="width: 20%">Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Rendering engine</th>
+                                    <th>Browser</th>
+                                    <th>Platform(s)</th>
+                                    <th>Engine version</th>
+                                    <th>CSS grade</th>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- /.col -->
-                    <!-- /.col -->
+                    <!-- /.box-body -->
                 </div>
             </section>
+
+
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
@@ -337,10 +430,12 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                 immediately after the control sidebar -->
+                                                                                                         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     @endsection
     @push('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
@@ -349,4 +444,19 @@
                 $('#table_id').DataTable();
             });
         </script>
+
+<script type="text/javascript">
+    url = "{{ route('commitee.member') }}";
+    $('#assignToCommitee').typeahead({
+        source: function(value, process) {
+            return $.get(url, {
+                value: value
+            }, function(data) {
+                // alert(data);
+                // return process(data);
+                console.log(data);
+            });
+        }
+    });
+</script>
     @endpush

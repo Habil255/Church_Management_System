@@ -106,24 +106,12 @@ class AdminController extends Controller
         $userDetails = User::whereHas('roles', function ($query) {
             $query->where('title', '!=', 'Normal');
         })->get();
-        // $userRoles= User::limit(8)->get();
-        // $first_name= $userRoles->first_name;
-        // $last_name= $userRoles->last_name;
-        // $email= $userRoles->email;
-        // $roles=$userRoles->roles;
-        // return $roles;
-        // $results=[$first_name,$last_name,$email,$roles];
-        // return response()->json([$results,'These are the user details']);
-
-        // $datas=$userRoleDetails->users[0]->first_name;
-        // return response()->json($datas);
+       
         $roles = Role::get();
         return view('admin.create-roles', compact('roles', 'userDetails'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
