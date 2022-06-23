@@ -189,178 +189,216 @@
 
                                                 @if (isset($user->physicalAddresses->district))
                                                     <div class="col-sm-10">
-                                                       
-                                                        <select id="category" class="form-control" name="category"
-                                                            required autocomplete="job_title" autofocous>
-                                                            <option>
-                                                               
-                                                            </option>
-                                                            {{-- <option>Music </option>
-                                                            <option>Furnitures</option>
-                                                            <option>Electronics</option>
-                                                            <option>Cleaning</option>
-                                                            <option>Instruments</option> --}}
-                                                        </select>
-                                                        
-                                                   
-                                                    
-                                                    {{-- <input type="text"
+
+                                                        {{-- <input type="text"
                                                             value="{{ $user->physicalAddresses->district }}"
                                                             name="district" class="form-control" id=""
                                                             placeholder="Ubungo"> --}}
+                                                            <select id="category" class="form-control" name="district"
+                                                            required autocomplete="job_title" autofocous>
+                                                            <option value="" selected >{{ $user->physicalAddresses->district }}</option>
+                                                            <option>Ilala </option>
+                                                            <option>Ubungo</option>
+                                                            <option>Kinondoni</option>
+                                                            <option>Temeke</option>
+                                                            <option>Kigamboni</option>
+                                                        </select>
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-10">
+                                                        <select id="category" class="form-control" name="district"
+                                                            required autocomplete="job_title" autofocous>
+                                                            <option value="Hello">
+                                                            </option>
+                                                            <option>Ilala </option>
+                                                            <option>Ubungo</option>
+                                                            <option>Kinondoni</option>
+                                                            <option>Temeke</option>
+                                                            <option>Kigamboni</option>
+                                                        </select>
+                                                    </div>
+                                                @endif
+
+
                                             </div>
-                                        @else
-                                        <div class="col-sm-10">
-                                            <select id="category" class="form-control" name="category"
-                                                required autocomplete="job_title" autofocous>
-                                                <option value="">
-                                                </option>
-                                                {{-- <option>Music </option>
-                                                <option>Furnitures</option>
-                                                <option>Electronics</option>
-                                                <option>Cleaning</option>
-                                                <option>Instruments</option> --}}
-                                            </select>
                                         </div>
-                                            @endif
-
-
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Ward</label>
+                                                @if (isset($user->physicalAddresses->ward))
+                                                    <div class="col-sm-10">
+                                                        <input type="text"
+                                                            value="{{ $user->physicalAddresses->ward }}" name="ward"
+                                                            class="form-control" id="" placeholder="Makoka">
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="ward" class="form-control"
+                                                            id="" placeholder="Ward">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Street</label>
+                                                @if (isset($user->physicalAddresses->street))
+                                                    <div class="col-sm-10">
+                                                        <input type="text"
+                                                            value="{{ $user->physicalAddresses->street }}"
+                                                            name="street" class="form-control" id="inputEmail3"
+                                                            placeholder="Mikongeni">
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="street" class="form-control"
+                                                            id="" placeholder="Mikongeni">
+                                                    </div>
+                                                @endif
+                                                {{-- {{isset($user) ? $user : 'Habil'}} --}}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">Ward</label>
-                                            @if (isset($user->physicalAddresses->ward))
-                                                <div class="col-sm-10">
-                                                    <input type="text" value="{{ $user->physicalAddresses->ward }}"
-                                                        name="ward" class="form-control" id=""
-                                                        placeholder="Makoka">
-                                                </div>
-                                            @else
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="ward" class="form-control"
-                                                        id="" placeholder="Ward">
-                                                </div>
-                                            @endif
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-6 control-label">House No:</label>
+                                                @if (isset($user->physicalAddresses->house_number))
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="house_number"
+                                                            value="{{ $user->physicalAddresses->house_number }}"
+                                                            class="form-control" id="inputEmail3"
+                                                            placeholder="Mikongeni">
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="house_number" class="form-control"
+                                                            id="" placeholder="Mikongeni">
+                                                    </div>
+                                                @endif
+                                                {{-- {{isset($user->physicalAddress) ? dd($user) : 'Habil'}} --}}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">Street</label>
-                                            @if (isset($user->physicalAddresses->street))
-                                                <div class="col-sm-10">
-                                                    <input type="text"
-                                                        value="{{ $user->physicalAddresses->street }}" name="street"
-                                                        class="form-control" id="inputEmail3" placeholder="Mikongeni">
-                                                </div>
-                                            @else
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="street" class="form-control"
-                                                        id="" placeholder="Mikongeni">
-                                                </div>
-                                            @endif
-                                            {{-- {{isset($user) ? $user : 'Habil'}} --}}
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-4 control-label">Block No:</label>
+                                                @if (isset($user->physicalAddresses->block_number))
+                                                    <input type="number" name="block_number"
+                                                        value="{{ $user->physicalAddresses->block_number }}"
+                                                        class="form-control" id="" placeholder="Makoka">
+                                                @else
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="block_number" class="form-control"
+                                                            id="inputEmail3" placeholder="123" max="4000"
+                                                            min="0">
+                                                    </div>
+                                                @endif
+                                                {{-- {{isset($user->physicalAddress) ? $user : 'Habil'}} --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-6 control-label">House No:</label>
-                                            @if (isset($user->physicalAddresses->house_number))
-                                                <div class="col-sm-10">
-                                                    <input type="number" name="house_number"
-                                                        value="{{ $user->physicalAddresses->house_number }}"
-                                                        class="form-control" id="inputEmail3" placeholder="Mikongeni">
-                                                </div>
-                                            @else
-                                                <div class="col-sm-10">
-                                                    <input type="number" name="house_number" class="form-control"
-                                                        id="" placeholder="Mikongeni">
-                                                </div>
-                                            @endif
-                                            {{-- {{isset($user->physicalAddress) ? dd($user) : 'Habil'}} --}}
+
+
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Contact Details</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-6 control-label">Phone
+                                                    number:</label>
+
+                                                @if (isset($user->contactAddresses->phonenumber))
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="phonenumber"
+                                                            value="{{ $user->contactAddresses->phonenumber }}"
+                                                            class="form-control" id="inputEmail3" placeholder="897"
+                                                            max="4000" min="0">
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="phonenumber" class="form-control"
+                                                            id="inputEmail3" placeholder="+255 756 577 234"
+                                                            max="4000" min="0">
+                                                    </div>
+                                                @endif
+                                                {{-- value="{{$user->contactAddresses->phonenumber}}" --}}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-4 control-label">Postal
+                                                    address:</label>
+
+                                                @if (isset($user->contactAddresses->postal_address))
+                                                    <div class="col-sm-10">
+                                                        <input type="text"
+                                                            value="{{ $user->contactAddresses->postal_address }}"
+                                                            class="form-control" id="inputEmail3" max="4000"
+                                                            min="0">
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="postal_address" class="form-control"
+                                                            id="inputEmail3" placeholder="P.o Box 2443" max="4000"
+                                                            min="0">
+                                                    </div>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-4 control-label">Block No:</label>
-                                            @if (isset($user->physicalAddresses->block_number))
-                                                <input type="number" name="block_number"
-                                                    value="{{ $user->physicalAddresses->block_number }}"
-                                                    class="form-control" id="" placeholder="Makoka">
-                                            @else
-                                                <div class="col-sm-10">
-                                                    <input type="number" name="block_number" class="form-control"
-                                                        id="inputEmail3" placeholder="123" max="4000"
-                                                        min="0">
-                                                </div>
-                                            @endif
-                                            {{-- {{isset($user->physicalAddress) ? $user : 'Habil'}} --}}
-                                        </div>
-                                    </div>
                                 </div>
-                        </div>
+                                <!-- /.box-body -->
 
-
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Contact Details</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-6 control-label">Phone
-                                            number:</label>
-
-                                        @if (isset($user->contactAddresses->phonenumber))
-                                            <div class="col-sm-10">
-                                                <input type="text" name="phonenumber"
-                                                    value="{{ $user->contactAddresses->phonenumber }}"
-                                                    class="form-control" id="inputEmail3" placeholder="897"
-                                                    max="4000" min="0">
-                                            </div>
-                                        @else
-                                            <div class="col-sm-10">
-                                                <input type="text" name="phonenumber" class="form-control"
-                                                    id="inputEmail3" placeholder="+255 756 577 234" max="4000"
-                                                    min="0">
-                                            </div>
-                                        @endif
-                                        {{-- value="{{$user->contactAddresses->phonenumber}}" --}}
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left"
+                                        data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-4 control-label">Postal
-                                            address:</label>
+                            </form>
 
-                                        @if (isset($user->contactAddresses->postal_address))
-                                            <div class="col-sm-10">
-                                                <input type="text"
-                                                    value="{{ $user->contactAddresses->postal_address }}"
-                                                    class="form-control" id="inputEmail3" max="4000" min="0">
-                                            </div>
-                                        @else
-                                            <div class="col-sm-10">
-                                                <input type="text" name="postal_address" class="form-control"
-                                                    id="inputEmail3" placeholder="P.o Box 2443" max="4000"
-                                                    min="0">
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <!-- /.box-body -->
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </div>
-                        </form>
 
+                        <!-- Left col -->
+                        <section class="col-lg-7 connectedSortable">
+                            <!-- Custom tabs (Charts with tabs)-->
+
+                            <!-- /.nav-tabs-custom -->
+
+                            <!-- Chat box -->
+
+                            <!-- /.box (chat box) -->
+
+                            <!-- TO DO List -->
+
+                            <!-- /.box -->
+
+                            <!-- quick email widget -->
+
+
+                        </section>
+                        <!-- /.Left col -->
+                        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                        <section class="col-lg-5 connectedSortable">
+
+                            <!-- Map box -->
+
+                            <!-- /.box -->
+
+                            <!-- solid sales graph -->
+
+                            <!-- /.box -->
+
+                            <!-- Calendar -->
+
+                            <!-- /.box -->
+
+                        </section>
+                        <!-- right col -->
                     </div>
 
 
@@ -401,57 +439,18 @@
                     </section>
                     <!-- right col -->
                 </div>
+                <!-- /.row (main row) -->
 
-
-                <!-- Left col -->
-                <section class="col-lg-7 connectedSortable">
-                    <!-- Custom tabs (Charts with tabs)-->
-
-                    <!-- /.nav-tabs-custom -->
-
-                    <!-- Chat box -->
-
-                    <!-- /.box (chat box) -->
-
-                    <!-- TO DO List -->
-
-                    <!-- /.box -->
-
-                    <!-- quick email widget -->
-
-
-                </section>
-                <!-- /.Left col -->
-                <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                <section class="col-lg-5 connectedSortable">
-
-                    <!-- Map box -->
-
-                    <!-- /.box -->
-
-                    <!-- solid sales graph -->
-
-                    <!-- /.box -->
-
-                    <!-- Calendar -->
-
-                    <!-- /.box -->
-
-                </section>
-                <!-- right col -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.row (main row) -->
+        <!-- /.content-wrapper -->
+        @include('parts.footer')
 
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    @include('parts.footer')
+        <!-- Control Sidebar -->
 
-    <!-- Control Sidebar -->
-
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-                                                                                                 immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-@endsection
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+                                                                                                     immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    @endsection

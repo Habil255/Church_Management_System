@@ -278,7 +278,9 @@
                                                 <a onclick="sweet()" class="fa fa-trash-o "></a>
                                             </td>
                                     </tr>
-                                    @endforeach
+                                    @endforeach  
+                                    
+                                    
 
                                 </tbody>
                             </table>

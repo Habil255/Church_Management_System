@@ -39,7 +39,8 @@
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>Buyer PhoneNumber</th>
-                                        <th>Price</th>
+                                        <th>Value</th>
+                                        <th>Date Bought</th>
                                         <th>Picture</th>
                                     </tr>
                                 </thead>
@@ -50,7 +51,8 @@
                                         <td>{{ $resource->category }}</td>
                                         <td>{{ $resource->buyer_number }}</td>
                                         <td>{{ number_format($resource->price) }} Tsh</td>
-                                        <td> <img src="resources/{{$resource->picture}}" width="50px" height="50px" alt=""></td>
+                                        <td>{{ $resource->date}}</td>
+                                        <td> <img src="resources/{{$resource->picture}}" width="100px" height="100px" alt=""></td>
                                        
                                        
                                     </tr>
