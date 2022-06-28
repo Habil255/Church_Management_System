@@ -30,8 +30,9 @@ class AccountantController extends Controller
     {
         //
         $prices = Resources::get()->sum('price');
-        $musicResource = Resources::where('category','Music')->get()->sum('price');
+        $musicResource = Resources::where('category','Musics')->get()->sum('price');
         $furnitureResource = Resources::where('category','Furnitures')->get()->sum('price');
+        
         // return $musicResource;
         $resources = Resources::get();
         // return $prices;
@@ -96,7 +97,8 @@ class AccountantController extends Controller
     {
         //
         $resources = Resources::orderBy('name', 'asc')->get();
-        $pdf = PDF::loadView('accountant.resourcesPDF', compact('resources'));
+        $totalPromises = Resources::sum('price');
+        $pdf = PDF::loadView('accountant.resourcesPDF', compact('resources', 'totalPromises'));
         $pdf->setPaper('legal', 'landscape');
         return $pdf->download('resources.pdf'); // download as pdf
     }

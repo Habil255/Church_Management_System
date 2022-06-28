@@ -96,11 +96,11 @@ Route::prefix('pastor')->middleware('PastorCheck')->group(function () {
 
 
     // CREATING COMMITEES
-    Route::get('/create-commitee', [CommiteeController::class, 'index']);
+    Route::get('/create_commitee', [CommiteeController::class, 'index']);
     Route::post('/commitee-create', [CommiteeController::class, 'createCommitee'])->name('create.category');
-    Route::get('/assign-commitee', [CommiteeController::class, 'searchMember'])->name('commitee.member');
+    Route::get('/search_commitee', [CommiteeController::class, 'searchMember'])->name('search_member');
 
-    Route::post('/assign-member-commitee', [CommiteeController::class, 'storeCommiteeMember'])->name('commitee.assign');
+    Route::post('/assign_member_commitee', [CommiteeController::class, 'storeCommiteeMember'])->name('commitee.assign');
 
     Route::get('/pdf',[PastorController::class,'generatePDF']);
 });

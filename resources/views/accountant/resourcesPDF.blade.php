@@ -29,7 +29,7 @@
                             <center><h4> MWENGE CHURCH</h4><center>
                                 <u><center><h5> DATE:   {{date('Y-m-d');}}</h5><center></u>
                         <div class="card-header">
-                            <center><h3 class="card-title center">LIST OF REGISTERED RESOURCES</h3><center>
+                            <center><h3 class="card-title center">LIST OF MEMBERS RESOURCES</h3><center>
                         </div>
                         {{-- <!-- /.card-header -->
                         <div class="card-body"> --}}
@@ -44,21 +44,21 @@
                                         <th>Picture</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($resources ?? '' as $resource)
-                                    <tr>
+                      @foreach ($resources as $resource)
+    
+
                                         <td>{{ $resource->name }}</td>
                                         <td>{{ $resource->category }}</td>
                                         <td>{{ $resource->buyer_number }}</td>
                                         <td>{{ number_format($resource->price) }} Tsh</td>
+                                        {{-- <td> <img src="resources/{{$resource->picture}}" width="50px" height="50px" alt=""></td> --}}
                                         <td>{{ $resource->date}}</td>
                                         <td> <img src="resources/{{$resource->picture}}" width="100px" height="100px" alt=""></td>
-                                       
-                                       
+
+
                                     </tr>
                                     @endforeach
                                 </tbody>
-
                             </table>
                         {{-- </div> --}}
                         <!-- /.card-body -->

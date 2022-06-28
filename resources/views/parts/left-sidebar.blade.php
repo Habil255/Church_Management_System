@@ -167,7 +167,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/pastor/create-commitee"><i class="fa fa-circle-o"></i>Create Commitee</a></li>
+                        <li><a href="/pastor/create_commitee"><i class="fa fa-circle-o"></i>Create Commitee</a></li>
                         <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i>Manage Commitees</a></li>
                     </ul>
                 </li>

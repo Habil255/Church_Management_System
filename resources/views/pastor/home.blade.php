@@ -201,7 +201,7 @@
 
                         <div class="box box-info">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Users Activation Rate</h3>
+                                <h3 class="box-title">Users Activation Rate (In %)</h3>
                                 {{-- {{$usersMonthlyReg}} --}}
 
                                 <div class="box-tools pull-right">

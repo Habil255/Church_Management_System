@@ -684,11 +684,9 @@
                                         <select id="category" class="form-control" name="category" required
                                             autocomplete="job_title" autofocous>
                                             <option value="" disabled selected hidden>Choose a Category</option>
-                                            <option>Furnitures</option>
-                                            <option>Musics</option>
-                                            <option>Electronics</option>
-                                            <option>Cleaning</option>
-                                            <option>Instrumentals</option>
+                                            <option>Ahadi ya Jengo</option>
+                                            <option>Ahadi ya Wakili</option>
+                                            <option>Ahadi ya Elimu</option>
                                         </select>
 
                                     </div>

@@ -262,21 +262,21 @@ class AdminController extends Controller
         return response()->json($res);
     }
 
-    public function searchUserDetails(Request $request)
-    {
-        //
-        $user = User::select('*')
-            ->where("first_name", "LIKE", "%{$request->value}%")
-            ->limit(8)
-            ->get();
-        $res = [];
-        foreach ($user as $user) {
-            $first_name = $user->first_name;
-            $last_name = $user->last_name;
-            $res[] = array("name" => "$first_name $last_name");
-        }
-        return response()->json($res);
-    }
+    // public function searchUserDetails(Request $request)
+    // {
+    //     //
+    //     $user = User::select('*')
+    //         ->where("first_name", "LIKE", "%{$request->value}%")
+    //         ->limit(8)
+    //         ->get();
+    //     $res = [];
+    //     foreach ($user as $user) {
+    //         $first_name = $user->first_name;
+    //         $last_name = $user->last_name;
+    //         $res[] = array("name" => "$first_name $last_name");
+    //     }
+    //     return response()->json($res);
+    // }
 
 
     public function approve($id)

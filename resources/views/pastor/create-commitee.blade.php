@@ -154,15 +154,10 @@
                                 <div class="box-body">
                                     <div class="form-group mb-3">
                                         <label for="select2Multiple">Church Member</label>
-                                        {{-- <select class="select2-multiple form-control" name="tags[]" multiple="multiple"
-                                            id="select2Multiple">
-                                            <option value="tag1">tag1</option>
-                                            <option value="tag2">tag2</option>
-                                            <option value="tag3">tag3</option>
-                                        </select> --}}
+
                                         <input type="text" class="typeahead form-control" placeholder="Search a user..."
-                                                name="name" id="assignToCommitee" autocomplete="off">
-                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            name="name" id="searchCommitee" autocomplete="off">
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
                                     </div>
                                     <span class="text-danger">{{ $errors->first('title') }}</span>
                                     <div class="form-group">
@@ -430,33 +425,19 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                                                                                                         immediately after the control sidebar -->
+                                                                                                             immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     @endsection
     @push('scripts')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+        
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready(function() {
                 $('#table_id').DataTable();
             });
         </script>
-
-<script type="text/javascript">
-    url = "{{ route('commitee.member') }}";
-    $('#assignToCommitee').typeahead({
-        source: function(value, process) {
-            return $.get(url, {
-                value: value
-            }, function(data) {
-                // alert(data);
-                // return process(data);
-                console.log(data);
-            });
-        }
-    });
-</script>
+        <script src="{{asset('search.js')}}"></script>
     @endpush
+
+    

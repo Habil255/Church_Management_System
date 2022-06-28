@@ -47,19 +47,22 @@ class CommiteeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function searchMember(Request $request)
+
     {
-        //
+        $query = $request->input('query');
+
+        // dd($request);
         $user = User::select('*')
-        ->where("first_name", "LIKE", "%{$request->value}%")
-        ->limit(8)
-        ->get();
-    $res = [];
-    foreach ($user as $user) {
-        $first_name = $user->first_name;
-        $last_name = $user->last_name;
-        $res[] = array("name" => "$first_name $last_name");
-    }
-    return response()->json($res);
+            ->where("first_name", "LIKE", "%{$query}%")
+            ->limit(8)
+            ->get();
+        $res = [];
+        foreach ($user as $user) {
+            $first_name = $user->first_name;
+            $last_name = $user->last_name;
+            $res[] = array("name" => "$first_name $last_name");
+        }
+        return response()->json($res);
         // $result = (new AdminController)->searchMember($request);
     }
 
@@ -72,12 +75,12 @@ class CommiteeController extends Controller
     public function storeCommiteeMember(Request $request)
     {
         //
-        $request->validate([
-            'name' => ['required'],
-            'commitee' => ['required'],
-        ]);
-        $user = $request->username;
-        return $user;
+        // $request->validate([
+        //     'name' => ['required'],
+        //     'commitee' => ['required'],
+        // ]);
+        // $user = $request->username;
+        // return $user;
     }
 
     /**
