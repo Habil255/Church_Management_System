@@ -142,9 +142,9 @@
                                 <h3 class="box-title">Locate the Commitee Members</h3>
                             </div>
                             <!-- /.box-header -->
-                            @if (Session::has('Role_added'))
+                            @if (Session::has('commitee_assigned'))
                                 <div class="alert alert-success" role="alert">
-                                    <p>{{ Session::get('Role_added') }}</p>
+                                    <p>{{ Session::get('commitee_assigned') }}</p>
                                 </div>
                             @endif
                             <!-- form start -->
@@ -186,7 +186,7 @@
                 <!-- /.row (main row) -->
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">User with their Roles</h3>
+                        <h3 class="box-title">Commitees with their Members</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
@@ -194,20 +194,16 @@
                         <table id="table_id" class="display">
                             <thead>
                                 <tr>
-                                    <th>ID No</th>
-                                    <th style="width: 20%">First Name</th>
-                                    <th style="width: 20%">Last Name</th>
-                                    <th style="width: 20%">Email</th>
-                                    <th style="width: 20%">Role</th>
+                                    <th>Commitee No</th>
+                                    <th style="width: 20%">Name</th>
+                                    <th style="width: 20%">Commitee Description</th>
+                                    <th style="width: 20%">Number Of Members</th>
+                                    <th style="width: 20%">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
+                                    
                                 </tr>
                             </tbody>
                         </table>

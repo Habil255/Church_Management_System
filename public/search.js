@@ -5,10 +5,7 @@
             return $.get(xx, {
                 query: query
             }, function (data) {
-                // alert(data);
                 return process(data);
-                // console.log(data);
-                // // console.log(data);
             });
         }
     });

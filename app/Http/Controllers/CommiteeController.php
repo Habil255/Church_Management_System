@@ -16,6 +16,16 @@ class CommiteeController extends Controller
     public function index()
     {
         //
+        // $commitees = Commitee::whereHas('users')
+        //                 ->groupBy('category')->get();
+        // return $commitees;
+        // foreach ($commitees as $commitee) {
+        //     # code...
+        //     $users = User::whereHas('committees')->count('id');
+        //     return response()->json($users);
+        // }
+        // return view('admin.create-roles', compact('roles', 'userDetails'));
+
         $commitees = Commitee::all();
         return view('pastor.create-commitee', compact('commitees'));
     }
@@ -74,13 +84,32 @@ class CommiteeController extends Controller
      */
     public function storeCommiteeMember(Request $request)
     {
+        $request->validate([
+            'name' => ['required'],
+            'category' => ['required'],
+        ]);
+
+        $church_member = $request->name;
+        $commitee = $request->category;
         //
-        // $request->validate([
-        //     'name' => ['required'],
-        //     'commitee' => ['required'],
+        // $user\ = Role::create([
+        //     'title' => $request->first_name,
+        //     'description' => $request->role,
         // ]);
-        // $user = $request->username;
-        // return $user;
+        // return response()->json($userRoles);
+        $names = explode(' ', $church_member);
+        $userId = User::findOrFail(1)
+            ->where('first_name', $names[0])
+            ->where('last_name', $names[1])
+            ->first();
+        $commiteeId = Commitee::findOrFail(1)
+            ->where('category', $commitee)
+            ->first();
+        // return $roleId;
+        $assignedCommitee = $userId->committees()->get();
+        $userId->committees()
+            ->sync($commiteeId);
+        return back()->with('commitee_assigned', 'The Member has already being assigned');
     }
 
     /**
