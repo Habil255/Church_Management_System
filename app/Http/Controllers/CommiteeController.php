@@ -16,17 +16,9 @@ class CommiteeController extends Controller
     public function index()
     {
         //
-        // $commitees = Commitee::whereHas('users')
-        //                 ->groupBy('category')->get();
+        $commitees = Commitee::withCount('users')->get();
         // return $commitees;
-        // foreach ($commitees as $commitee) {
-        //     # code...
-        //     $users = User::whereHas('committees')->count('id');
-        //     return response()->json($users);
-        // }
-        // return view('admin.create-roles', compact('roles', 'userDetails'));
 
-        $commitees = Commitee::all();
         return view('pastor.create-commitee', compact('commitees'));
     }
 
@@ -118,9 +110,11 @@ class CommiteeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function viewCommitee($id)
     {
         //
+        $commitee = Commitee::findOrFail($id);
+        return view('pastor.test',compact('commitee'));
     }
 
     /**
@@ -141,8 +135,13 @@ class CommiteeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteCommitee($id)
     {
         //
+        return 4;
+        $commitee = Commitee::findorFail($id);
+        // return $role->title;
+        // $commitee->delete();
+        // return back()->with('commitee_deleted', 'Role has been deleted');
     }
 }

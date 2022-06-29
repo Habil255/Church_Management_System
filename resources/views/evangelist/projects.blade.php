@@ -118,7 +118,10 @@
                         <!-- /.col -->
                     </div>
                     <!-- /.row (main row) -->
-
+                    <button type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#project-modal">
+                                    Add Project
+                                </button>
             </section>
             <!-- /.content -->
         </div>
@@ -326,6 +329,144 @@
                 <!-- /.tab-pane -->
             </div>
         </aside>
+
+
+        <div class="modal fade" id="project-modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add a Church Member</h4>
+                    </div>
+                    <div class="box box-primary" id="create-roles">
+                        <!-- /.box-header -->
+
+                        <!-- form start -->
+                        <form role="form" method="POST" action="{{ route('admin.addMember') }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control" placeholder="Jacob" name="first_name"
+                                                autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Middle Name</label>
+                                            <input type="text" class="form-control" placeholder="James"
+                                                name="middle_name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control" placeholder="Lomell" name="last_name"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
+                                    <div class="col-sm-4 form-group">
+                                        <label>Username</label>
+                                        <input type="Address" class="form-control" placeholder="Jam224" name="username"
+                                            required>
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>email (optional)</label>
+                                        <input type="Address" class="form-control" placeholder="Jam224@gmail.com"
+                                            name="email">
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" placeholder="******" name="password"
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <!-- radio -->
+                                        <div class="form-group">
+                                            <label for="">Gender</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="M" name="gender">
+                                                <label class="form-check-label">Male</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="F" name="gender">
+                                                <label class="form-check-label">Female</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 form-group">
+                                        <label>Date of Birth:</label>
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                            <input type="date" name="date_of_birth"
+                                                class="form-control datetimepicker-input" data-target="#reservationdate"
+                                                required />
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
+                                    <div class="col-sm-3 form-group">
+                                        <label>Place of Birth</label>
+                                        <input type="Address" name="place_of_birth" class="form-control"
+                                            placeholder="Mabibo">
+                                    </div>
+                                    <div class="col-sm-5 form-group">
+                                        <label for="category" class=" col-form-label "
+                                            style="color: black">{{ __('Marrital Status') }}</label>
+
+                                        <select id="category" class="form-control" name="marital_status" required
+                                            autocomplete="job_title" autofocous>
+
+                                            <option value="Select Status" disabled>Marrital Status</option>
+                                            <option>Married</option>
+                                            <option>Not Married</option>
+                                        </select>
+
+                                        <span class="text-danger">{{ $errors->first('role') }}</span>
+                                        @if ($errors->any())
+                                            <p style="color: red">{{ $errors->first() }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Spouse Name(Optional)</label>
+                                            <input type="text" class="form-control" placeholder="Lomell"
+                                                name="spouse_name" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
                                                                              immediately after the control sidebar -->

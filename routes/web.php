@@ -101,6 +101,9 @@ Route::prefix('pastor')->middleware('PastorCheck')->group(function () {
     Route::get('/search_commitee', [CommiteeController::class, 'searchMember'])->name('search_member');
 
     Route::post('/assign_member_commitee', [CommiteeController::class, 'storeCommiteeMember'])->name('commitee.assign');
+    Route::get('/delete_commitee/{id}', [CommiteeController::class, 'deleteCommitee'])->name('pastor.deleteCommitee');
+    Route::get('/view_commitee/{id}', [CommiteeController::class, 'viewCommitee']);
+    
 
     Route::get('/pdf',[PastorController::class,'generatePDF']);
 });

@@ -198,13 +198,38 @@
                                     <th style="width: 20%">Name</th>
                                     <th style="width: 20%">Commitee Description</th>
                                     <th style="width: 20%">Number Of Members</th>
+                                    <th style="width: 20%">Created at</th>
                                     <th style="width: 20%">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    
+                                    @foreach ($commitees as $commitee)
+                                        <td>{{ $commitee->id }}</td>
+                                        <td>{{ $commitee->category }}</td>
+                                        <td>
+                                            {{ Illuminate\Support\Str::of($commitee->description)->words(5) }}
+                                        </td>
+                                        <td>
+                                            {{ $commitee->users_count }}
+                                        </td>
+                                        <td>{{ $commitee->created_at->diffForHumans() }}</td>
+                                        <td>
+                                            {{-- <button class="btn btn-primary btn-sm">Edit</button> --}}
+                                            <a href="/pastor/view_commitee/{{ $commitee->id }}"
+                                                 class="fa fa-eye"
+                                               ></a>
+                                            <a onclick=deleteCommitee()
+                                                 class="fa fa-trash-o"
+                                               ></a>
+                                        </td>
+                                        {{-- <td>
+                                            @foreach ($commitee->roles as $role)
+                                                <span class="label label-primary">{{ $role->title }}</span>
+                                            @endforeach
+                                        </td> --}}
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -434,6 +459,7 @@
             });
         </script>
         <script src="{{asset('search.js')}}"></script>
+        <script src="{{asset('sweetalerts.js')}}"></script>
     @endpush
 
     

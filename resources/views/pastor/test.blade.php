@@ -1,341 +1,20 @@
 @extends('pages.main')
-@section('contents')
-    <form role="form" enctype="multipart/form-data">
-        @csrf
-        <div class="box-body">
-            <div class="row">
-                <div class="col-sm-4">
-                    <!-- text input -->
-                    <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" value="{{ $memberDetails->first_name }}" class="form-control" value=""
-                            placeholder="Jacob" name="first_name" autocomplete="off">
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Middle Name</label>
-                        <input type="text" class="form-control" placeholder="James" name="middle_name">
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Lomell" name="last_name">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
-                <div class="col-sm-4 form-group">
-                    <label>Username</label>
-                    <input type="Address" class="form-control" placeholder="Jam224" name="username">
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label>email (optional)</label>
-                    <input type="Address" class="form-control" placeholder="Jam224@gmail.com" name="email">
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" placeholder="******" name="password">
-                </div>
-
-                <div class="col-sm-2">
-                    <!-- radio -->
-                    <div class="form-group">
-                        <label for="">Gender</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="M" name="gender">
-                            <label class="form-check-label">Male</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="F" name="gender">
-                            <label class="form-check-label">Female</label>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-sm-3 form-group">
-                    <label>Date of Birth:</label>
-                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="date" name="date_of_birth" class="form-control datetimepicker-input"
-                            data-target="#reservationdate" />
-
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="row">
-                {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
-                <div class="col-sm-3 form-group">
-                    <label>Place of Birth</label>
-                    <input type="Address" name="place_of_birth" class="form-control" placeholder="Mabibo">
-                </div>
-                <div class="col-sm-5 form-group">
-                    <label for="category" class=" col-form-label "
-                        style="color: black">{{ __('Marrital Status') }}</label>
-
-                    <select id="category" class="form-control" name="marital_status" required autocomplete="job_title"
-                        autofocous>
-
-                        <option value="Select Status" disabled>Marrital Status</option>
-                        <option>Married</option>
-                        <option>Not Married</option>
-                    </select>
-
-                    <span class="text-danger">{{ $errors->first('role') }}</span>
-                    @if ($errors->any())
-                        <p style="color: red">{{ $errors->first() }}</p>
-                    @endif
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Spouse Name(Optional)</label>
-                        <input type="text" class="form-control" placeholder="Lomell" name="spouse_name">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.box-body -->
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
-        </div>
-    </form>
+@section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 @endsection
-
-
-
-
-
-
-<div class="col-md-12">
-
-    <div class="box box-default">
-        <div class="box-header with-border">
-            <h3 class="box-title">User Profile</h3>
-
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                        class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
-                        class="fa fa-remove"></i></button>
-            </div>
-        </div>
-        <!-- /.box-header -->
-        <form role="form" enctype="multipart/form-data">
-            @csrf
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>First Name</label>
-                            <input type="text" value="{{ $user->first_name }}" class="form-control"
-                                name="first_name" autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label>Middle Name</label>
-                            <input type="text" class="form-control" value="{{ $user->first_name }}"
-                                name="middle_name">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" class="form-control" value="{{ $user->first_name }}"
-                                name="last_name">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
-                    <div class="col-sm-4 form-group">
-                        <label>Username</label>
-                        <input type="Address" class="form-control" value="{{ $user->first_name }}" name="username">
-                    </div>
-                    <div class="col-sm-3 form-group">
-                        <label>email (optional)</label>
-                        <input type="Address" class="form-control" value="{{ $user->first_name }}" name="email">
-                    </div>
-
-
-                    <div class="form-group col-sm-2">
-                        <label for="">Gender</label>
-                        @if ($user->gender == 'M')
-                            <input class="form-check-input" type="text" value="Male" name="gender" disabled>
-                        @elseif ($user->gender == 'F')
-                            <input class="form-check-input" type="text" value="Female" name="gender" disabled>
-                        @endif
-
-
-                    </div>
-                    <div class="col-sm-3 form-group">
-                        <label>Date of Birth:</label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="date" name="date_of_birth" class="form-control datetimepicker-input"
-                                data-target="#reservationdate" />
-
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="row">
-                    {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
-                    <div class="col-sm-3 form-group">
-                        <label>Place of Birth</label>
-                        <input type="Address" name="place_of_birth" class="form-control" placeholder="Mabibo">
-                    </div>
-                    <div class="col-sm-5 form-group">
-                        <label for="category" class=" col-form-label "
-                            style="color: black">{{ __('Marrital Status') }}</label>
-                        <input type="text" name="marital_status" class="form-control" placeholder="Mabibo">
-                        <span class="text-danger">{{ $errors->first('role') }}</span>
-                        @if ($errors->any())
-                            <p style="color: red">{{ $errors->first() }}</p>
-                        @endif
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label>Spouse Name(Optional)</label>
-                            <input type="text" class="form-control" placeholder="Lomell" name="spouse_name">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="box-header with-border">
-                <h3 class="box-title">Address Details</h3>
-            </div>
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">District</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Ward</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Street</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-6 control-label">House No:</label>
-
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="inputEmail3" placeholder="132"
-                                    max="4000" min="0">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-5">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-4 control-label">Block No:</label>
-
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="inputEmail3" placeholder="123"
-                                    max="4000" min="0">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.box-body -->
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
-            </div>
-        </form>
-
-    </div>
-
-
-    <!-- Left col -->
-    <section class="col-lg-7 connectedSortable">
-        <!-- Custom tabs (Charts with tabs)-->
-
-        <!-- /.nav-tabs-custom -->
-
-        <!-- Chat box -->
-
-        <!-- /.box (chat box) -->
-
-        <!-- TO DO List -->
-
-        <!-- /.box -->
-
-        <!-- quick email widget -->
-
-
-    </section>
-    <!-- /.Left col -->
-    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-    <section class="col-lg-5 connectedSortable">
-
-        <!-- Map box -->
-
-        <!-- /.box -->
-
-        <!-- solid sales graph -->
-
-        <!-- /.box -->
-
-        <!-- Calendar -->
-
-        <!-- /.box -->
-
-    </section>
-    <!-- right col -->
-</div>
-
-
-
-
-
-@extends('pages.main')
 @section('contents')
     <div class="wrapper">
 
         @include('parts.navbar')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('parts.left-sidebar')
+
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
+                    Committee Control
                     <small>Control panel</small>
                 </h1>
                 <ol class="breadcrumb">
@@ -347,210 +26,79 @@
             <!-- Main content -->
             <section class="content">
                 <!-- Small boxes (Stat box) -->
-                <div class="row">
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-aqua"> 
-                            <div class="inner">
-                                <h3>150</h3>
 
-                                <p>New Orders</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                {{-- //The Cards Area --}}
+                @include('parts.left-sidebar')
 
-                                <p>Bounce Rate</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <h3>{{ $totalUsers }}</h3>
-
-                                <p>Church Members</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="/pastor/view-users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <h3>65</h3>
-
-                                <p>Unique Visitors</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div>
                 <!-- /.row -->
                 <!-- Main row -->
                 <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-7 connectedSortable">
+                        <div class="box box-primary" id="create-roles">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Members of <b>{{$commitee->category}}</b></h3>
+                            </div>
+                            <!-- /.box-header -->
+                            @if (Session::has('category-added'))
+                                <div class="alert alert-success" role="alert">
+                                    <p>{{ Session::get('category-added') }}</p>
+                                </div>
+                            @endif
+                            <!-- form start -->
+                            <form role="form"  action="#"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Commitee Name</label>
+                                        <input type="text" class="form-control" id="create-role"
+                                           value="{{$commitee->category}}" name="category">
+                                        <span class="text-danger">{{ $errors->first('title') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Description</label>
+                                        <textarea type="text" class="form-control" id="exampleInputPassword1"  name='description'
+                                            cols="30" rows="5">{{$commitee->description}}</textarea>
+                                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                                    </div>
+                                        
+                                    <div class="form-group"> 
+                                        
+                                        <label for="exampleInputPassword1">Members</label>
+                                        <textarea type="text" class="form-control"  id="exampleInputPassword1" name='description'
+                                            cols="30" rows="5">
+                                            @foreach ($commitee->users as $user )
+                                           {{$user->first_name. " ". $user->last_name}}
+                                            @endforeach
+                                        </textarea>
+                                       
+                                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary pull-right">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
 
 
 
+                        
+
+
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-5 connectedSortable">
+
+                        
+
+                    </section>
                     
-                    <!-- Left col -->
-                    <section class="col-lg-7 connectedSortable">
-                        <!-- Custom tabs (Charts with tabs)-->
-
-                        <!-- /.nav-tabs-custom -->
-
-                        <!-- Chat box -->
-
-                        <!-- /.box (chat box) -->
-
-                        <!-- TO DO List -->
-
-                        <!-- /.box -->
-
-                        <!-- quick email widget -->
-                        <div class="box box-info">
-                            <div class="box-header">
-                                <i class="fa fa-envelope"></i>
-
-                                <h3 class="box-title">Quick Email</h3>
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <button type="button" class="btn btn-info btn-sm" data-widget="remove"
-                                        data-toggle="tooltip" title="Remove">
-                                        <i class="fa fa-times"></i></button>
-                                </div>
-                                <!-- /. tools -->
-                            </div>
-                            <div class="box-body">
-                                <form action="#" method="post">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="subject" placeholder="Subject">
-                                    </div>
-                                    <div>
-                                        <textarea class="textarea" placeholder="Message"
-                                            style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="box-footer clearfix">
-                                <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                                    <i class="fa fa-arrow-circle-right"></i></button>
-                            </div>
-                        </div>
-
-                    </section>
-                    <!-- /.Left col -->
-                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                    <section class="col-lg-5 connectedSortable">
-                        <!-- solid sales graph -->
-                        <div class="box box-solid bg-teal-gradient">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-
-                                <h3 class="box-title">Sales Graph</h3>
-
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i
-                                            class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div class="chart" id="line-chart" style="height: 250px;"></div>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer no-border">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                        <input type="text" class="knob" data-readonly="true" value="20"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">Mail-Orders</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                        <input type="text" class="knob" data-readonly="true" value="50"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">Online</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-xs-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true" value="30"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">In-Store</div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.box-footer -->
-                        </div>
-                        <!-- /.box -->
-                        <!-- Map box -->
-
-                        <!-- /.box -->
-
-                        <!-- solid sales graph -->
-                        <div class="box box-solid bg-teal-gradient">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-
-                                <h3 class="box-title">Sales Graph</h3>
-
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i
-                                            class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div class="chart" id="line-chart" style="height: 250px;"></div>
-                            </div>
-                            <!-- /.box-body -->
-
-                            <!-- /.box-footer -->
-                        </div>
-                        <!-- /.box -->
-
-                        <!-- Calendar -->
-
-                        <!-- /.box -->
-
-                    </section>
                     <!-- right col -->
                 </div>
                 <!-- /.row (main row) -->
@@ -561,566 +109,16 @@
         <!-- /.content-wrapper -->
         @include('parts.footer')
 
-        <!-- Control Sidebar -->
-
-        <!-- /.control-sidebar -->
-        <!-- Add the sidebar's background. This div must be placed
-                                                                         immediately after the control sidebar -->
-        <div class="control-sidebar-bg"></div>
-
-
-
-        {{-- MODALS --}}
 
 
 
 
-        {{-- The Modal to View a single user details --}}
-    @endsection
 
-    <div class="wrapper">
 
-        @include('parts.navbar')
-        <!-- Left side column. contains the logo and sidebar -->
-        @include('parts.left-sidebar')
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Dashboard
-                    <small>Control panel</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
-                </ol>
-            </section>
 
-            <!-- Main content -->
-            <section class="content">
-                <!-- Small boxes (Stat box) -->
-                <div class="row">
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-aqua">
-                            <div class="inner">
-                                <h3>150</h3>
 
-                                <p>Church Resources <br>Registered</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                                <p>Users Contribution <br> Rate</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <h3>44</h3>
-
-                                <p>Total Categories</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <h3>65</h3>
-
-                                <p>Unique Visitors</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div>
-                <!-- /.row -->
-                <!-- Main row -->
-                <div class="row">
-                    <!-- Left col -->
-                    <section class="col-lg-7 connectedSortable">
-                        <!-- Custom tabs (Charts with tabs)-->
-                        <div class="nav-tabs-custom">
-                            <!-- Tabs within a box -->
-                            <ul class="nav nav-tabs pull-right">
-                                <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                                {{-- <li><a href="#sales-chart" data-toggle="tab">Donut</a></li> --}}
-                                <li class="pull-left header"><i class="fa fa-inbox"></i> Members Contributions</li>
-                            </ul>
-                            <div class="tab-content no-padding">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart"
-                                    style="position: relative; height: 300px;"></div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.nav-tabs-custom -->
-
-                        <!-- Chat box -->
-                        {{-- <div class="box box-success">
-                            <div class="box-header">
-                                <i class="fa fa-comments-o"></i>
-
-                                <h3 class="box-title">Chat</h3>
-
-                                <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                                    <div class="btn-group" data-toggle="btn-toggle">
-                                        <button type="button" class="btn btn-default btn-sm active"><i
-                                                class="fa fa-square text-green"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-sm"><i
-                                                class="fa fa-square text-red"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-body chat" id="chat-box">
-                                <!-- chat item -->
-                                <div class="item">
-                                    <img src="{{ asset('dist/img/user4-128x128.jpg') }}" alt="user image"
-                                        class="online">
-
-                                    <p class="message">
-                                        <a href="#" class="name">
-                                            <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>
-                                                2:15</small>
-                                            Mike Doe
-                                        </a>
-                                        I would like to meet you to discuss the latest news about
-                                        the arrival of the new theme. They say it is going to be one the
-                                        best themes on the market
-                                    </p>
-                                    <div class="attachment">
-                                        <h4>Attachments:</h4>
-
-                                        <p class="filename">
-                                            Theme-thumbnail-image.jpg
-                                        </p>
-
-                                        <div class="pull-right">
-                                            <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
-                                        </div>
-                                    </div>
-                                    <!-- /.attachment -->
-                                </div>
-                                <!-- /.item -->
-                                <!-- chat item -->
-                                <div class="item">
-                                    <img src="{{ asset('dist/img/user3-128x128.jpg') }}" alt="user image"
-                                        class="offline">
-
-                                    <p class="message">
-                                        <a href="#" class="name">
-                                            <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>
-                                                5:15</small>
-                                            Alexander Pierce
-                                        </a>
-                                        I would like to meet you to discuss the latest news about
-                                        the arrival of the new theme. They say it is going to be one the
-                                        best themes on the market
-                                    </p>
-                                </div>
-                                <!-- /.item -->
-                                <!-- chat item -->
-                                <div class="item">
-                                    <img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
-
-                                    <p class="message">
-                                        <a href="#" class="name">
-                                            <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>
-                                                5:30</small>
-                                            Susan Doe
-                                        </a>
-                                        I would like to meet you to discuss the latest news about
-                                        the arrival of the new theme. They say it is going to be one the
-                                        best themes on the market
-                                    </p>
-                                </div>
-                                <!-- /.item -->
-                            </div>
-                            <!-- /.chat -->
-                            <div class="box-footer">
-                                <div class="input-group">
-                                    <input class="form-control" placeholder="Type message...">
-
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-success"><i
-                                                class="fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- /.box (chat box) -->
-
-                        <!-- TO DO List -->
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <i class="ion ion-clipboard"></i>
-
-                                <h3 class="box-title">To Do List</h3>
-
-                                <div class="box-tools pull-right">
-                                    <ul class="pagination pagination-sm inline">
-                                        <li><a href="#">&laquo;</a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">&raquo;</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                                <ul class="todo-list">
-                                    <li>
-                                        <!-- drag handle -->
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <!-- checkbox -->
-                                        <input type="checkbox" value="">
-                                        <!-- todo text -->
-                                        <span class="text">Design a nice theme</span>
-                                        <!-- Emphasis label -->
-                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                                        <!-- General tools such as edit or delete-->
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Make the theme responsive</span>
-                                        <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Let theme shine like a star</span>
-                                        <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Let theme shine like a star</span>
-                                        <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Check your messages and notifications</span>
-                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </span>
-                                        <input type="checkbox" value="">
-                                        <span class="text">Let theme shine like a star</span>
-                                        <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                                        <div class="tools">
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash-o"></i>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix no-border">
-                                <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>
-                                    Add item</button>
-                            </div>
-                        </div>
-                        <!-- /.box -->
-
-                        <!-- quick email widget -->
-                        <div class="box box-info">
-                            <div class="box-header">
-                                <i class="fa fa-envelope"></i>
-
-                                <h3 class="box-title">Quick Email</h3>
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <button type="button" class="btn btn-info btn-sm" data-widget="remove"
-                                        data-toggle="tooltip" title="Remove">
-                                        <i class="fa fa-times"></i></button>
-                                </div>
-                                <!-- /. tools -->
-                            </div>
-                            <div class="box-body">
-                                <form action="#" method="post">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="subject" placeholder="Subject">
-                                    </div>
-                                    <div>
-                                        <textarea class="textarea" placeholder="Message"
-                                            style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="box-footer clearfix">
-                                <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                                    <i class="fa fa-arrow-circle-right"></i></button>
-                            </div>
-                        </div>
-
-                    </section>
-                    <!-- /.Left col -->
-                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                    <section class="col-lg-5 connectedSortable">
-
-                        <!-- Map box -->
-                        {{-- <div class="box box-solid bg-light-blue-gradient">
-                            <div class="box-header">
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <button type="button" class="btn btn-primary btn-sm daterange pull-right"
-                                        data-toggle="tooltip" title="Date range">
-                                        <i class="fa fa-calendar"></i></button>
-                                    <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse"
-                                        data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
-                                        <i class="fa fa-minus"></i></button>
-                                </div>
-                                <!-- /. tools -->
-
-                                <i class="fa fa-map-marker"></i>
-
-                                <h3 class="box-title">
-                                    Visitors
-                                </h3>
-                            </div>
-                            <div class="box-body">
-                                <div id="world-map" style="height: 250px; width: 100%;"></div>
-                            </div>
-                            <!-- /.box-body-->
-                            <div class="box-footer no-border">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                        <div id="sparkline-1"></div>
-                                        <div class="knob-label">Visitors</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                        <div id="sparkline-2"></div>
-                                        <div class="knob-label">Online</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-xs-4 text-center">
-                                        <div id="sparkline-3"></div>
-                                        <div class="knob-label">Exists</div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                        </div> --}}
-                        <!-- /.box -->
-
-                        <!-- solid sales graph -->
-                        <div class="box box-solid bg-teal-gradient">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-
-                                <h3 class="box-title">Sales Graph</h3>
-
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i
-                                            class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div class="chart" id="line-chart" style="height: 250px;"></div>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer no-border">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                        <input type="text" class="knob" data-readonly="true" value="20"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">Mail-Orders</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                        <input type="text" class="knob" data-readonly="true" value="50"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">Online</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-xs-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true" value="30"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                        <div class="knob-label">In-Store</div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.box-footer -->
-                        </div>
-                        <!-- /.box -->
-
-                        <!-- Calendar -->
-                        <div class="box box-solid bg-green-gradient">
-                            <div class="box-header">
-                                <i class="fa fa-calendar"></i>
-
-                                <h3 class="box-title">Calendar</h3>
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <!-- button with a dropdown -->
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle"
-                                            data-toggle="dropdown">
-                                            <i class="fa fa-bars"></i></button>
-                                        <ul class="dropdown-menu pull-right" role="menu">
-                                            <li><a href="#">Add new event</a></li>
-                                            <li><a href="#">Clear events</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">View calendar</a></li>
-                                        </ul>
-                                    </div>
-                                    <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i
-                                            class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                                <!-- /. tools -->
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body no-padding">
-                                <!--The calendar -->
-                                <div id="calendar" style="width: 100%"></div>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer text-black">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <!-- Progress bars -->
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #1</span>
-                                            <small class="pull-right">90%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                                        </div>
-
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #2</span>
-                                            <small class="pull-right">70%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-6">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #3</span>
-                                            <small class="pull-right">60%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                                        </div>
-
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #4</span>
-                                            <small class="pull-right">40%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                        </div>
-                        <!-- /.box -->
-
-                    </section>
-                    <!-- right col -->
-                </div>
-                <!-- /.row (main row) -->
-
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-        @include('parts.footer')
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -1314,8 +312,16 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-             immediately after the control sidebar -->
+                                                                 immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     @endsection
-
-
+    @push('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#table_id').DataTable();
+            });
+        </script>
+    @endpush

@@ -327,7 +327,7 @@
         {{-- The Modal to View a single user details --}}
     @endsection
     @push('scripts')
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
         <script>
             function sweetalert() {
                 // event.preventDefault();
