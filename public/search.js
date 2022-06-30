@@ -10,3 +10,21 @@
         }
     });
 
+
+
+
+
+
+
+    var ss = "/accountant/member_contribute";
+    // alert(ss);
+    $('#memberContribute').typeahead({
+        source: function (result, process) {
+            return $.get(ss, {
+                result: result
+            }, function (data) {
+                return process(data);
+                // console.log(data);
+            });
+        }
+    });

@@ -252,11 +252,10 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Finance</a></li>
+                        <li><a href="/accountant/contributions"><i class="fa fa-circle-o"></i> Contributions</a></li>
                         <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Manage Finacial Record
                             </a>
                         </li>
-                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

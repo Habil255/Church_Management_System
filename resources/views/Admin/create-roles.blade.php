@@ -60,15 +60,15 @@
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Description</label>
                                         <input type="text" class="form-control" id="exampleInputPassword1"
-                                            placeholder="Role Description" name='description'>
+                                            placeholder="Short Role Description" name='description'>
                                         <span class="text-danger">{{ $errors->first('description') }}</span>
                                     </div>
                                     
-                                    <div class="checkbox">
+                                    {{-- <div class="checkbox">
                                         <label>
                                             <input type="checkbox"> Check me out
                                         </label>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <!-- /.box-body -->
 

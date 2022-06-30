@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
@@ -15,6 +14,8 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\CommiteeController;
+use App\Http\Controllers\ContributionsController;
+use App\Http\Controllers\Controller;
 use GuzzleHttp\Middleware;
 use App\Http\Middleware\Authcheck;
 use App\Http\Middleware\Pastorcheck;
@@ -123,7 +124,17 @@ Route::prefix('accountant')->middleware('AccountantCheck')->group(function () {
     Route::post('/resource/submit', [AccountantController::class, 'submitResources'])->name('resources.submit');
     Route::get('/resource/delete/{id}', [AccountantController::class, 'deleteResources'])->name('resource.delete');
 
+
+
     Route::get('/pdf',[AccountantController::class,'generatePDF']);
+
+    Route::get('/contributions', [ContributionsController::class, 'index']);
+
+    Route::get('/member_contribute', [ContributionsController::class, 'searchContributingMember']);
+    Route::post('/save_contribution', [ContributionsController::class, 'saveContribution'])->name('contribution.submit');
+
+    Route::get('/delete_contribution/{id}', [ContributionsController::class, 'deleteContribution']);
+
 
     
     // Route::get('/home', [AuthController::class, 'login']);

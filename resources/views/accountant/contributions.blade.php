@@ -14,7 +14,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Resources
+                    Contributions
                     <small>Control panel</small>
                 </h1>
                 <ol class="breadcrumb">
@@ -33,7 +33,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Music</span>
-                                <span class="info-box-number">{{number_format($musicResource)}}<small>Tsh</small></span>
+                                <span class="info-box-number"><small>Tsh</small></span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -46,7 +46,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Furnitures</span>
-                                <span class="info-box-number">{{number_format($furnitureResource)}}<small>Tsh</small></span>
+                                <span class="info-box-number"><small>Tsh</small></span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -77,7 +77,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Total Value</span>
-                                <span class="info-box-number">{{number_format($prices)}}<small>Tsh</small></span>
+                                <span class="info-box-number"><small>Tsh</small></span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -225,7 +225,7 @@
                 </div> --}}
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Resources Registered</h3>
+                        <h3 class="box-title">Members Contributions</h3>
                         <div class="btn-group">
                             <button type="button" class="btn btn-info">Export</button>
                             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
@@ -249,38 +249,43 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="table-responsive">
-                            <table class="table no-margin" id="table_id">
+                            <table class="box-body no-padding" class="display" id="table_id">
                                 <thead>
                                     <tr>
-                                        <th>Item ID</th>
-                                        <th>Item Name</th>
-                                        <th>Category</th>
-                                        <th>Value</th>
-                                        <th>Status</th>
+                                        <th>Member Name</th>
+                                        <th>Email</th>
+                                        <th>Contribution Category</th>
+                                        <th>Amount</th>
+                                        <th>Payment method</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        @foreach ($resources as $resource)
-                                            <td>{{ $resource->id }}</a></td>
-                                            <td>{{ $resource->name }}</td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                    {{ $resource->category }}</div>
-                                            </td>
-                                            <td>{{number_format($resource->price)}}<small> Tsh</small></td>
-                                            <td><span class="label label-success">In Use</span></td>
-                                            <td><a href="/resource/view/{{ $resource->id }}"
-                                                    data-target="#singleUser-details" class="fa fa-eye"
-                                                    data-toggle="modal"></a>
-                                                    {{-- href="resource/delete/{{ $resource->id }}" --}}
-                                                <a onclick="sweet()" class="fa fa-trash-o "></a>
-                                            </td>
+                                        @foreach ($users as $user)
+                                            @foreach ($user->contributions as $contribution)
                                     </tr>
-                                    @endforeach  
-                                    
-                                    
+                                                <td>{{ $user->first_name. " ". $user->last_name }}</td>
+                                                <td>{{ $user->email}}</td>
+                                                <td>
+                                                    <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                        {{ $contribution->category }}</div>
+                                                </td>
+                                                <td>{{ number_format($contribution->amount) }}<small> Tsh</small></td>
+                                                <td>{{ $contribution->payment_type }}</small></td>
+                                                {{-- <td><span class="label label-success">In Use</span></td> --}}
+                                                <td><a href="/resource/view/{{ $contribution->id }}"
+                                                        data-target="#singleUser-details" class="fa fa-eye"
+                                                        data-toggle="modal"></a>
+
+                                                    <a href="/accountant/delete_contribution/{{ $contribution->id }}" class="fa fa-trash-o "></a>
+                                                </td>
+
+                                    </tr>
+                                    @endforeach
+                                    @endforeach
+
+
 
                                 </tbody>
                             </table>
@@ -289,12 +294,11 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-                        <input type="file" class="btn btn-sm btn-info btn-flat pull-left">
                         {{-- <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left"><i class="bi bi-cloud-arrow-up"></i>
                         Order</a> --}}
                         <button type="button" class="btn btn-sm btn-default btn-flat pull-right" data-toggle="modal"
                             data-target="#modal-default">
-                            Add Resource
+                            Add Contribution
                         </button>
                     </div>
                     <!-- /.box-footer -->
@@ -304,143 +308,10 @@
                 <div class="row">
                     <!-- Left col -->
                     <section class="col-lg-8 connectedSortable">
-                        <!-- Custom tabs (Charts with tabs)-->
-
-                        <!-- /.nav-tabs-custom -->
-
-                        <!-- Chat box -->
-
-                        <!-- /.box (chat box) -->
-
-                        <!-- TO DO List -->
-
-                        <!-- /.box -->
-
-                        <!-- quick email widget -->
-                        <div class="box box-info">
-                            <div class="box-header">
-                                <i class="fa fa-envelope"></i>
-
-                                <h3 class="box-title">Quick Email</h3>
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <button type="button" class="btn btn-info btn-sm" data-widget="remove"
-                                        data-toggle="tooltip" title="Remove">
-                                        <i class="fa fa-times"></i></button>
-                                </div>
-                                <!-- /. tools -->
-                            </div>
-                            <div class="box-body">
-                                <form action="#" method="post">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="subject" placeholder="Subject">
-                                    </div>
-                                    <div>
-                                        <textarea class="textarea" placeholder="Message"
-                                            style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="box-footer clearfix">
-                                <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                                    <i class="fa fa-arrow-circle-right"></i></button>
-                            </div>
-                        </div>
-
                     </section>
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
                     <section class="col-lg-4 connectedSortable">
-
-                        <!-- Map box -->
-
-                        <!-- /.box -->
-
-                        <!-- solid sales graph -->
-
-                        <!-- /.box -->
-
-                        <!-- Calendar -->
-                        <div class="box box-solid bg-green-gradient">
-                            <div class="box-header">
-                                <i class="fa fa-calendar"></i>
-
-                                <h3 class="box-title">Calendar</h3>
-                                <!-- tools box -->
-                                <div class="pull-right box-tools">
-                                    <!-- button with a dropdown -->
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle"
-                                            data-toggle="dropdown">
-                                            <i class="fa fa-bars"></i></button>
-                                        <ul class="dropdown-menu pull-right" role="menu">
-                                            <li><a href="#">Add new event</a></li>
-                                            <li><a href="#">Clear events</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">View calendar</a></li>
-                                        </ul>
-                                    </div>
-                                    <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i
-                                            class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                                <!-- /. tools -->
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body no-padding">
-                                <!--The calendar -->
-                                <div id="calendar" style="width: 100%"></div>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer text-black">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <!-- Progress bars -->
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #1</span>
-                                            <small class="pull-right">90%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                                        </div>
-
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #2</span>
-                                            <small class="pull-right">70%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-6">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #3</span>
-                                            <small class="pull-right">60%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                                        </div>
-
-                                        <div class="clearfix">
-                                            <span class="pull-left">Task #4</span>
-                                            <small class="pull-right">40%</small>
-                                        </div>
-                                        <div class="progress xs">
-                                            <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                        </div>
                         <!-- /.box -->
 
                     </section>
@@ -646,7 +517,7 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                             immediately after the control sidebar -->
+                                         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
 
 
@@ -663,7 +534,7 @@
                         <!-- /.box-header -->
 
                         <!-- form start -->
-                        <form role="form" method="POST" action="{{ route('resources.submit') }}"
+                        <form role="form" method="POST" action="{{ route('contribution.submit') }}"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
@@ -671,9 +542,12 @@
                                     <div class="col-sm-5">
                                         <!-- text input -->
                                         <div class="form-group">
-                                            <label>Resource Name</label>
-                                            <input type="text" class="form-control" placeholder="Piano" name="name"
-                                                autocomplete="off" required>
+                                            <label for="select">Church Member</label>
+
+                                            <input type="text" class="typeahead form-control"
+                                                placeholder="Search a user..." name="name" id="memberContribute"
+                                                autocomplete="off">
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-sm-7">
@@ -691,7 +565,7 @@
 
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-sm-7">
 
                                         <label for="category" class=" col-form-label "
@@ -700,40 +574,30 @@
                                         <textarea class="col-md-12" name="description" id="" cols="100" rows="5"></textarea>
 
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
                                     {{-- <span class="text-danger">{{ $errors->first('title') }}</span> --}}
                                     <div class="col-sm-4 form-group">
-                                        <label>Bought By</label>
-                                        <input type="name" class="form-control" placeholder="Jam224" name="bought_by"
-                                            required>
+                                        <label>Payment type</label>
+                                        <select id="category" class="form-control" name="payment_type" required
+                                            autocomplete="job_title" autofocous>
+                                            <option value="" disabled selected hidden>Choose type</option>
+                                            <option>Online</option>
+                                            <option>Cash</option>
+                                        </select>
                                     </div>
                                     <div class="col-sm-4 form-group">
-                                        <label>Buyers Phonenumber</label>
+                                        <label>Phonenumber 2</label>
                                         <input type="number" class="form-control" placeholder="0713543613"
-                                            name="buyer_number">
+                                            name="">
                                     </div>
                                     <div class="col-sm-4 form-group">
-                                        <label>Price</label>
-                                        <input type="text" class="form-control" placeholder="1560.55" name="price"
+                                        <label>Amount</label>
+                                        <input type="text" class="form-control" placeholder="1560.55" name="amount"
                                             required>
                                     </div>
-
-                                    <div class="col-sm-3 form-group">
-                                        <label>Date Bought:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="date" name="date" class="form-control datetimepicker-input"
-                                                data-target="#reservationdate" required />
-
-                                        </div>
-                                    </div>
                                     <div class="col-sm-4 form-group">
-                                        <label>Receipt Number</label>
-                                        <input type="receipt_number" class="form-control" placeholder="1560.55"
-                                            name="receipt_number" required>
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Picture</label>
+                                        <label>Receipt Picture</label>
                                         <input type="file" class="form-control" placeholder="1560.55" name="image"
                                             required>
                                         @if ($errors->has('image'))
@@ -743,39 +607,8 @@
                                     </div>
 
                                 </div>
-                                {{-- <div class="row">
-                                    <div class="col-sm-3 form-group">
-                                        <label>Place of Birth</label>
-                                        <input type="Address" name="place_of_birth" class="form-control"
-                                            placeholder="Mabibo">
-                                    </div>
-                                    <div class="col-sm-5 form-group">
-                                        <label for="category" class=" col-form-label "
-                                            style="color: black">{{ __('Marrital Status') }}</label>
 
-                                        <select id="category" class="form-control" name="marital_status" required
-                                            autocomplete="job_title" autofocous>
 
-                                            <option value="Select Status" disabled>Marrital Status</option>
-                                            <option>Married</option>
-                                            <option>Not Married</option>
-                                        </select>
-
-                                        <span class="text-danger">{{ $errors->first('role') }}</span>
-                                        @if ($errors->any())
-                                            <p style="color: red">{{ $errors->first() }}</p>
-                                        @endif
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Spouse Name(Optional)</label>
-                                            <input type="text" class="form-control" placeholder="Lomell"
-                                                name="spouse_name" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div> --}}
                                 <!-- /.box-body -->
 
                                 <div class="modal-footer">
@@ -793,13 +626,11 @@
         </div>
     @endsection
     @push('scripts')
-        @include('javascripts')
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready(function() {
                 $('#table_id').DataTable();
             });
         </script>
+        <script src="{{ asset('search.js') }}"></script>
     @endpush
