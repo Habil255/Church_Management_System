@@ -91,20 +91,30 @@
                     <!-- Left col -->
                     <section class="col-lg-7 connectedSortable">
                         <!-- Custom tabs (Charts with tabs)-->
-                        <div class="nav-tabs-custom">
-                            <!-- Tabs within a box -->
-                            <ul class="nav nav-tabs pull-right">
-                                <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                                {{-- <li><a href="#sales-chart" data-toggle="tab">Donut</a></li> --}}
-                                <li class="pull-left header"><i class="fa fa-inbox"></i> Members Contributions</li>
-                            </ul>
-                            <div class="tab-content no-padding">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart"
-                                    style="position: relative; height: 300px;"></div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Contributions Trend</h3>
+                                {{-- {{$usersMonthlyReg}} --}}
+                                <div class="form-group col-md-4">
+                                    <select class="form-control select2" name="year" style="width: 100%;" onchange="run()">
+                                        <option selected="selected">2022</option>
+                                        <option value='2021'>2021</option>
+                                        <option value='2020'>2020</option>
+                                        <option value='2019'>2019</option>
+                                    </select>
+                                </div>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
                                 </div>
                             </div>
+                            <div class="box-body chart-responsive">
+                                <canvas id="contributions"></canvas>
+                            </div>
+                            <!-- /.box-body -->
                         </div>
                         <!-- /.nav-tabs-custom -->
 
@@ -576,4 +586,30 @@
         <!-- Add the sidebar's background. This div must be placed
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
+        {{-- <script>
+            
+            const labels = 
+        
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'users',
+                    backgroundColor: 'rgb(255, 100, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data:
+                }]
+            };
+        
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {}
+            };
+
+
+            const myChart = new Chart(
+                document.getElementById('contributions'),
+                config
+            );
+        </script> --}}
     @endsection

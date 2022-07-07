@@ -33,7 +33,8 @@
 
                 <!-- /.row -->
                 <!-- Main row -->
-                <div class="row">
+                {{-- ANALYSIS BAR --}}
+                {{-- <div class="row">
                     <!-- Left col -->
                     <div class="col-md-4">
                         <div class="info-box bg-green">
@@ -89,7 +90,7 @@
                             <!-- /.info-box-content -->
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <!-- Left col -->
                     <section class="col-lg-7 connectedSortable">

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contribution;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use PDF;
 class ContributionsController extends Controller
 {
     /**
@@ -86,9 +86,14 @@ class ContributionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function contributionsPDF()
     {
         //
+        $users = User::Has('contributions')->get();
+        // $totalPromises = Contribution::sum('price');
+        $pdf = PDF::loadView('accountant.contributionsPDF', compact('users'));
+        $pdf->setPaper('legal', 'landscape');
+        return $pdf->download('contributions.pdf');
     }
 
     /**

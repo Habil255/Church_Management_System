@@ -128,6 +128,8 @@ Route::prefix('accountant')->middleware('AccountantCheck')->group(function () {
 
     Route::get('/pdf',[AccountantController::class,'generatePDF']);
 
+    Route::get('/contribution_pdf',[ContributionsController::class,'contributionsPDF']);
+
     Route::get('/contributions', [ContributionsController::class, 'index']);
 
     Route::get('/member_contribute', [ContributionsController::class, 'searchContributingMember']);

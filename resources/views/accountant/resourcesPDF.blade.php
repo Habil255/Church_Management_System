@@ -21,8 +21,11 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                
+                    {{-- <div class="row">
+                        <img src="{{URL::asset('/images/image1.png')}}" alt="profile Pic" height="10px" width="200">
+                    </div> --}}
                     <div class="card card-primary">
+                        
                             <center><h3> EVANGELICAL LUTHERAN CHURCH IN TANZANIA</h3><center>
                             <center><h4> EASTERN AND COAST DIOCESE</h4><center>
                             <center><h4> NORTHERN PROVINCE</h4><center>
@@ -53,7 +56,7 @@
                                         <td>{{ number_format($resource->price) }} Tsh</td>
                                         {{-- <td> <img src="resources/{{$resource->picture}}" width="50px" height="50px" alt=""></td> --}}
                                         <td>{{ $resource->date}}</td>
-                                        <td> <img src="resources/{{$resource->picture}}" width="100px" height="100px" alt=""></td>
+                                        <td><img src="resources/{{$resource->picture}}" width="100px" height="100px" alt=""></td>
 
 
                                     </tr>

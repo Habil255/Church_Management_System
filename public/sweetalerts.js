@@ -8,7 +8,7 @@ function deleteCommitee() {
         })
         .then((willDelete) => {
             if (willDelete) {
-                window.location.href = "route('pastor.deleteMember', $account->id)";
+                window.location.href = "/pastor/delete_commitee/$commitee->id";
                 swal("Thank you!", {
                     title: "User has Deleted",
                     icon: "success",

@@ -89,7 +89,7 @@ class AuthController extends Controller
             // $title =Role::where('title','Accountant');
             // Automatically logout if user role isn't admin type
             if ($user[0]->title === 'Accountant') {
-                // return redirect('/admin/home');
+                return redirect('/accountant/home');
                 // Auth::logout();
                 $user = Auth::user()->roles;
                 $role = $user[0]->title;

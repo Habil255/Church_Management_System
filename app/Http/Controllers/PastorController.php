@@ -23,9 +23,11 @@ class PastorController extends Controller
         $usersMonthlyReg = User::selectRaw('distinct Month(created_at) as month, count(*) as users')
             ->whereYear('created_at', '=', 2022)
             ->groupByRaw('month(created_at)')->get();
+           
         $activation = User::selectRaw('status, ROUND(COUNT(*)*100/(SELECT COUNT(*) 
                                         from users),2) as percentage')
             ->groupByRaw('status')->get();
+            // return $activation;
         $rate=[];
             $a=1;
             while ($a <= count($activation)) {

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contribution;
 use Illuminate\Http\Request;
 use App\Models\Resources;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 class AccountantController extends Controller
@@ -17,9 +19,31 @@ class AccountantController extends Controller
      */
     public function index()
     {
+        
+        
         //
-        return view('accountant.home');
+        // // SELECT sum(amount), first_name, last_name, category from contributions,users WHERE contributions.user_id = users.id GROUP by contributions.category, users.first_name; 
+        // $total = Contribution::selectRaw('distinct sum(amount) as amountTotal, category')
+        //     // ->whereYear('created_at', '=', 2022)
+        //     ->groupByRaw('category')->get();
+        // return $total;
+        // $contribution=[];
+            // $a=1;
+            // while ($a <= count($total)) {
+            //     foreach($total as $items){
+            //     # code...
+                
+            //         $rate[] = ['status' => $items->toSt, 'percentage' => $items->percentage];
+            //     }
+                    
+                
+            //     $a++;
+            //     return 'habil';
+            // }
+            return view('accountant.home');
+        
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,14 +54,14 @@ class AccountantController extends Controller
     {
         //
         $prices = Resources::get()->sum('price');
-        $musicResource = Resources::where('category','Musics')->get()->sum('price');
-        $furnitureResource = Resources::where('category','Furnitures')->get()->sum('price');
-        
+        $musicResource = Resources::where('category', 'Musics')->get()->sum('price');
+        $furnitureResource = Resources::where('category', 'Furnitures')->get()->sum('price');
+
         // return $musicResource;
         $resources = Resources::get();
         // return $prices;
 
-        return view('accountant.show-resources', compact('resources', 'prices','musicResource','furnitureResource'));
+        return view('accountant.show-resources', compact('resources', 'prices', 'musicResource', 'furnitureResource'));
     }
     public function create()
     {
@@ -59,15 +83,15 @@ class AccountantController extends Controller
             $request->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,svg|max:2048'
             ]);
-            $imageName = time().'.'.$request->image->extension();
+            $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('resources'), $imageName);
             /* Store $imageName name in DATABASE from HERE */
-        //     $resources = new Resources();
-        //     $resources->name = $request->name;
-        //     $resources->image = $imageName;
-        //     $resources->save();
-        // }
-        
+            //     $resources = new Resources();
+            //     $resources->name = $request->name;
+            //     $resources->image = $imageName;
+            //     $resources->save();
+            // }
+
             $user = Auth::user();
             $resources = Resources::create([
                 'name' => $request->name,
@@ -102,8 +126,8 @@ class AccountantController extends Controller
         $pdf->setPaper('legal', 'landscape');
         return $pdf->download('resources.pdf'); // download as pdf
     }
-        //
-    
+    //
+
 
     /**
      * Show the form for editing the specified resource.
@@ -134,19 +158,18 @@ class AccountantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteResources ($id)
+    public function deleteResources($id)
     {
         // $image = \DB::table('files')->where('id', $id)->first();
         // $file= $image->your_file_path;
         // $filename = public_path().'/uploads_folder/'.$file;
         // \File::delete($filename);
 
-        $username = Resources::find($id)->where('id',$id)->first();
-        $file= $username->picture;
-        $filename = public_path().'/resources/'.$file;
+        $username = Resources::find($id)->where('id', $id)->first();
+        $file = $username->picture;
+        $filename = public_path() . '/resources/' . $file;
         File::delete($filename);
         $username->delete();
         return back()->with('deleted', `User  has been deleted`);
     }
-    
 }

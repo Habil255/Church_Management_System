@@ -17,7 +17,6 @@ class CommiteeController extends Controller
     {
         //
         $commitees = Commitee::withCount('users')->get();
-        // return $commitees;
 
         return view('pastor.create-commitee', compact('commitees'));
     }
@@ -138,10 +137,10 @@ class CommiteeController extends Controller
     public function deleteCommitee($id)
     {
         //
-        return 4;
+        return $id;
         $commitee = Commitee::findorFail($id);
         // return $role->title;
-        // $commitee->delete();
-        // return back()->with('commitee_deleted', 'Role has been deleted');
+        $commitee->delete();
+        return back()->with('commitee_deleted', 'Role has been deleted');
     }
 }

@@ -26,7 +26,7 @@
             <!-- Main content -->
             <section class="content">
                 <!-- Small boxes (Stat box) -->
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-aqua"><i class='fa fa-music'></i></span>
@@ -84,7 +84,7 @@
                         <!-- /.info-box -->
                     </div>
                     <!-- /.col -->
-                </div>
+                </div> --}}
                 {{-- <div class="row">
                     <div class="col-md-12">
                         <div class="box">
@@ -233,7 +233,7 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ URL::to('accountant/pdf') }}">PDF</a></li>
+                                <li><a href="{{ URL::to('accountant/contribution_pdf') }}">PDF</a></li>
                                 <li><a href="#">Excel</a></li>
                                 <li><a href="#">CSV</a></li>
                             </ul>
