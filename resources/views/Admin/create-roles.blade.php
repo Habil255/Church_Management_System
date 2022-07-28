@@ -390,6 +390,7 @@
                                     <th style="width: 20%">Last Name</th>
                                     <th style="width: 20%">Email</th>
                                     <th style="width: 20%">Role</th>
+                                    <th style="width: 20%">Assigned on</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -405,6 +406,9 @@
                                         <td>
                                             @foreach ($userDetail->roles as $role)
                                                 <span class="label label-primary">{{ $role->title }}</span>
+                                           
+                                        </td>
+                                        <td>{{ $role->updated_at->diffForHumans() }}
                                             @endforeach
                                         </td>
                                 </tr>
